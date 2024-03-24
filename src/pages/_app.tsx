@@ -1,4 +1,4 @@
-import "@/shared/assets/styles/globals.scss";
+import "@/shared/assets/styles/base/base.scss";
 
 import { App } from "@/app";
 export default App;
