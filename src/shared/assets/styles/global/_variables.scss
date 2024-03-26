@@ -1,0 +1,33 @@
+:root {
+    //colors
+    --white: #ffffff;
+    --black: #0c0C0c;
+
+    --tomato: #fc5842;
+    --harley-davidson-orange: #d1311c;
+    --white-smoke: #ffF0ee;
+    --eclipse: #393939;
+    --dim-gray: #737373;
+    --nobel: #969696;
+    --very-light-grey: #c7c7c7;
+    --light-gray: #d7d7d7;
+    --snow: #fbfbfb;
+    --jade: #05c168;
+    --persian-red: #dc2b2b;
+    --wild-watermelon: #ff5a65;
+    --azalea: #ffbec2;
+    --amour: #ff9e2c;
+}
+
+// Viewports
+
+$vp-tab: 768px;
+$vp-desk: 1200px;
+
+// Typography
+// ---------------------------------
+
+$fz-default: 18px;
+$ff-int: "Inter", "Arial", sans-serif;
+$ff-dm-sans: 'DM Sans', "Arial", sans-serif;
+$ff-thic: 'THICCCBOI', "Arial", sans-serif;

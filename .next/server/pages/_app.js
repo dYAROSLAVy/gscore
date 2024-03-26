@@ -30,14 +30,14 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _shared_assets_styles_base_base_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/shared/assets/styles/base/base.scss */ \"./src/shared/assets/styles/base/base.scss\");\n/* harmony import */ var _shared_assets_styles_base_base_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_shared_assets_styles_base_base_scss__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/app */ \"./src/app/index.tsx\");\n\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_app__WEBPACK_IMPORTED_MODULE_1__.App);\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvcGFnZXMvX2FwcC50c3giLCJtYXBwaW5ncyI6Ijs7Ozs7OztBQUErQztBQUVuQjtBQUM1QixpRUFBZUEscUNBQUdBLEVBQUMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9teS1hcHAvLi9zcmMvcGFnZXMvX2FwcC50c3g/ZjlkNiJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgXCJAL3NoYXJlZC9hc3NldHMvc3R5bGVzL2Jhc2UvYmFzZS5zY3NzXCI7XG5cbmltcG9ydCB7IEFwcCB9IGZyb20gXCJAL2FwcFwiO1xuZXhwb3J0IGRlZmF1bHQgQXBwO1xuIl0sIm5hbWVzIjpbIkFwcCJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./src/pages/_app.tsx\n");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _shared_assets_styles_style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/shared/assets/styles/style.scss */ \"./src/shared/assets/styles/style.scss\");\n/* harmony import */ var _shared_assets_styles_style_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_shared_assets_styles_style_scss__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/app */ \"./src/app/index.tsx\");\n\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_app__WEBPACK_IMPORTED_MODULE_1__.App);\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvcGFnZXMvX2FwcC50c3giLCJtYXBwaW5ncyI6Ijs7Ozs7OztBQUEyQztBQUVmO0FBQzVCLGlFQUFlQSxxQ0FBR0EsRUFBQyIsInNvdXJjZXMiOlsid2VicGFjazovL215LWFwcC8uL3NyYy9wYWdlcy9fYXBwLnRzeD9mOWQ2Il0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBcIkAvc2hhcmVkL2Fzc2V0cy9zdHlsZXMvc3R5bGUuc2Nzc1wiO1xuXG5pbXBvcnQgeyBBcHAgfSBmcm9tIFwiQC9hcHBcIjtcbmV4cG9ydCBkZWZhdWx0IEFwcDtcbiJdLCJuYW1lcyI6WyJBcHAiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./src/pages/_app.tsx\n");
 
 /***/ }),
 
-/***/ "./src/shared/assets/styles/base/base.scss":
-/*!*************************************************!*\
-  !*** ./src/shared/assets/styles/base/base.scss ***!
-  \*************************************************/
+/***/ "./src/shared/assets/styles/style.scss":
+/*!*********************************************!*\
+  !*** ./src/shared/assets/styles/style.scss ***!
+  \*********************************************/
 /***/ (() => {
 
 
