@@ -1,0 +1,65 @@
+$fonts-path: '/fonts';
+
+@font-face {
+    font-display: swap;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    src: url('#{$fonts-path}/inter/inter-500.woff2');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    src: url('#{$fonts-path}/inter/inter-600.woff2');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    src: url('#{$fonts-path}/inter/inter-700.woff2');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: url('#{$fonts-path}/dm-sans/dm-sans-400.woff2');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 700;
+    src: url('#{$fonts-path}/dm-sans/dm-sans-700.woff2');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'THICCCBOI';
+    font-style: normal;
+    font-weight: 500;
+    src: url('#{$fonts-path}/thicccboi/thicccboi-500.woff2');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'THICCCBOI';
+    font-style: normal;
+    font-weight: 600;
+    src: url('#{$fonts-path}/thicccboi/thicccboi-600.woff2');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'THICCCBOI';
+    font-style: normal;
+    font-weight: 700;
+    src: url('#{$fonts-path}/thicccboi/thicccboi-700.woff2');
+}
