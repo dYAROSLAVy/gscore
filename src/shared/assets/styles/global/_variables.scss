@@ -17,17 +17,17 @@
     --wild-watermelon: #ff5a65;
     --azalea: #ffbec2;
     --amour: #ff9e2c;
+
+    // Typography
+    // ---------------------------------
+
+    --fz-default: 18px;
+    --ff-int: "Inter", "Arial", sans-serif;
+    --ff-dm-sans: 'DM Sans', "Arial", sans-serif;
+    --ff-thic: 'THICCCBOI', "Arial", sans-serif;
 }
 
 // Viewports
 
 $vp-tab: 768px;
 $vp-desk: 1200px;
-
-// Typography
-// ---------------------------------
-
-$fz-default: 18px;
-$ff-int: "Inter", "Arial", sans-serif;
-$ff-dm-sans: 'DM Sans', "Arial", sans-serif;
-$ff-thic: 'THICCCBOI', "Arial", sans-serif;

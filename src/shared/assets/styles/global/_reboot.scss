@@ -14,9 +14,9 @@ body {
 html {
   font-style: normal;
   font-weight: 500;
-  font-size: $fz-default;
+  font-size:  var(--fz-default);
   line-height: 26px;
-  font-family: $ff-int;
+  font-family: var(--ff-int);
   color: var(--white);
   scroll-behavior: smooth;
 

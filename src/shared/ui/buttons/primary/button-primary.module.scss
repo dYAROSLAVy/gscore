@@ -1,0 +1,21 @@
+.primary {
+    min-width: 105px;
+    height: 58px;
+    padding: 20px 24px;
+    color: var(--white);
+    background-color: var(--tomato);
+    box-shadow: 0 10px 28px 0 rgba(var(--tomato), 0.2);
+    border-radius: 4px;
+
+    &:not(:disabled):hover {
+        background-color: var(--persian-red);
+    }
+
+    &:not(:disabled):focus {
+        outline: 4px solid rgba(#fc5842, 0.2);
+    }
+
+    &:disabled {
+        opacity: 0.6;
+    }
+}

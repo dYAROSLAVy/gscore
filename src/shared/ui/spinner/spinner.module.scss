@@ -1,0 +1,10 @@
+.spinner {
+    margin: auto;
+    animation: loader 1.5s linear infinite;
+}
+
+@keyframes loader {
+    100% {
+        transform: rotate(360deg);
+    }
+}
