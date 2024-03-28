@@ -1,6 +1,8 @@
-import { SVGProps } from "react";
+import { FC, SVGProps } from "react";
 import Loader from "../assets/svg/loader.svg";
 
-export const LoaderIcon = (props: SVGProps<SVGSVGElement>) => (
+export type LoaderIconProps = SVGProps<SVGSVGElement>;
+
+export const LoaderIcon: FC<LoaderIconProps> = (props) => (
   <Loader width="24" height="24" {...props} />
 );

@@ -1,11 +1,16 @@
 import { FC } from "react";
-import { BaseButton, BaseButtonProps } from "../base/base-button";
-import styles from "./button-primary.module.scss";
+import { ButtonBase, BaseButtonProps } from "../base/button-base";
+import { useClasses } from "./lib/use-classes";
 
-export const PrimaryButton: FC<BaseButtonProps> = ({ children, ...props }) => {
+export const ButtonPrimary: FC<BaseButtonProps> = ({
+  className,
+  children,
+  ...props
+}) => {
+  const { cnRoot } = useClasses({ className });
   return (
-    <BaseButton className={styles.primary} {...props}>
+    <ButtonBase className={cnRoot} {...props}>
       {children}
-    </BaseButton>
+    </ButtonBase>
   );
 };

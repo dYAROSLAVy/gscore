@@ -1,19 +1,23 @@
 import { ButtonHTMLAttributes, FC } from "react";
-import styles from "./base-button.module.scss";
+import { useClasses } from "./lib/use-classes";
 import { Spinner } from "../../spinner/spinner";
 
 export type BaseButtonProps = {
   isLoading?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
-export const BaseButton: FC<BaseButtonProps> = ({
+export const ButtonBase: FC<BaseButtonProps> = ({
   children,
   isLoading,
   className,
   ...props
 }) => {
+  const { cnRoot } = useClasses({
+    className,
+  });
+
   return (
-    <button className={className + " " + styles.button} {...props}>
+    <button className={cnRoot} {...props}>
       {!isLoading && <span>{children}</span>}
       {isLoading && <Spinner />}
     </button>
