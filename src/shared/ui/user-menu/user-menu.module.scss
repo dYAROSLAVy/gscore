@@ -1,0 +1,23 @@
+.user-menu {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    font-size: 20px;
+    line-height: 110%;
+    font-family: var(--ff-thic);
+}
+
+.user-menu__button {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 0 10px 20px;
+    width: fit-content;
+    cursor: pointer;
+    background-color: transparent;
+    color: var(--white);
+    border: 0;
+    font: inherit;
+}
