@@ -1,0 +1,13 @@
+.copy {
+    & label input {
+        padding-right: 90px;
+    }
+
+    & {
+        .copy__button {
+            position: absolute;
+            top: 6px;
+            right: 12px;
+        }
+    }
+}

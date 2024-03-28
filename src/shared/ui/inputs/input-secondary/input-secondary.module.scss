@@ -1,0 +1,12 @@
+.secondary {
+    & input {
+        background-color: var(--dim-gray);
+        color: var(--nobel);
+        box-shadow: 0 2px 12px 0 rgba(var(--black-russian), 0.06);
+        border: 1px solid var(--dim-gray);
+
+        &:disabled {
+            opacity: 0.6;
+        }
+    }
+}
