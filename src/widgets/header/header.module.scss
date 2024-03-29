@@ -1,6 +1,7 @@
 .header {
     display: flex;
     min-height: 106px;
+    flex-shrink: 0;
 }
 
 .header__container {

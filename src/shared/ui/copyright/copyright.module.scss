@@ -1,0 +1,17 @@
+.copyright {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    line-height: 167%;
+
+    span {
+        color: var(--very-light-grey);
+    }
+
+    a {
+        border-bottom: 1px solid;
+    }
+}

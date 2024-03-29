@@ -1,0 +1,17 @@
+.socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 -5px 0 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+        display: flex;
+    }
+
+    a {
+        display: inline-flex;
+        padding: 16px 8px 0;
+    }
+}
