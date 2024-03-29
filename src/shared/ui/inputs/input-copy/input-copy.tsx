@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useClasses } from "./lib/use-classes";
+import { useClasses } from "./styles/use-classes";
 import { BaseInputProps } from "../base/input-base";
 import { InputSecondary } from "../input-secondary/input-secondary";
 import { ButtonCopy } from "../../buttons/copy/button-copy";

@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes, FC } from "react";
-import { useClasses } from "./lib/use-classes";
+import { useClasses } from "./styles/use-classes";
 import { Spinner } from "../../spinner/spinner";
 
 export type ButtonBaseProps = {

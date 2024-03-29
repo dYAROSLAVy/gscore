@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useClasses } from "./lib/use-classes";
+import { useClasses } from "./styles/use-classes";
 import { BaseInputProps } from "../inputs/base/input-base";
 import { CheckIcon } from "@/shared/icons/check";
 

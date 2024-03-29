@@ -1,5 +1,5 @@
 import { FC, InputHTMLAttributes } from "react";
-import { useClasses } from "./lib/use-classes";
+import { useClasses } from "./styles/use-classes";
 
 export type BaseInputProps = {} & InputHTMLAttributes<HTMLInputElement>;
 

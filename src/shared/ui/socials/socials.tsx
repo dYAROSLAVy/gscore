@@ -1,5 +1,5 @@
 import { FacebookIcon } from "@/shared/icons/facebook";
-import { useClasses } from "./lib/use-classes";
+import { useClasses } from "./styles/use-classes";
 import { FC } from "react";
 import { TwitterIcon } from "@/shared/icons/twitter";
 import { LinkedinIcon } from "@/shared/icons/linkedin";
