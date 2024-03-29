@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { ButtonBase, ButtonBaseProps } from "../base/button-base";
-import { useClasses } from "./lib/use-classes";
+import { useClasses } from "./styles/use-classes";
 
 export const ButtonSecondary: FC<ButtonBaseProps> = ({
   className,

@@ -1,4 +1,4 @@
-import { useClasses } from "./lib/use-classes";
+import { useClasses } from "./styles/use-classes";
 import { FC } from "react";
 
 export type CopyrightProps = {
@@ -16,10 +16,14 @@ export const Copyright: FC<CopyrightProps> = ({ className }) => {
         <span>All Rights Reserved</span>
       </li>
       <li>
-        <a href="/">Cookies</a>
+        <a href="/" target="_blank">
+          Cookies
+        </a>
       </li>
       <li>
-        <a href="/">Privacy Policy</a>
+        <a href="/" target="_blank">
+          Privacy Policy
+        </a>
       </li>
     </ul>
   );

@@ -1,5 +1,5 @@
 import { FC, PropsWithChildren } from "react";
-import { useClasses } from "./lib/use-classes";
+import { useClasses } from "./styles/use-classes";
 
 export type WrapperProps = {
   className?: string;
