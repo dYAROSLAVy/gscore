@@ -1,5 +1,7 @@
+import { Wrapper } from "@/shared/ui/wrapper/wrapper";
+import { Footer } from "@/widgets/footer/footer";
 import { Header } from "@/widgets/header/header";
-import Layout from "@/widgets/layout/layout";
+import Main from "@/widgets/main/main";
 import Head from "next/head";
 
 export default function Home() {
@@ -14,10 +16,13 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header></Header>
-      <Layout>
-        <h1 className={"visually-hidden"}>Main page Gscore</h1>
-      </Layout>
+      <Wrapper>
+        <Header></Header>
+        <Main>
+          <h1 className={"visually-hidden"}>Main page Gscore</h1>
+        </Main>
+        <Footer></Footer>
+      </Wrapper>
     </>
   );
 }

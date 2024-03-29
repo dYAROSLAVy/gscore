@@ -1,6 +1,6 @@
 import { LogoMain } from "@/shared/icons/logo";
 import { useClasses } from "./lib/use-classes";
-import { Container } from "@/shared/ui/container/Container";
+import { Container } from "@/shared/ui/container/container";
 import { FC } from "react";
 import { UserMenu } from "@/shared/ui/user-menu/user-menu";
 
