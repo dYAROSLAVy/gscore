@@ -6,8 +6,8 @@ const cn = classNames.bind(classes);
 
 export const useClasses = ({ className }: FooterProps) => {
   const cnRoot = cn(`footer`, className);
-  const cnTopInner = cn(`footer__top-inner`, className);
-  const cnBottomInner = cn(`footer__bottom-inner`, className);
+  const cnTopInner = cn(`footer__top-inner`);
+  const cnBottomInner = cn(`footer__bottom-inner`);
 
   return {
     cnRoot,

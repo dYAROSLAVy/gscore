@@ -6,7 +6,7 @@ const cn = classNames.bind(classes);
 
 export const useClasses = ({ className }: BaseInputProps) => {
   const cnRoot = cn(`checkbox`, className);
-  const cnDecor = cn(`checkbox__decor`, className);
+  const cnDecor = cn(`checkbox__decor`);
   return {
     cnRoot,
     cnDecor

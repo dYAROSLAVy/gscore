@@ -5,9 +5,9 @@ export type MainProps = {
   className?: string;
 } & PropsWithChildren;
 
-const Main: FC<MainProps> = ({ children, className }) => {
+export const Main: FC<MainProps> = ({ children, className }) => {
   const { cnRoot } = useClasses({ className });
   return <main className={cnRoot}>{children}</main>;
 };
 
-export default Main;
+

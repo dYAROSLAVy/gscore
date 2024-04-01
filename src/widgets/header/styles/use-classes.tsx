@@ -6,7 +6,7 @@ const cn = classNames.bind(classes);
 
 export const useClasses = ({ className }:HeaderProps) => {
   const cnRoot = cn(`header`, className);
-  const cnContainer = cn(`header__container`, className);
+  const cnContainer = cn(`header__container`);
 
   return {
     cnRoot,
