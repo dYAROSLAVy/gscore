@@ -6,7 +6,7 @@ const cn = classNames.bind(classes);
 
 export const useClasses = ({ className }: UserMenuProps) => {
   const cnRoot = cn(`user-menu`, className);
-  const cnButton = cn(`user-menu__button`, className);
+  const cnButton = cn(`user-menu__button`);
   return {
     cnRoot,
     cnButton

@@ -1,0 +1,49 @@
+.promo {
+    padding: 16px 0 42px;
+
+    &__title {
+        margin: 0;
+        font-size: 44px;
+        line-height: 123%;
+        text-align: center;
+
+        &:not(:last-child) {
+            margin-bottom: 48.5px;
+        }
+    }
+
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 48px 28px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        &>li:nth-child(odd) {
+            margin-top: 50px;
+        }
+
+        &:not(:last-child) {
+            margin-bottom: 33px;
+        }
+    }
+
+    &__contact-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        font-family: var(--ff-thic);
+    }
+
+    &__link-title {
+        line-height: 167%;
+    }
+
+    &__link {
+        color: var(--tomato);
+        text-decoration: underline;
+    }
+
+}

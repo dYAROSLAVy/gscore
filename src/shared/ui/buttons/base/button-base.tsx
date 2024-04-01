@@ -17,6 +17,7 @@ export const ButtonBase: FC<ButtonBaseProps> = ({
   });
 
   return (
+    // <button className={cnRoot} {...props}>
     <button className={cnRoot} {...props}>
       {!isLoading && <span>{children}</span>}
       {isLoading && <Spinner />}

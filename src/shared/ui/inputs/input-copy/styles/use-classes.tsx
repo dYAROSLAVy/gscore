@@ -6,7 +6,7 @@ const cn = classNames.bind(classes);
 
 export const useClasses = ({ className }: BaseInputProps) => {
   const cnRoot = cn(`copy`, className);
-  const cnBtn = cn(`copy__button`, className);
+  const cnBtn = cn(`copy__button`);
 
   return {
     cnRoot,

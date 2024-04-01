@@ -1,7 +1,8 @@
 import { Wrapper } from "@/shared/ui/wrapper/wrapper";
 import { Footer } from "@/widgets/footer/footer";
 import { Header } from "@/widgets/header/header";
-import Main from "@/widgets/main/main";
+import { Main } from "@/widgets/main/main";
+import { Promo } from "@/widgets/promo/promo";
 import Head from "next/head";
 
 export default function Home() {
@@ -20,6 +21,7 @@ export default function Home() {
         <Header></Header>
         <Main>
           <h1 className={"visually-hidden"}>Main page Gscore</h1>
+          <Promo></Promo>
         </Main>
         <Footer></Footer>
       </Wrapper>

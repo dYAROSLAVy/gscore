@@ -1,5 +1,5 @@
 import classNames from "classnames/bind";
-import classes from "../spinner.module.scss";
+import classes from "./spinner.module.scss";
 import { LoaderIconProps } from "@/shared/icons/loader";
 
 const cn = classNames.bind(classes);

@@ -5,7 +5,7 @@ import { ButtonBaseProps } from "../button-base";
 const cn = classNames.bind(classes);
 
 export const useClasses = ({ className, isLoading }: ButtonBaseProps) => {
-  const cnRoot = cn(`button`, { loading: isLoading }, className);
+  const cnRoot = cn(className, `button`, { loading: isLoading });
 
   return {
     cnRoot,
