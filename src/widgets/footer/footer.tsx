@@ -1,9 +1,9 @@
 import { LogoMain } from "@/shared/icons/logo";
 import { useClasses } from "./styles/use-classes";
-import { Container } from "@/shared/ui/container/container";
 import { FC } from "react";
 import { Socials } from "@/shared/ui/socials/socials";
 import { Copyright } from "@/shared/ui/copyright/copyright";
+import { Container } from "@/shared/ui/container/container";
 
 export type FooterProps = {
   className?: string;

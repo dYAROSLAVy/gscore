@@ -1,7 +1,8 @@
 import { FC } from "react";
 import { useClasses } from "./styles/use-classes";
 import { Container } from "@/shared/ui/container/container";
-import { PromoCardBase } from "@/shared/ui/promo-card/promo-card-base";
+import { PromoCardBase } from "@/shared/ui/promo-card/promo-card";
+import { useRouter } from "next/router";
 
 export type PromoProps = {
   className?: string;
@@ -10,6 +11,7 @@ export type PromoProps = {
 export const Promo: FC<PromoProps> = () => {
   const { cnRoot, cnTitle, cnList, cnContactWrap, cnLinkTitle, cnLink } =
     useClasses();
+  const router = useRouter();
   return (
     <section className={cnRoot}>
       <Container>
@@ -20,6 +22,7 @@ export const Promo: FC<PromoProps> = () => {
               price={77}
               title={"Single site license"}
               sites={"Single site license"}
+              onClick={() => router.push("/account")}
             ></PromoCardBase>
           </li>
           <li>
@@ -28,6 +31,7 @@ export const Promo: FC<PromoProps> = () => {
               title={"3 Site license"}
               sites={"All features for 3 sites"}
               tomato={true}
+              onClick={() => router.push("/account")}
             ></PromoCardBase>
           </li>
           <li>
@@ -35,6 +39,7 @@ export const Promo: FC<PromoProps> = () => {
               price={167}
               title={"10 Site license"}
               sites={"All features for 10 sites"}
+              onClick={() => router.push("/account")}
             ></PromoCardBase>
           </li>
         </ul>
