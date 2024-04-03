@@ -4,6 +4,7 @@ import { Spinner } from "../../spinner/spinner";
 
 export type ButtonBaseProps = {
   isLoading?: boolean;
+  isActive?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const ButtonBase: FC<ButtonBaseProps> = ({
@@ -17,7 +18,6 @@ export const ButtonBase: FC<ButtonBaseProps> = ({
   });
 
   return (
-    // <button className={cnRoot} {...props}>
     <button className={cnRoot} {...props}>
       {!isLoading && <span>{children}</span>}
       {isLoading && <Spinner />}

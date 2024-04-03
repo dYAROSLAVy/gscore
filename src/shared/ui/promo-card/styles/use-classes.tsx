@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
-import classes from "./promo-card-base.module.scss";
-import { PromoCardProps } from "../promo-card-base";
+import classes from "./promo-card.module.scss";
+import { PromoCardProps } from "../promo-card";
 
 const cn = classNames.bind(classes);
 

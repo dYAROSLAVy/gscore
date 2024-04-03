@@ -9,10 +9,11 @@ export type PromoCardProps = {
   price?: number;
   sites?: string;
   tomato?: boolean;
+  onClick?: () => void;
 };
 
 export const PromoCardBase: FC<PromoCardProps> = ({
-  className,
+  onClick,
   title,
   price,
   sites,
@@ -69,7 +70,7 @@ export const PromoCardBase: FC<PromoCardProps> = ({
             <span>Billed annually</span>
           </li>
         </ul>
-        <ButtonSecondary>Get Gscore</ButtonSecondary>
+        <ButtonSecondary onClick={onClick}>Get Gscore</ButtonSecondary>
       </div>
     </div>
   );
