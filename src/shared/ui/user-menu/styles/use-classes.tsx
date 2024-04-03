@@ -7,8 +7,14 @@ const cn = classNames.bind(classes);
 export const useClasses = ({ className }: UserMenuProps) => {
   const cnRoot = cn(`user-menu`, className);
   const cnButton = cn(`user-menu__button`);
+  const cnTopInner = cn(`user-menu__top-inner`);
+  const cnBottomInner = cn(`user-menu__bottom-inner`);
+  const cnLink = cn(`user-menu__link`);
   return {
     cnRoot,
-    cnButton
+    cnButton,
+    cnTopInner,
+    cnBottomInner,
+    cnLink
   };
 };
