@@ -1,0 +1,25 @@
+.button-tab {
+    padding: 0 24px 12px;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 111%;
+    color: var(--dim-gray);
+
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 2px;
+        background-color: var(--dim-gray);
+    }
+
+
+    &--active {
+        color: var(--tomato);
+
+        &::after {
+            background-color: var(--tomato);
+        }
+    }
+}

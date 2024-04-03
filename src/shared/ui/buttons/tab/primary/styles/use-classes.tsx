@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
-import classes from "./button-tab.module.scss";
-import { ButtonBaseProps } from "../../base/button-base";
+import classes from "./button-tab-primary.module.scss";
+import { ButtonBaseProps } from "../../../base/button-base";
 
 const cn = classNames.bind(classes);
 

@@ -2,7 +2,7 @@ import { InputPrimary } from "@/shared/ui/inputs/input-primary/input-primary";
 import { ButtonPrimary } from "@/shared/ui/buttons/primary/button-primary";
 import { Container } from "@/shared/ui/container/container";
 import { useClasses } from "./styles/use-classes";
-import { ButtonTab } from "@/shared/ui/buttons/tab/button-tab";
+import { ButtonTabPrimary } from "@/shared/ui/buttons/tab/primary/button-tab-primary";
 import { FC, useState } from "react";
 import { CheckoutCard } from "@/shared/ui/checkout-card/checkout-card";
 
@@ -54,13 +54,13 @@ export const Account: FC<AccountProps> = ({ price, sites }) => {
           <>
             <ul className={cnTabsList}>
               <li>
-                <ButtonTab children={"Create account"} isActive={true} />
+                <ButtonTabPrimary children={"Create account"} isActive={true} />
               </li>
               <li>
-                <ButtonTab children={"Log in"} onClick={activeLoginTab} />
+                <ButtonTabPrimary children={"Log in"} onClick={activeLoginTab} />
               </li>
               <li>
-                <ButtonTab children={"Checkout"} />
+                <ButtonTabPrimary children={"Checkout"} />
               </li>
             </ul>
             <div className={cnTextWrap}>
@@ -86,17 +86,17 @@ export const Account: FC<AccountProps> = ({ price, sites }) => {
           <>
             <ul className={cnTabsList}>
               <li>
-                <ButtonTab
+                <ButtonTabPrimary
                   children={"Create account"}
                   isActive={true}
                   onClick={deactivateLoginTab}
                 />
               </li>
               <li>
-                <ButtonTab children={"Log in"} isActive={true} />
+                <ButtonTabPrimary children={"Log in"} isActive={true} />
               </li>
               <li>
-                <ButtonTab children={"Checkout"} />
+                <ButtonTabPrimary children={"Checkout"} />
               </li>
             </ul>
             <div className={cnTextWrap}>
@@ -117,13 +117,13 @@ export const Account: FC<AccountProps> = ({ price, sites }) => {
           <>
             <ul className={cnTabsList}>
               <li>
-                <ButtonTab children={"Create account"} isActive={true} />
+                <ButtonTabPrimary children={"Create account"} isActive={true} />
               </li>
               <li>
-                <ButtonTab children={"Login"} isActive={true} />
+                <ButtonTabPrimary children={"Login"} isActive={true} />
               </li>
               <li>
-                <ButtonTab children={"Checkout"} isActive={true} />
+                <ButtonTabPrimary children={"Checkout"} isActive={true} />
               </li>
             </ul>
             <div className={cnTextWrap}>
