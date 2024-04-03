@@ -1,23 +1,53 @@
 .user-menu {
+    position: relative;
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 12px;
-    font-size: 20px;
-    line-height: 110%;
-    font-family: var(--ff-thic);
-}
+    flex-direction: column;
 
-.user-menu__button {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 7px;
-    padding: 10px 0 10px 20px;
-    width: fit-content;
-    cursor: pointer;
-    background-color: transparent;
-    color: var(--white);
-    border: 0;
-    font: inherit;
+    &__top-inner {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
+        font-size: 20px;
+        line-height: 110%;
+        font-family: var(--ff-thic);
+    }
+
+    &__bottom-inner {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        bottom: -150px;
+        right: 0;
+        padding: 20px 24px;
+        width: 188px;
+        border-radius: 12px;
+        background-color: var(--eclipse);
+    }
+
+    &__link {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
+        padding: 8px 0;
+        font-family: var(--ff-thic);
+        font-size: 20px;
+        line-height: 110%;
+    }
+
+    &__button {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 7px;
+        padding: 10px 0 10px 20px;
+        width: fit-content;
+        cursor: pointer;
+        background-color: transparent;
+        color: var(--white);
+        border: 0;
+        font: inherit;
+    }
 }

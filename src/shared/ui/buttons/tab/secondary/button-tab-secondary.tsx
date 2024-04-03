@@ -1,8 +1,8 @@
 import { FC } from "react";
-import { ButtonBaseProps, ButtonBase } from "../base/button-base";
+import { ButtonBaseProps, ButtonBase } from "../../base/button-base";
 import { useClasses } from "./styles/use-classes";
 
-export const ButtonTab: FC<ButtonBaseProps> = ({
+export const ButtonTabSecondary: FC<ButtonBaseProps> = ({
   className,
   children,
   isActive,

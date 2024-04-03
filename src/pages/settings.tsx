@@ -2,10 +2,10 @@ import { Wrapper } from "@/shared/ui/wrapper/wrapper";
 import { Footer } from "@/widgets/footer/footer";
 import { Header } from "@/widgets/header/header";
 import { Main } from "@/widgets/main/main";
-import { Promo } from "@/widgets/promo/promo";
+import { Settings } from "@/widgets/settings/settings";
 import Head from "next/head";
 
-export default function Home() {
+export default function SettingsPage() {
   return (
     <>
       <Head>
@@ -20,8 +20,8 @@ export default function Home() {
       <Wrapper>
         <Header isLogin={true} userName="Alex"></Header>
         <Main>
-          <h1 className={"visually-hidden"}>Main page Gscore</h1>
-          <Promo></Promo>
+          <h1 className={"visually-hidden"}>Settings page Gscore</h1>
+          <Settings />
         </Main>
         <Footer></Footer>
       </Wrapper>
