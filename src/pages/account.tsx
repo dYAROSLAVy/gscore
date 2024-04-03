@@ -21,7 +21,7 @@ export default function AccountPage() {
         <Header></Header>
         <Main>
           <h1 className={"visually-hidden"}>Account page Gscore</h1>
-          <Account />
+          <Account price={77} sites="Single site license" />
         </Main>
         <Footer></Footer>
       </Wrapper>

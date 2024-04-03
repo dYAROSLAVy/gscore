@@ -15,7 +15,9 @@ export const Header: FC<HeaderProps> = ({ className, isLogin, userName }) => {
   return (
     <header className={cnRoot}>
       <Container className={cnContainer}>
-        <LogoMain></LogoMain>
+        <a href="/">
+          <LogoMain></LogoMain>
+        </a>
         {isLogin && <UserMenu userName={userName}></UserMenu>}
       </Container>
     </header>

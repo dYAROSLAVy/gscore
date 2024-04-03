@@ -15,7 +15,9 @@ export const Footer: FC<FooterProps> = ({ className }) => {
     <footer className={cnRoot}>
       <Container>
         <div className={cnTopInner}>
-          <LogoMain></LogoMain>
+          <a href="/">
+            <LogoMain></LogoMain>
+          </a>
           <p>Ut enim ad minim veniam quis nostrud exercitation ea commodo</p>
         </div>
         <div className={cnBottomInner}>
