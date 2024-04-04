@@ -20,7 +20,7 @@ export default function SubscriptionsPage() {
       <Wrapper>
         <Header isLogin={true} isSubscriptions={true} userName="Alex" />
         <Main>
-          <Subscriptions />
+          <Subscriptions isSubscriptions={true} />
         </Main>
         <Footer />
       </Wrapper>

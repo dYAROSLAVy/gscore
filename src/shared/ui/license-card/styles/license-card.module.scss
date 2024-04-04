@@ -1,0 +1,65 @@
+.license-card {
+    border-radius: 12px;
+    padding: 48px 0;
+    width: 620px;
+    background-color: var(--dim-gray);
+
+    &__top-inner {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 0 64px 32px 32px;
+        font-family: var(--ff-thic);
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 127%;
+
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: var(--nobel);
+        }
+    }
+
+    &__status {
+        color: var(--jade);
+    }
+
+    &__info-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        font-family: var(--ff-thic);
+        font-size: 24px;
+        line-height: 108%;
+    }
+
+
+    &__info-inner {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    &__bottom-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 32px;
+        padding: 32px 81px 0 32px;
+    }
+
+    &__license-date {
+        font-size: 16px;
+        line-height: 112%;
+        color: var(--nobel);
+    }
+}

@@ -1,13 +1,23 @@
 .subscriptions {
     padding-top: 32px;
 
+    &__main-title-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+
+        &:not(:last-child) {
+            margin-bottom: 48px;
+        }
+    }
+
     &__main-title {
         margin: 0;
         font-family: var(--ff-thic);
         font-size: 54px;
         line-height: 119%;
     }
-
 
     &__error {
         display: flex;
