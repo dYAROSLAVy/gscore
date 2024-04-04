@@ -6,22 +6,22 @@ export type CopyrightProps = {
 };
 
 export const Copyright: FC<CopyrightProps> = ({ className }) => {
-  const { cnRoot } = useClasses({ className });
+  const { cnRoot, cnText, cnLink } = useClasses({ className });
   return (
     <ul className={cnRoot}>
       <li>
-        <span>Copyright © 2022 GScore</span>
+        <span className={cnText}>Copyright © 2022 GScore</span>
       </li>
       <li>
-        <span>All Rights Reserved</span>
+        <span className={cnText}>All Rights Reserved</span>
       </li>
       <li>
-        <a href="/" target="_blank">
+        <a className={cnLink} href="/" target="_blank">
           Cookies
         </a>
       </li>
       <li>
-        <a href="/" target="_blank">
+        <a className={cnLink} href="/" target="_blank">
           Privacy Policy
         </a>
       </li>

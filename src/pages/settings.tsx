@@ -18,12 +18,11 @@ export default function SettingsPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Wrapper>
-        <Header isLogin={true} userName="Alex"></Header>
+        <Header isLogin={true} userName="Alex"/>
         <Main>
-          <h1 className={"visually-hidden"}>Settings page Gscore</h1>
           <Settings />
         </Main>
-        <Footer></Footer>
+        <Footer/>
       </Wrapper>
     </>
   );

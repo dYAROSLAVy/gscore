@@ -2,19 +2,19 @@
     display: flex;
     flex-direction: column;
     position: relative;
-}
 
-.input__field {
-    width: 100%;
-    height: 68px;
-    padding: 25px 23px;
-    font-family: var(--ff-thic);
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 112%;
-    border-radius: 6px;
+    &__field {
+        width: 100%;
+        height: 68px;
+        padding: 25px 23px;
+        font-family: var(--ff-thic);
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 112%;
+        border-radius: 6px;
 
-    &::placeholder {
-        color: var(--nobel);
+        &::placeholder {
+            color: var(--nobel);
+        }
     }
 }

@@ -14,17 +14,17 @@ export const Socials: FC<SocialsProps> = ({ className }) => {
     <ul className={cnRoot}>
       <li>
         <a href="/" target="_blank">
-          <FacebookIcon></FacebookIcon>
+          <FacebookIcon />
         </a>
       </li>
       <li>
         <a href="/" target="_blank">
-          <TwitterIcon></TwitterIcon>
+          <TwitterIcon />
         </a>
       </li>
       <li>
         <a href="/" target="_blank">
-          <LinkedinIcon></LinkedinIcon>
+          <LinkedinIcon />
         </a>
       </li>
     </ul>

@@ -12,7 +12,7 @@ export const InputCopy: FC<BaseInputProps> = ({
   const { cnRoot, cnBtn } = useClasses({ className });
   return (
     <InputSecondary className={cnRoot} {...props}>
-      <ButtonCopy className={cnBtn}></ButtonCopy>
+      <ButtonCopy className={cnBtn} />
     </InputSecondary>
   );
 };

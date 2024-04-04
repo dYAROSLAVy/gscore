@@ -18,12 +18,12 @@ export default function AccountPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Wrapper>
-        <Header></Header>
+        <Header />
         <Main>
           <h1 className={"visually-hidden"}>Account page Gscore</h1>
           <Account price={77} sites="Single site license" />
         </Main>
-        <Footer></Footer>
+        <Footer />
       </Wrapper>
     </>
   );

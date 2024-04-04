@@ -2,11 +2,11 @@
     display: flex;
     min-height: 106px;
     flex-shrink: 0;
-}
 
-.header__container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
+    &__container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
 }
