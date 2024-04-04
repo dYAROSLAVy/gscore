@@ -4,7 +4,9 @@ import { ButtonPrimary } from "@/shared/ui/buttons/primary/button-primary";
 import { CloseIcon } from "@/shared/icons/close";
 import { useRouter } from "next/router";
 import { FC } from "react";
+import { Slider } from "@/shared/ui/slider/swiper";
 import { CodeCard } from "@/shared/ui/code-card/code-card";
+
 export type SubscriptionsProps = {
   isSubscriptions?: boolean;
 };
@@ -19,6 +21,8 @@ export const Subscriptions: FC<SubscriptionsProps> = ({ isSubscriptions }) => {
     cnCloseDecor,
     cnButton,
     cnMainTitleWrap,
+    cnSlider,
+    cnCodesList,
   } = useClasses();
   const router = useRouter();
 
@@ -29,7 +33,18 @@ export const Subscriptions: FC<SubscriptionsProps> = ({ isSubscriptions }) => {
           <h1 className={cnMainTitle}>My subscriptions</h1>
           {isSubscriptions && <ButtonPrimary children={"Upgrade"} />}
         </div>
-        {isSubscriptions && <div className=""></div>}
+        {isSubscriptions && (
+          <>
+            <div className={cnSlider}>
+              <Slider />
+            </div>
+            <div className={cnCodesList}>
+              <CodeCard />
+              <CodeCard />
+              <CodeCard isInactive />
+            </div>
+          </>
+        )}
         {!isSubscriptions && (
           <>
             <div className={cnError}>

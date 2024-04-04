@@ -15,7 +15,8 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.51.1",
-    "redux-persist": "^6.0.0"
+    "redux-persist": "^6.0.0",
+    "swiper": "^11.1.0"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",

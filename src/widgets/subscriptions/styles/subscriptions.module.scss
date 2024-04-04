@@ -1,5 +1,5 @@
 .subscriptions {
-    padding-top: 32px;
+    padding: 32px 0 120px;
 
     &__main-title-wrapper {
         display: flex;
@@ -69,6 +69,18 @@
         font-weight: 700;
         font-size: 16px;
         line-height: 112%;
+    }
+
+    &__slider {
+        &:not(:last-child) {
+            margin-bottom: 32px;
+        }
+    }
+
+    &__codes-list {
+        display: flex;
+        flex-direction: column;
+        gap: 32px
     }
 
 }

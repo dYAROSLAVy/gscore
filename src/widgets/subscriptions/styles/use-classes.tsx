@@ -13,6 +13,8 @@ export const useClasses = () => {
   const cnText = cn(`subscriptions__text`);
   const cnCloseDecor = cn(`subscriptions__close-decor`);
   const cnButton = cn(`subscriptions__button`);
+  const cnSlider = cn(`subscriptions__slider`);
+  const cnCodesList = cn(`subscriptions__codes-list`);
 
   return {
     cnRoot,
@@ -23,5 +25,7 @@ export const useClasses = () => {
     cnText,
     cnCloseDecor,
     cnButton,
+    cnSlider,
+    cnCodesList
   };
 };

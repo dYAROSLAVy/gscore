@@ -11,6 +11,7 @@ export const useClasses = () => {
   const cnInfoInner = cn(`license-card__info-inner`);
   const cnBottomInner = cn(`license-card__bottom-inner`);
   const cnLicenseDate = cn(`license-card__license-date`);
+  const cnButton = cn(`license-card__button`);
   return {
     cnRoot,
     cnTopInner,
@@ -19,5 +20,6 @@ export const useClasses = () => {
     cnInfoInner,
     cnLicenseDate,
     cnStatus,
+    cnButton,
   };
 };

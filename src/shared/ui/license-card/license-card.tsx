@@ -16,7 +16,8 @@ export const LicenseCard: FC<LicenseCardProps> = ({ price, date, type }) => {
     cnInfoWrap,
     cnInfoInner,
     cnLicenseDate,
-    cnStatus 
+    cnStatus,
+    cnButton,
   } = useClasses();
   return (
     <div className={cnRoot}>
@@ -32,7 +33,7 @@ export const LicenseCard: FC<LicenseCardProps> = ({ price, date, type }) => {
           </p>
           <span>${price}</span>
         </div>
-        <ButtonSecondary children={"View"} />
+        <ButtonSecondary className={cnButton} children={"View"} />
       </div>
     </div>
   );
