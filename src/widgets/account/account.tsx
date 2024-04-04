@@ -5,6 +5,7 @@ import { useClasses } from "./styles/use-classes";
 import { ButtonTabPrimary } from "@/shared/ui/buttons/tab/primary/button-tab-primary";
 import { FC, useState } from "react";
 import { CheckoutCard } from "@/shared/ui/checkout-card/checkout-card";
+import { useRouter } from "next/router";
 
 export type AccountProps = {
   price: number;
@@ -26,6 +27,8 @@ export const Account: FC<AccountProps> = ({ price, sites }) => {
     cnButton,
     cnButtonPrimary,
   } = useClasses();
+
+  const router = useRouter();
 
   const [showLoginTab, setShowLoginTab] = useState(false);
   const [showCheckoutTab, setShowCheckoutTab] = useState(false);
@@ -57,7 +60,10 @@ export const Account: FC<AccountProps> = ({ price, sites }) => {
                 <ButtonTabPrimary children={"Create account"} isActive={true} />
               </li>
               <li>
-                <ButtonTabPrimary children={"Log in"} onClick={activeLoginTab} />
+                <ButtonTabPrimary
+                  children={"Log in"}
+                  onClick={activeLoginTab}
+                />
               </li>
               <li>
                 <ButtonTabPrimary children={"Checkout"} />
@@ -157,6 +163,7 @@ export const Account: FC<AccountProps> = ({ price, sites }) => {
             </div>
             <CheckoutCard className={cnCard} price={price} sites={sites} />
             <ButtonPrimary
+              onClick={() => router.push("/subscriptions")}
               className={cnButtonPrimary}
               children="Go to my subscriptions"
             />

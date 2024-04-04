@@ -4,8 +4,7 @@ import { ButtonPrimary } from "@/shared/ui/buttons/primary/button-primary";
 import { CloseIcon } from "@/shared/icons/close";
 import { useRouter } from "next/router";
 import { FC } from "react";
-import { LicenseCard } from "@/shared/ui/license-card/license-card";
-
+import { CodeCard } from "@/shared/ui/code-card/code-card";
 export type SubscriptionsProps = {
   isSubscriptions?: boolean;
 };
@@ -28,18 +27,11 @@ export const Subscriptions: FC<SubscriptionsProps> = ({ isSubscriptions }) => {
       <Container>
         <div className={cnMainTitleWrap}>
           <h1 className={cnMainTitle}>My subscriptions</h1>
-          <ButtonPrimary children={"Upgrade"} />
+          {isSubscriptions && <ButtonPrimary children={"Upgrade"} />}
         </div>
-        <div className="">
-          <LicenseCard
-            type="Single site license"
-            price={77}
-            date="21.10.2022"
-          />
-        </div>
+        {isSubscriptions && <div className=""></div>}
         {!isSubscriptions && (
           <>
-            <h1 className={cnMainTitle}>My subscriptions</h1>
             <div className={cnError}>
               <span className={cnCloseDecor}>
                 <CloseIcon />

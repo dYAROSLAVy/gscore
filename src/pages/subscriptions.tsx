@@ -18,9 +18,9 @@ export default function SubscriptionsPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Wrapper>
-        <Header isLogin={true} isSubscriptions={true} userName="Alex" />
+        <Header isLogin isSubscriptions userName="Alex" />
         <Main>
-          <Subscriptions isSubscriptions={true} />
+          <Subscriptions />
         </Main>
         <Footer />
       </Wrapper>

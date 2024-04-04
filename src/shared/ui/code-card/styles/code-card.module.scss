@@ -1,0 +1,77 @@
+.code-card {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 24px 32px 31px;
+    border-radius: 12px;
+    background-color: var(--eclipse);
+
+    &__checkbox {
+        margin-top: 28px;
+
+        &:not(:last-child) {
+            margin-right: 48px;
+        }
+
+    }
+
+    &__label {
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 112%;
+        color: var(--nobel);
+    }
+
+    &__input-wrapper,
+    &__domain-wrapper,
+    &__status-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        &:not(:last-child) {
+            margin-right: 28px;
+        }
+    }
+
+    &__domain-wrapper {
+        width: 49%;
+
+        &--primary {
+            width: 37.5%;
+        }
+    }
+
+    &__status-wrapper {
+        &:not(:only-child) {
+            margin-left: 28px;
+        }
+    }
+
+    &__status {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        height: 68px;
+        color: var(--jade);
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 127%;
+
+        &--primary {
+            color: var(--wild-watermelon);
+        }
+
+        &--secondary {
+            color: var(--amour);
+        }
+    }
+
+    &__button {
+        margin-top: 28px;
+        margin-left: 28px;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 112%;
+    }
+}
