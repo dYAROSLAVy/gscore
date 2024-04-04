@@ -47,25 +47,25 @@ export const PromoCardBase: FC<PromoCardProps> = ({
         <ul className={cnList}>
           <li>
             <span className={cnListDecor}>
-              <CheckIcon></CheckIcon>
+              <CheckIcon />
             </span>
             <span>{sites}</span>
           </li>
           <li>
             <span className={cnListDecor}>
-              <CheckIcon></CheckIcon>
+              <CheckIcon />
             </span>
             <span>Special introductory pricing</span>
           </li>
           <li>
             <span className={cnListDecor}>
-              <CheckIcon></CheckIcon>
+              <CheckIcon />
             </span>
             <span>Unlimited Pages and Keywords</span>
           </li>
           <li>
             <span className={cnListDecor}>
-              <CheckIcon></CheckIcon>
+              <CheckIcon />
             </span>
             <span>Billed annually</span>
           </li>

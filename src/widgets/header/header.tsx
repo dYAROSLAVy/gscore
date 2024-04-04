@@ -8,17 +8,18 @@ export type HeaderProps = {
   className?: string;
   isLogin?: boolean;
   userName?: string;
+  isSubscriptions?: boolean;
 };
 
-export const Header: FC<HeaderProps> = ({ className, isLogin, userName }) => {
+export const Header: FC<HeaderProps> = ({ className, isLogin, userName, isSubscriptions }) => {
   const { cnRoot, cnContainer } = useClasses({ className });
   return (
     <header className={cnRoot}>
       <Container className={cnContainer}>
         <a href="/">
-          <LogoMain></LogoMain>
+          <LogoMain/>
         </a>
-        {isLogin && <UserMenu userName={userName}></UserMenu>}
+        {isLogin && <UserMenu isSubscriptions={isSubscriptions} userName={userName}/>}
       </Container>
     </header>
   );

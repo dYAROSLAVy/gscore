@@ -10,9 +10,9 @@ export const Checkbox: FC<BaseInputProps> = ({ className }) => {
   return (
     <div className={cnRoot}>
       <label>
-        <input className={"visually-hidden"} type="checkbox"/>
+        <input className={"visually-hidden"} type="checkbox" />
         <span className={cnDecor}>
-          <CheckIcon></CheckIcon>
+          <CheckIcon />
         </span>
       </label>
     </div>

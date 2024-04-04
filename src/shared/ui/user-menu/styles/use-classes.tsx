@@ -4,8 +4,11 @@ import { UserMenuProps } from "../user-menu";
 
 const cn = classNames.bind(classes);
 
-export const useClasses = ({ className }: UserMenuProps) => {
+export const useClasses = ({ className, isSubscriptions }: UserMenuProps) => {
   const cnRoot = cn(`user-menu`, className);
+  const cnMainLink = cn(`user-menu__main-link`, {
+    "user-menu__main-link--primary": isSubscriptions,
+  });
   const cnButton = cn(`user-menu__button`);
   const cnTopInner = cn(`user-menu__top-inner`);
   const cnBottomInner = cn(`user-menu__bottom-inner`);
@@ -15,6 +18,7 @@ export const useClasses = ({ className }: UserMenuProps) => {
     cnButton,
     cnTopInner,
     cnBottomInner,
-    cnLink
+    cnLink,
+    cnMainLink,
   };
 };

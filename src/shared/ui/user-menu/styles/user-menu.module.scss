@@ -26,6 +26,13 @@
         background-color: var(--eclipse);
     }
 
+    &__main-link {
+        &--primary {
+            font-weight: 600;
+            color: var(--nobel);
+        }
+    }
+
     &__link {
         display: flex;
         flex-wrap: wrap;

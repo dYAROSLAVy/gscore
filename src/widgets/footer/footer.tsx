@@ -10,19 +10,19 @@ export type FooterProps = {
 };
 
 export const Footer: FC<FooterProps> = ({ className }) => {
-  const { cnRoot, cnTopInner, cnBottomInner } = useClasses({ className });
+  const { cnRoot, cnTopInner, cnBottomInner, cnText } = useClasses({ className });
   return (
     <footer className={cnRoot}>
       <Container>
         <div className={cnTopInner}>
           <a href="/">
-            <LogoMain></LogoMain>
+            <LogoMain />
           </a>
-          <p>Ut enim ad minim veniam quis nostrud exercitation ea commodo</p>
+          <p className={cnText}>Ut enim ad minim veniam quis nostrud exercitation ea commodo</p>
         </div>
         <div className={cnBottomInner}>
-          <Copyright></Copyright>
-          <Socials></Socials>
+          <Copyright />
+          <Socials />
         </div>
       </Container>
     </footer>

@@ -25,11 +25,11 @@
 
     }
 
-    span {
+    &__text {
         color: var(--very-light-grey);
     }
 
-    a {
+    &__link {
         position: relative;
         padding: 10px 0 0;
 

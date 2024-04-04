@@ -1,6 +1,5 @@
 import { Container } from "@/shared/ui/container/container";
 import { useState } from "react";
-import { ButtonBase } from "@/shared/ui/buttons/base/button-base";
 import { useClasses } from "./styles/use-classes";
 import { InputPrimary } from "@/shared/ui/inputs/input-primary/input-primary";
 import { ButtonPrimary } from "@/shared/ui/buttons/primary/button-primary";
@@ -11,7 +10,6 @@ export const Settings = () => {
     cnRoot,
     cnTitle,
     cnCont,
-    cnTabButton,
     cnTabsWrap,
     cnFormTitle,
     cnForm,
@@ -31,7 +29,7 @@ export const Settings = () => {
   return (
     <section className={cnRoot}>
       <Container className={cnCont}>
-        <h2 className={cnTitle}>Settings</h2>
+        <h1 className={cnTitle}>Settings</h1>
         {!showChangePassword && (
           <>
             <div className={cnTabsWrap}>

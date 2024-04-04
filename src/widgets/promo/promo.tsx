@@ -23,7 +23,7 @@ export const Promo: FC<PromoProps> = () => {
               title={"Single site license"}
               sites={"Single site license"}
               onClick={() => router.push("/account")}
-            ></PromoCardBase>
+            />
           </li>
           <li>
             <PromoCardBase
@@ -32,7 +32,7 @@ export const Promo: FC<PromoProps> = () => {
               sites={"All features for 3 sites"}
               tomato={true}
               onClick={() => router.push("/account")}
-            ></PromoCardBase>
+            />
           </li>
           <li>
             <PromoCardBase
@@ -40,7 +40,7 @@ export const Promo: FC<PromoProps> = () => {
               title={"10 Site license"}
               sites={"All features for 10 sites"}
               onClick={() => router.push("/account")}
-            ></PromoCardBase>
+            />
           </li>
         </ul>
         <div className={cnContactWrap}>
