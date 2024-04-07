@@ -2,7 +2,7 @@ import { Wrapper } from "@/shared/ui/wrapper/wrapper";
 import { Footer } from "@/widgets/footer/footer";
 import { Header } from "@/widgets/header/header";
 import { Main } from "@/widgets/main/main";
-import { Promo } from "@/widgets/promo/promo";
+import { Promo } from "@/page-components/promo/promo";
 import Head from "next/head";
 
 export default function Home() {

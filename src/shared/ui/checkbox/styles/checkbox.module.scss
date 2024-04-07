@@ -7,7 +7,7 @@
         }
 
         &:focus:not(:disabled)+.checkbox__decor {
-            outline: 4px solid rgba(#c7c7c7, 0.3);
+            outline: 4px solid var(--very-light-grey-rgba);
             border-color: var(--white);
         }
 
@@ -23,7 +23,7 @@
         }
 
         &:checked:focus:not(:disabled)+.checkbox__decor {
-            outline: 4px solid rgba(#fc5842, 0.3);
+            outline: 4px solid var(--tomato-rgba2);
         }
 
         &:disabled+.checkbox__decor {
@@ -39,7 +39,7 @@
         height: 28px;
         background-color: var(--white);
         border: 1px solid var(--very-light-grey);
-        box-shadow: 0 2px 6px 0 rgba(var(--black-russian), 0.06);
+        box-shadow: 0 2px 6px 0 var(--black-russian-rgba);
         border-radius: 7px;
         color: transparent;
     }

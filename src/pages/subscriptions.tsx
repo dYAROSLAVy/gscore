@@ -2,7 +2,7 @@ import { Wrapper } from "@/shared/ui/wrapper/wrapper";
 import { Footer } from "@/widgets/footer/footer";
 import { Header } from "@/widgets/header/header";
 import { Main } from "@/widgets/main/main";
-import { Subscriptions } from "@/widgets/subscriptions/subscriptions";
+import { Subscriptions } from "@/page-components/subscriptions/subscriptions";
 import Head from "next/head";
 
 export default function SubscriptionsPage() {
