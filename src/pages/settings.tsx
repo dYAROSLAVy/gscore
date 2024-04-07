@@ -2,7 +2,7 @@ import { Wrapper } from "@/shared/ui/wrapper/wrapper";
 import { Footer } from "@/widgets/footer/footer";
 import { Header } from "@/widgets/header/header";
 import { Main } from "@/widgets/main/main";
-import { Settings } from "@/widgets/settings/settings";
+import { Settings } from "@/page-components/settings/settings";
 import Head from "next/head";
 
 export default function SettingsPage() {
