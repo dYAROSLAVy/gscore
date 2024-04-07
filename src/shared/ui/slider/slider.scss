@@ -1,0 +1,26 @@
+.slider {
+    &__control {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 24px;
+        font-family: var(--ff-thic);
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 127%;
+    }
+
+    &__button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border: 1px solid var(--dim-gray);
+        border-radius: 12px;
+    }
+
+    &__pagination {
+        width: fit-content;
+    }
+}

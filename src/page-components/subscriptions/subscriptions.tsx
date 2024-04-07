@@ -4,7 +4,7 @@ import { ButtonPrimary } from "@/shared/ui/buttons/primary/button-primary";
 import { CloseIcon } from "@/shared/icons/close";
 import { useRouter } from "next/router";
 import { FC } from "react";
-import { Slider } from "@/shared/ui/slider/swiper";
+import { Slider } from "@/shared/ui/slider/slider";
 import { CodeCard } from "@/shared/ui/code-card/code-card";
 
 export type SubscriptionsProps = {
