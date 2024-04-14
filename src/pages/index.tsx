@@ -18,7 +18,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Wrapper>
-        <Header isLogin={true} userName="Alex" />
+        <Header />
         <Main>
           <h1 className={"visually-hidden"}>Main page Gscore</h1>
           <Promo />

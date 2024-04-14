@@ -3,8 +3,8 @@ import { useClasses } from "./styles/use-classes";
 import { BasketIcon } from "@/shared/icons/basket";
 
 export type CheckoutCardProps = {
-  price: number;
-  sites: string;
+  price?: number;
+  sites?: string;
   className?: string;
   basket?: true;
 };

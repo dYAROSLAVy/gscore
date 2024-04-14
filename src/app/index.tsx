@@ -1,5 +1,11 @@
-import { AppProps } from 'next/app';
+import { store } from "@/store/store";
+import { AppProps } from "next/app";
+import { Provider } from "react-redux";
 
 export function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <Provider store={store}>
+      <Component {...pageProps} />
+    </Provider>
+  );
 }

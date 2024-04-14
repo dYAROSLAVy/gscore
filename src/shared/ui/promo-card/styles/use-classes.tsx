@@ -4,8 +4,9 @@ import { PromoCardProps } from "../promo-card";
 
 const cn = classNames.bind(classes);
 
-export const useClasses = ({ tomato }: PromoCardProps) => {
-  const cnRoot = cn(`promo-card`, { "promo-card--primary": tomato });
+// export const useClasses = ({ tomato }: Pick<PromoCardProps, "tomato">) => {
+export const useClasses = ( tomato : PromoCardProps["tomato"]) => {
+const cnRoot = cn(`promo-card`, { "promo-card--primary": tomato });
   const cnTopWrap = cn(`promo-card__top-wrapper`);
   const cnPrice = cn(`promo-card__price`);
   const cnTitle = cn(`promo-card__title`);

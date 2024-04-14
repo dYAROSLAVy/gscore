@@ -1,0 +1,80 @@
+.tab {
+    &__text-wrapper {
+        &:not(:last-child) {
+            margin-bottom: 32px;
+        }
+    }
+
+    &__title {
+        margin: 0;
+        font-family: var(--ff-thic);
+        font-size: 44px;
+        line-height: 123%;
+
+        &:not(:last-child) {
+            margin-bottom: 16px;
+        }
+    }
+
+    &__text {
+        margin: 0;
+        font-family: var(--ff-thic);
+        font-size: 14px;
+        line-height: 171%;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+
+        &:not(:last-child) {
+            margin-bottom: 48px;
+        }
+    }
+
+    &__button {
+        width: fit-content;
+        min-width: 200px;
+        margin-top: 24px;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 112%;
+    }
+
+    &__link-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 0;
+        font-family: var(--ff-thic);
+        font-size: 16px;
+        line-height: 112%;
+
+        a {
+            color: var(--tomato);
+        }
+    }
+
+    &__total-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        font-family: var(--ff-thic);
+        font-weight: 700;
+        font-size: 28px;
+        line-height: 143%;
+
+        &:not(:last-child) {
+            margin-bottom: 48px;
+        }
+    }
+
+    &__checkout-card {
+        margin-bottom: 20px;
+    }
+
+    &__button--primary {
+        width: 100%;
+    }
+}
