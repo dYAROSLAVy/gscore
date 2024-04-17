@@ -1,7 +1,6 @@
 import { InputPrimary } from "@/shared/ui/inputs/input-primary/input-primary";
 import { ButtonPrimary } from "@/shared/ui/buttons/primary/button-primary";
 import { useClasses } from "./styles/use-classes";
-import { ButtonTabPrimary } from "@/shared/ui/buttons/tab/primary/button-tab-primary";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { usePostSingUpMutation } from "@/api/api";
 
@@ -21,12 +20,10 @@ export const CreateAccount = () => {
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     postSingUp(data);
-    // callback(data);
   };
 
   return (
     <>
-      <ButtonTabPrimary children={"Create account"} isActive={true} />
       <div className={cnTextWrap}>
         <h2 className={cnTitle}>Create account</h2>
         <p className={cnText}>

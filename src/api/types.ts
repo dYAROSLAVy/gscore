@@ -12,11 +12,43 @@ export type Product = {
   prices: Price[];
 };
 
-export type User = {
+export type FormUser = {
   email: string;
   password: string;
 };
 
 export type NewUser = {
   username: string;
-} & User;
+} & FormUser;
+
+export type MeResponse = {
+  username: string;
+  id: number;
+  email: string;
+};
+
+export type User = {
+  email: string;
+  id: number;
+  username: string;
+  token: string;
+};
+
+export type UserSchema = {
+  user?: User;
+};
+
+export type NewPassword = {
+  currentPassword: string;
+  newPassword: string;
+};
+
+export type NewPasswordSchema = {
+  token?: string;
+} & NewPassword;
+
+export type UpdateUserSchema = {
+  email?: string;
+  username?: string;
+  token?: string;
+};

@@ -1,68 +1,30 @@
 import { Container } from "@/shared/ui/container/container";
-import { useState } from "react";
 import { useClasses } from "./styles/use-classes";
-import { InputPrimary } from "@/shared/ui/inputs/input-primary/input-primary";
-import { ButtonPrimary } from "@/shared/ui/buttons/primary/button-primary";
-import { ButtonTabSecondary } from "@/shared/ui/buttons/tab/secondary/button-tab-secondary";
+import { Personal } from "@/widgets/settings-tabs/personal";
+import { Password } from "@/widgets/settings-tabs/password";
+import { Tab, Tabs } from "@/shared/ui/tabs/tabs";
 
 export const Settings = () => {
-  const {
-    cnRoot,
-    cnTitle,
-    cnCont,
-    cnTabsWrap,
-    cnFormTitle,
-    cnForm,
-    cnFormButton,
-  } = useClasses();
+  const { cnRoot, cnTitle, cnCont, cnTabsWrap } = useClasses();
 
-  const [showChangePassword, setShowChangePassword] = useState(false);
-
-  const activePasswordTab = () => {
-    setShowChangePassword(true);
-  };
-
-  const activeInfoTab = () => {
-    setShowChangePassword(false);
-  };
+  const TABS: Tab[] = [
+    {
+      id: "personal",
+      text: "Personal info",
+      content: <Personal />,
+    },
+    {
+      id: "password",
+      text: "Change password",
+      content: <Password />,
+    },
+  ];
 
   return (
     <section className={cnRoot}>
       <Container className={cnCont}>
         <h1 className={cnTitle}>Settings</h1>
-        {!showChangePassword && (
-          <>
-            <div className={cnTabsWrap}>
-              <ButtonTabSecondary children="Personal info" isActive={true} />
-              <ButtonTabSecondary
-                onClick={activePasswordTab}
-                children="Change password"
-              />
-            </div>
-            <form className={cnForm}>
-              <h3 className={cnFormTitle}>Personal Info</h3>
-              <InputPrimary placeholder="Username" />
-              <InputPrimary placeholder="Email" />
-            </form>
-          </>
-        )}
-        {showChangePassword && (
-          <>
-            <div className={cnTabsWrap}>
-              <ButtonTabSecondary
-                children="Personal info"
-                onClick={activeInfoTab}
-              />
-              <ButtonTabSecondary isActive={true} children="Change password" />
-            </div>
-            <form className={cnForm}>
-              <h3 className={cnFormTitle}>Change password</h3>
-              <InputPrimary placeholder="Current Password" />
-              <InputPrimary placeholder="New Password" />
-            </form>
-          </>
-        )}
-        <ButtonPrimary className={cnFormButton} children={"Save"} />
+        <Tabs className={cnTabsWrap} tabs={TABS} secondary />
       </Container>
     </section>
   );

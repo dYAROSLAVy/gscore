@@ -27,8 +27,12 @@ export const UserMenu: FC<UserMenuProps> = ({
     setShowMenu(true);
   };
 
-  const CloseMenu = () => {
+  const closeMenu = () => {
     setShowMenu(false);
+  };
+
+  const logOut = () => {
+    window.localStorage.removeItem("user-token");
   };
 
   return (
@@ -40,13 +44,13 @@ export const UserMenu: FC<UserMenuProps> = ({
         {!showMenu && (
           <button onClick={openMenu} className={cnButton}>
             <span>{userName}</span>
-            <ArrowDownIcon/>
+            <ArrowDownIcon />
           </button>
         )}
         {showMenu && (
-          <button onClick={CloseMenu} className={cnButton}>
+          <button onClick={closeMenu} className={cnButton}>
             <span>{userName}</span>
-            <ArrowTopIcon/>
+            <ArrowTopIcon />
           </button>
         )}
       </div>
@@ -56,7 +60,7 @@ export const UserMenu: FC<UserMenuProps> = ({
             <SettingsIcon />
             <span>Settings</span>
           </a>
-          <a className={cnLink} href="/">
+          <a className={cnLink} href="/" onClick={logOut}>
             <LogoutIcon />
             <span>Logout</span>
           </a>

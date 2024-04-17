@@ -4,7 +4,9 @@ import { FC } from "react";
 import { Login } from "@/widgets/account-tabs/login";
 import { CreateAccount } from "@/widgets/account-tabs/create-account";
 import { Checkout } from "@/widgets/account-tabs/checkout";
-import { FinalStep } from "@/widgets/account-tabs/final-step";
+import { getIsUserAuthorized } from "@/store/user/selectors";
+import { useAppSelector } from "@/store/hooks";
+import { Tab, Tabs } from "@/shared/ui/tabs/tabs";
 
 export type AccountProps = {
   price: number;
@@ -12,17 +14,37 @@ export type AccountProps = {
 };
 
 export const Account: FC<AccountProps> = ({ price, sites }) => {
-  const {
-    cnRoot,
-    cnInner,
-  } = useClasses();
+  const { cnRoot, cnInner, cnTabsList } = useClasses();
+
+  const isUserAuthorized = useAppSelector(getIsUserAuthorized);
+
+  const defaultTab = isUserAuthorized ? "checkout" : undefined;
+
+  const TABS: Tab[] = [
+    {
+      id: "create-account",
+      text: "Create account",
+      content: <CreateAccount />,
+      disabled: isUserAuthorized ? true : false,
+    },
+    {
+      id: "login",
+      text: "Log in",
+      disabled: isUserAuthorized ? true : false,
+      content: <Login />,
+    },
+    {
+      id: "checkout",
+      text: "Checkout",
+      disabled: !isUserAuthorized ? true : false,
+      content: <Checkout price={price} sites={sites} />,
+    },
+  ];
+
   return (
     <section className={cnRoot}>
       <Container className={cnInner}>
-        <CreateAccount />
-        {/* <Login />
-        <Checkout price={price} sites={sites} />
-        <FinalStep price={price} sites={sites} /> */}
+        <Tabs className={cnTabsList} tabs={TABS} defaultTab={defaultTab} />
       </Container>
     </section>
   );
