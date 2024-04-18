@@ -4,6 +4,7 @@ import { ArrowDownIcon } from "@/shared/icons/arrow-down";
 import { ArrowTopIcon } from "@/shared/icons/arrow-top";
 import { SettingsIcon } from "@/shared/icons/settings";
 import { LogoutIcon } from "@/shared/icons/logout";
+import Link from "next/link";
 
 export type UserMenuProps = {
   userName?: string;
@@ -38,9 +39,9 @@ export const UserMenu: FC<UserMenuProps> = ({
   return (
     <div className={cnRoot}>
       <div className={cnTopInner}>
-        <a className={cnMainLink} href="/subscriptions">
+        <Link className={cnMainLink} href="/subscriptions">
           My subscriptions
-        </a>
+        </Link>
         {!showMenu && (
           <button onClick={openMenu} className={cnButton}>
             <span>{userName}</span>
@@ -56,10 +57,10 @@ export const UserMenu: FC<UserMenuProps> = ({
       </div>
       {showMenu && (
         <div className={cnBottomInner}>
-          <a className={cnLink} href="/settings">
+          <Link className={cnLink} href="/settings">
             <SettingsIcon />
             <span>Settings</span>
-          </a>
+          </Link>
           <a className={cnLink} href="/" onClick={logOut}>
             <LogoutIcon />
             <span>Logout</span>

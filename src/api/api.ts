@@ -6,8 +6,11 @@ import {
   MeResponse,
   NewPasswordSchema,
   UpdateUserSchema,
+  Subscribe,
 } from "./types";
 import { GetSignInResponse } from "@/store/user/userSlice";
+
+// временно для удобства пишу в одном файле
 
 export const gscoreApi = createApi({
   reducerPath: "gscoreApi",
@@ -15,7 +18,7 @@ export const gscoreApi = createApi({
     baseUrl: "https://internship.purrweb.site/api/",
   }),
   endpoints: (builder) => ({
-    getProducts: builder.query<Array<Product>, void>({
+    getProducts: builder.query<Product[], void>({
       query: () => "products",
     }),
     postSingIn: builder.mutation<GetSignInResponse, FormUser>({
@@ -62,6 +65,15 @@ export const gscoreApi = createApi({
         body,
       }),
     }),
+    getSubscribesSelf: builder.query<Subscribe[], string | undefined>({
+      query: (token) => ({
+        url: "subscribe/self",
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+    }),
   }),
 });
 
@@ -71,5 +83,6 @@ export const {
   usePostSingUpMutation,
   useMeQuery,
   usePatchUpdatePasswordMutation,
-  usePatchUpdatePersonalDataMutation
+  usePatchUpdatePersonalDataMutation,
+  useGetSubscribesSelfQuery,
 } = gscoreApi;

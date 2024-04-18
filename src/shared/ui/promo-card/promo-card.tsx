@@ -5,6 +5,7 @@ import { FC } from "react";
 
 export type PromoCardProps = {
   className?: string;
+  id: number;
   sitesCount: number;
   price?: string;
   tomato?: boolean;

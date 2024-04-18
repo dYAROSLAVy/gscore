@@ -10,7 +10,7 @@ type FormValues = {
   password: string;
 };
 
-export const CreateAccount = () => {
+export const CreateAccount = ({ callback }: { callback: () => void }) => {
   const { cnTitle, cnForm, cnTextWrap, cnButton, cnText, cnLinkWrap } =
     useClasses();
 
@@ -39,7 +39,7 @@ export const CreateAccount = () => {
       </form>
       <p className={cnLinkWrap}>
         <span>Have an account?</span>
-        <a>Go to the next step</a>
+        <a onClick={callback}>Go to the next step</a>
       </p>
     </>
   );

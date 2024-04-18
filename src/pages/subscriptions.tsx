@@ -4,8 +4,12 @@ import { Header } from "@/widgets/header/header";
 import { Main } from "@/widgets/main/main";
 import { Subscriptions } from "@/page-components/subscriptions/subscriptions";
 import Head from "next/head";
+import { useAppSelector } from "@/store/hooks";
+import { getIsUserAuthorized, getUserName } from "@/store/user/selectors";
 
 export default function SubscriptionsPage() {
+  const isUserAuthorized = useAppSelector(getIsUserAuthorized);
+  const userName = useAppSelector(getUserName);
   return (
     <>
       <Head>
@@ -18,9 +22,13 @@ export default function SubscriptionsPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Wrapper>
-        <Header isLogin isSubscriptions userName="Alex" />
+        <Header
+          isLogin={isUserAuthorized}
+          userName={userName}
+          isSubscriptions
+        />
         <Main>
-          <Subscriptions isSubscriptions/>
+          <Subscriptions />
         </Main>
         <Footer />
       </Wrapper>

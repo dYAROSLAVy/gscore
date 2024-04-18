@@ -18,7 +18,6 @@ export const Password = () => {
 
   const onSubmit: SubmitHandler<NewPasswordSchema> = (data) => {
     data.token = token;
-    console.log(data);
     patchUpdatePassword(data);
     reset();
   };

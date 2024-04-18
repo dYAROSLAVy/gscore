@@ -52,3 +52,20 @@ export type UpdateUserSchema = {
   username?: string;
   token?: string;
 };
+
+export type Code = {
+  code: string;
+  id: number;
+  status: string;
+};
+
+export type Subscribe = {
+  codes: Code[];
+  currentPeriodEnd: string;
+  currentPeriodStart: string;
+  id: number;
+  product: Product;
+  productId: number;
+  status: string;
+  userId: number;
+};

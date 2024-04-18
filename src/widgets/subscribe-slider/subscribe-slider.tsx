@@ -3,12 +3,18 @@ import { Navigation, Pagination, A11y } from "swiper/modules";
 import "swiper/scss";
 import "swiper/scss/navigation";
 import "swiper/scss/pagination";
-import { LicenseCard } from "../license-card/license-card";
+import { LicenseCard } from "../../shared/ui/license-card/license-card";
 import { ArrowLeftIcon } from "@/shared/icons/arrow-left";
 import { ArrowRightIcon } from "@/shared/icons/arrow-right";
-import "./slider.scss";
+import "./subscribe-slider.scss";
+import { Subscribe } from "@/api/types";
+import { FC } from "react";
 
-export const Slider = () => {
+export type SubscribeSliderProps = {
+  subscribes: Subscribe[];
+};
+
+export const SubscribeSlider: FC<SubscribeSliderProps> = ({ subscribes }) => {
   return (
     <Swiper
       modules={[Navigation, Pagination, A11y]}
@@ -29,24 +35,17 @@ export const Slider = () => {
           <ArrowRightIcon />
         </div>
       </div>
-      <SwiperSlide>
-        <LicenseCard price={77} date="21.10.2022" type="Single site license" />
-      </SwiperSlide>
-      <SwiperSlide>
-        <LicenseCard price={77} date="21.10.2022" type="Single site license" />
-      </SwiperSlide>
-      <SwiperSlide>
-        <LicenseCard price={77} date="21.10.2022" type="Single site license" />
-      </SwiperSlide>
-      <SwiperSlide>
-        <LicenseCard price={77} date="21.10.2022" type="Single site license" />
-      </SwiperSlide>
-      <SwiperSlide>
-        <LicenseCard price={77} date="21.10.2022" type="Single site license" />
-      </SwiperSlide>
+      {subscribes.map(({ currentPeriodEnd, product }, index) => {
+        return (
+          <SwiperSlide key={index}>
+            <LicenseCard
+              date={currentPeriodEnd}
+              price={product.prices[0].price}
+              type={product.name}
+            />
+          </SwiperSlide>
+        );
+      })}
     </Swiper>
   );
 };
-function userRef(arg0: string) {
-  throw new Error("Function not implemented.");
-}

@@ -6,11 +6,12 @@ import { InputSecondary } from "../inputs/input-secondary/input-secondary";
 import { ButtonSecondary } from "../buttons/secondary/button-secondary";
 
 export type CodeCardProps = {
-  isInactive?: boolean;
+  status?: string;
   isHold?: boolean;
+  code?: string;
 };
 
-export const CodeCard: FC<CodeCardProps> = ({ isInactive, isHold }) => {
+export const CodeCard: FC<CodeCardProps> = ({ status, isHold, code }) => {
   const {
     cnRoot,
     cnCheck,
@@ -20,7 +21,7 @@ export const CodeCard: FC<CodeCardProps> = ({ isInactive, isHold }) => {
     cnDomainWrap,
     cnStatusWrap,
     cnButton,
-  } = useClasses({ isInactive, isHold });
+  } = useClasses({ status, isHold });
   return (
     <>
       <div className={cnRoot}>
@@ -28,19 +29,21 @@ export const CodeCard: FC<CodeCardProps> = ({ isInactive, isHold }) => {
         {isHold && <Checkbox className={cnCheck} />}
         <div className={cnInputWrap}>
           <span className={cnLabel}>License code</span>
-          <InputCopy />
+          <InputCopy defaultValue={code} />
         </div>
         <div className={cnDomainWrap}>
           <span className={cnLabel}>Domain</span>
           <InputSecondary />
         </div>
-        {isInactive && (
+        {status === "INACTIVE" && (
           <ButtonSecondary className={cnButton} children="Activate" />
         )}
         <div className={cnStatusWrap}>
           <span className={cnLabel}>Status</span>
-          {!isInactive && !isHold && <span className={cnStatus}>Active</span>}
-          {isInactive && <span className={cnStatus}>Inactive</span>}
+          {status === "ACTIVE" && !isHold && (
+            <span className={cnStatus}>Active</span>
+          )}
+          {status !== "ACTIVE" && <span className={cnStatus}>Inactive</span>}
           {isHold && <span className={cnStatus}>Hold</span>}
         </div>
       </div>

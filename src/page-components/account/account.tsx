@@ -1,6 +1,6 @@
 import { Container } from "@/shared/ui/container/container";
 import { useClasses } from "./styles/use-classes";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { Login } from "@/widgets/account-tabs/login";
 import { CreateAccount } from "@/widgets/account-tabs/create-account";
 import { Checkout } from "@/widgets/account-tabs/checkout";
@@ -18,13 +18,25 @@ export const Account: FC<AccountProps> = ({ price, sites }) => {
 
   const isUserAuthorized = useAppSelector(getIsUserAuthorized);
 
-  const defaultTab = isUserAuthorized ? "checkout" : undefined;
+  // пока не сделал чтоб срабатывало неоднократно
+  const [isLogin, setLoginTab] = useState(false);
+
+  let defaultTab = isUserAuthorized
+    ? "checkout"
+    : isLogin
+    ? "login"
+    : undefined;
+
+  const goToLogin = () => {
+    setLoginTab(true);
+    defaultTab = undefined;
+  };
 
   const TABS: Tab[] = [
     {
       id: "create-account",
       text: "Create account",
-      content: <CreateAccount />,
+      content: <CreateAccount callback={goToLogin} />,
       disabled: isUserAuthorized ? true : false,
     },
     {
