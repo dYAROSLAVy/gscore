@@ -7,6 +7,7 @@ import { Checkout } from "@/widgets/account-tabs/checkout";
 import { getIsUserAuthorized } from "@/store/user/selectors";
 import { useAppSelector } from "@/store/hooks";
 import { Tab, Tabs } from "@/shared/ui/tabs/tabs";
+import { FinalStep } from "@/widgets/account-tabs/final-step";
 
 export type AccountProps = {
   price: number;
@@ -20,6 +21,7 @@ export const Account: FC<AccountProps> = ({ price, sites }) => {
 
   // пока не сделал чтоб срабатывало неоднократно
   const [isLogin, setLoginTab] = useState(false);
+  const [isStartSubs, setStartSubs] = useState(false);
 
   let defaultTab = isUserAuthorized
     ? "checkout"
@@ -30,6 +32,10 @@ export const Account: FC<AccountProps> = ({ price, sites }) => {
   const goToLogin = () => {
     setLoginTab(true);
     defaultTab = undefined;
+  };
+
+  const showStartSubs = () => {
+    setStartSubs(true);
   };
 
   const TABS: Tab[] = [
@@ -49,14 +55,17 @@ export const Account: FC<AccountProps> = ({ price, sites }) => {
       id: "checkout",
       text: "Checkout",
       disabled: !isUserAuthorized ? true : false,
-      content: <Checkout price={price} sites={sites} />,
+      content: <Checkout price={price} sites={sites} onClick={showStartSubs} />,
     },
   ];
 
   return (
     <section className={cnRoot}>
       <Container className={cnInner}>
-        <Tabs className={cnTabsList} tabs={TABS} defaultTab={defaultTab} />
+        {!isStartSubs && (
+          <Tabs className={cnTabsList} tabs={TABS} defaultTab={defaultTab} />
+        )}
+        {isStartSubs && <FinalStep price={price} sites={sites} />}
       </Container>
     </section>
   );

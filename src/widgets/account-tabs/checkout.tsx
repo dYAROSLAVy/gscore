@@ -6,11 +6,11 @@ import { FC } from "react";
 export type CheckoutProps = {
   price: number;
   sites: string;
+  onClick?: () => void;
 };
 
-export const Checkout: FC<CheckoutProps> = ({ price, sites }) => {
-  const { cnTitle, cnTextWrap, cnButton, cnTotalWrap, cnCard } =
-    useClasses();
+export const Checkout: FC<CheckoutProps> = ({ price, sites, onClick }) => {
+  const { cnTitle, cnTextWrap, cnButton, cnTotalWrap, cnCard } = useClasses();
 
   return (
     <>
@@ -27,7 +27,11 @@ export const Checkout: FC<CheckoutProps> = ({ price, sites }) => {
         <span>Total</span>
         <span>${price}</span>
       </div>
-      <ButtonPrimary className={cnButton} children="Purchase" />
+      <ButtonPrimary
+        className={cnButton}
+        children="Purchase"
+        onClick={onClick}
+      />
     </>
   );
 };
