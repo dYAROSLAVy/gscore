@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useClasses } from "./styles/use-classes";
 import { FC } from "react";
 
@@ -16,14 +17,14 @@ export const Copyright: FC<CopyrightProps> = ({ className }) => {
         <span className={cnText}>All Rights Reserved</span>
       </li>
       <li>
-        <a className={cnLink} href="/" target="_blank">
+        <Link className={cnLink} href="/" target="_blank">
           Cookies
-        </a>
+        </Link>
       </li>
       <li>
-        <a className={cnLink} href="/" target="_blank">
+        <Link className={cnLink} href="/" target="_blank">
           Privacy Policy
-        </a>
+        </Link>
       </li>
     </ul>
   );

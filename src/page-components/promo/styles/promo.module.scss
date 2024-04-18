@@ -16,11 +16,8 @@
         display: flex;
         flex-wrap: wrap;
         gap: 48px 28px;
-        margin: 0;
-        padding: 0;
-        list-style: none;
 
-        &>li:nth-child(odd) {
+        div:nth-child(odd) {
             margin-top: 50px;
         }
 

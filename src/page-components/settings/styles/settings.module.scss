@@ -26,32 +26,11 @@
             width: 100vw;
             height: 2px;
             background-color: var(--dim-gray);
+            z-index: -1;
         }
 
         &::before {
             left: -100%;
         }
-    }
-
-
-    &__form {
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-        max-width: 512px;
-    }
-
-    &__form-title {
-        margin: 0;
-        font-family: var(--ff-thic);
-        font-size: 28px;
-        line-height: 143%;
-    }
-
-    &__form-button {
-        width: fit-content;
-        font-weight: 700;
-        font-size: 16px;
-        line-height: 112%;
     }
 }

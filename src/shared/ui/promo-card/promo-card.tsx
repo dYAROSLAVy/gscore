@@ -5,18 +5,17 @@ import { FC } from "react";
 
 export type PromoCardProps = {
   className?: string;
-  title?: string;
-  price?: number;
-  sites?: string;
+  id: number;
+  sitesCount: number;
+  price?: string;
   tomato?: boolean;
   onClick?: () => void;
 };
 
 export const PromoCardBase: FC<PromoCardProps> = ({
   onClick,
-  title,
+  sitesCount,
   price,
-  sites,
   tomato,
 }) => {
   const {
@@ -28,16 +27,14 @@ export const PromoCardBase: FC<PromoCardProps> = ({
     cnBottomWrap,
     cnList,
     cnListDecor,
-  } = useClasses({
-    tomato,
-  });
+  } = useClasses(tomato);
   return (
     <div className={cnRoot}>
       <div className={cnTopWrap}>
         <span className={cnPrice}>
           <b>${price}</b>
         </span>
-        <h3 className={cnTitle}>{title}</h3>
+        <h3 className={cnTitle}> {sitesCount === 1 ? "Single site license" : `${sitesCount} Site license`}</h3>
         <p className={cnSlogan}>
           Get the advanced WordPress plugin that optimizes content with GSC
           keywords at one low annual price
@@ -49,7 +46,7 @@ export const PromoCardBase: FC<PromoCardProps> = ({
             <span className={cnListDecor}>
               <CheckIcon />
             </span>
-            <span>{sites}</span>
+            <span> {sitesCount === 1 ? "Single site license" : `All features for ${sitesCount} sites`}</span>
           </li>
           <li>
             <span className={cnListDecor}>

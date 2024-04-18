@@ -1,11 +1,13 @@
-import { InputPrimary } from "@/shared/ui/inputs/input-primary/input-primary";
-import { ButtonPrimary } from "@/shared/ui/buttons/primary/button-primary";
 import { Container } from "@/shared/ui/container/container";
 import { useClasses } from "./styles/use-classes";
-import { ButtonTabPrimary } from "@/shared/ui/buttons/tab/primary/button-tab-primary";
 import { FC, useState } from "react";
-import { CheckoutCard } from "@/shared/ui/checkout-card/checkout-card";
-import { useRouter } from "next/router";
+import { Login } from "@/widgets/account-tabs/login";
+import { CreateAccount } from "@/widgets/account-tabs/create-account";
+import { Checkout } from "@/widgets/account-tabs/checkout";
+import { getIsUserAuthorized } from "@/store/user/selectors";
+import { useAppSelector } from "@/store/hooks";
+import { Tab, Tabs } from "@/shared/ui/tabs/tabs";
+import { FinalStep } from "@/widgets/account-tabs/final-step";
 
 export type AccountProps = {
   price: number;
@@ -13,162 +15,57 @@ export type AccountProps = {
 };
 
 export const Account: FC<AccountProps> = ({ price, sites }) => {
-  const {
-    cnRoot,
-    cnInner,
-    cnTabsList,
-    cnTitle,
-    cnText,
-    cnForm,
-    cnLinkWrap,
-    cnTextWrap,
-    cnTotalWrap,
-    cnCard,
-    cnButton,
-    cnButtonPrimary,
-  } = useClasses();
+  const { cnRoot, cnInner, cnTabsList } = useClasses();
 
-  const router = useRouter();
+  const isUserAuthorized = useAppSelector(getIsUserAuthorized);
 
-  const [showLoginTab, setShowLoginTab] = useState(false);
-  const [showCheckoutTab, setShowCheckoutTab] = useState(false);
-  const [showSubscription, setShowSubscription] = useState(false);
+  // пока не сделал чтоб срабатывало неоднократно
+  const [isLogin, setLoginTab] = useState(false);
+  const [isStartSubs, setStartSubs] = useState(false);
 
-  const activeLoginTab = () => {
-    setShowLoginTab(true);
+  let defaultTab = isUserAuthorized
+    ? "checkout"
+    : isLogin
+    ? "login"
+    : undefined;
+
+  const goToLogin = () => {
+    setLoginTab(true);
+    defaultTab = undefined;
   };
 
-  const deactivateLoginTab = () => {
-    setShowLoginTab(false);
+  const showStartSubs = () => {
+    setStartSubs(true);
   };
 
-  const activeCheckoutTab = () => {
-    setShowCheckoutTab(true);
-  };
-
-  const openSubscription = () => {
-    setShowSubscription(true);
-  };
+  const TABS: Tab[] = [
+    {
+      id: "create-account",
+      text: "Create account",
+      content: <CreateAccount callback={goToLogin} />,
+      disabled: isUserAuthorized ? true : false,
+    },
+    {
+      id: "login",
+      text: "Log in",
+      disabled: isUserAuthorized ? true : false,
+      content: <Login />,
+    },
+    {
+      id: "checkout",
+      text: "Checkout",
+      disabled: !isUserAuthorized ? true : false,
+      content: <Checkout price={price} sites={sites} onClick={showStartSubs} />,
+    },
+  ];
 
   return (
     <section className={cnRoot}>
       <Container className={cnInner}>
-        {!showLoginTab && (
-          <>
-            <ul className={cnTabsList}>
-              <li>
-                <ButtonTabPrimary children={"Create account"} isActive={true} />
-              </li>
-              <li>
-                <ButtonTabPrimary
-                  children={"Log in"}
-                  onClick={activeLoginTab}
-                />
-              </li>
-              <li>
-                <ButtonTabPrimary children={"Checkout"} />
-              </li>
-            </ul>
-            <div className={cnTextWrap}>
-              <h2 className={cnTitle}>Create account</h2>
-              <p className={cnText}>
-                You need to enter your name and email. We will send you a
-                temporary password by email
-              </p>
-            </div>
-            <form className={cnForm}>
-              <InputPrimary placeholder="UserName" />
-              <InputPrimary placeholder="Email" />
-              <InputPrimary placeholder="Password" />
-              <ButtonPrimary className={cnButton} children="Send password" />
-            </form>
-            <p className={cnLinkWrap}>
-              <span>Have an account?</span>
-              <a onClick={activeLoginTab}>Go to the next step</a>
-            </p>
-          </>
+        {!isStartSubs && (
+          <Tabs className={cnTabsList} tabs={TABS} defaultTab={defaultTab} />
         )}
-        {showLoginTab && !showCheckoutTab && (
-          <>
-            <ul className={cnTabsList}>
-              <li>
-                <ButtonTabPrimary
-                  children={"Create account"}
-                  isActive={true}
-                  onClick={deactivateLoginTab}
-                />
-              </li>
-              <li>
-                <ButtonTabPrimary children={"Log in"} isActive={true} />
-              </li>
-              <li>
-                <ButtonTabPrimary children={"Checkout"} />
-              </li>
-            </ul>
-            <div className={cnTextWrap}>
-              <h2 className={cnTitle}>Log in</h2>
-            </div>
-            <form className={cnForm}>
-              <InputPrimary placeholder="Email" />
-              <InputPrimary placeholder="Password" />
-            </form>
-            <ButtonPrimary
-              className={cnButton}
-              children="Log in"
-              onClick={activeCheckoutTab}
-            />
-          </>
-        )}
-        {showCheckoutTab && !showSubscription && (
-          <>
-            <ul className={cnTabsList}>
-              <li>
-                <ButtonTabPrimary children={"Create account"} isActive={true} />
-              </li>
-              <li>
-                <ButtonTabPrimary children={"Login"} isActive={true} />
-              </li>
-              <li>
-                <ButtonTabPrimary children={"Checkout"} isActive={true} />
-              </li>
-            </ul>
-            <div className={cnTextWrap}>
-              <h2 className={cnTitle}>Checkout</h2>
-            </div>
-            <CheckoutCard
-              className={cnCard}
-              price={price}
-              sites={sites}
-              basket={true}
-            />
-            <div className={cnTotalWrap}>
-              <span>Total</span>
-              <span>${price}</span>
-            </div>
-            <ButtonPrimary
-              className={cnButton}
-              onClick={openSubscription}
-              children="Purchase"
-            />
-          </>
-        )}
-        {showSubscription && (
-          <>
-            <div className={cnTextWrap}>
-              <h2 className={cnTitle}>Start your subscription</h2>
-              <p className={cnText}>
-                We have sent you a payment receipt by e-mail and a link to
-                download the plugin with a license key.
-              </p>
-            </div>
-            <CheckoutCard className={cnCard} price={price} sites={sites} />
-            <ButtonPrimary
-              onClick={() => router.push("/subscriptions")}
-              className={cnButtonPrimary}
-              children="Go to my subscriptions"
-            />
-          </>
-        )}
+        {isStartSubs && <FinalStep price={price} sites={sites} />}
       </Container>
     </section>
   );

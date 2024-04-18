@@ -3,6 +3,7 @@ import { useClasses } from "./styles/use-classes";
 import { FC } from "react";
 import { TwitterIcon } from "@/shared/icons/twitter";
 import { LinkedinIcon } from "@/shared/icons/linkedin";
+import Link from "next/link";
 
 export type SocialsProps = {
   className?: string;
@@ -13,19 +14,19 @@ export const Socials: FC<SocialsProps> = ({ className }) => {
   return (
     <ul className={cnRoot}>
       <li>
-        <a href="/" target="_blank">
+        <Link href="/" target="_blank">
           <FacebookIcon />
-        </a>
+        </Link>
       </li>
       <li>
-        <a href="/" target="_blank">
+        <Link href="/" target="_blank">
           <TwitterIcon />
-        </a>
+        </Link>
       </li>
       <li>
-        <a href="/" target="_blank">
+        <Link href="/" target="_blank">
           <LinkedinIcon />
-        </a>
+        </Link>
       </li>
     </ul>
   );

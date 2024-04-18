@@ -3,7 +3,7 @@ import { useClasses } from "./styles/use-classes";
 import { ButtonSecondary } from "../buttons/secondary/button-secondary";
 
 export type LicenseCardProps = {
-  price?: number;
+  price?: string;
   date?: string;
   type?: string;
 };
@@ -28,7 +28,7 @@ export const LicenseCard: FC<LicenseCardProps> = ({ price, date, type }) => {
       <div className={cnBottomInner}>
         <div className={cnInfoWrap}>
           <p className={cnInfoInner}>
-            <span>{type}</span>
+            <span>{type === "One cite" ? "Single site license" : type}</span>
             <span className={cnLicenseDate}>valid until {date}</span>
           </p>
           <span>${price}</span>
