@@ -4,14 +4,23 @@ import { Checkbox } from "../checkbox/checkbox";
 import { InputCopy } from "../inputs/input-copy/input-copy";
 import { InputSecondary } from "../inputs/input-secondary/input-secondary";
 import { ButtonSecondary } from "../buttons/secondary/button-secondary";
+import { usePostActivateLicenseMutation } from "@/api/api";
 
 export type CodeCardProps = {
   status?: string;
   isHold?: boolean;
   code?: string;
+  domain?: string;
+  token?: string;
 };
 
-export const CodeCard: FC<CodeCardProps> = ({ status, isHold, code }) => {
+export const CodeCard: FC<CodeCardProps> = ({
+  status,
+  isHold,
+  code,
+  domain,
+  token,
+}) => {
   const {
     cnRoot,
     cnCheck,
@@ -22,6 +31,17 @@ export const CodeCard: FC<CodeCardProps> = ({ status, isHold, code }) => {
     cnStatusWrap,
     cnButton,
   } = useClasses({ status, isHold });
+
+  const [postActivateLicense] = usePostActivateLicenseMutation();
+
+  const onActivateClick = () => {
+    const data = {
+      token,
+      code,
+    };
+    postActivateLicense(data);
+  };
+
   return (
     <>
       <div className={cnRoot}>
@@ -33,10 +53,15 @@ export const CodeCard: FC<CodeCardProps> = ({ status, isHold, code }) => {
         </div>
         <div className={cnDomainWrap}>
           <span className={cnLabel}>Domain</span>
-          <InputSecondary />
+          {status === "ACTIVE" && !isHold && (
+            <InputSecondary defaultValue={domain} />
+          )}
+          {status === "INACTIVE" && <InputSecondary />}
         </div>
         {status === "INACTIVE" && (
-          <ButtonSecondary className={cnButton} children="Activate" />
+          <ButtonSecondary className={cnButton} onClick={onActivateClick}>
+            Activate
+          </ButtonSecondary>
         )}
         <div className={cnStatusWrap}>
           <span className={cnLabel}>Status</span>

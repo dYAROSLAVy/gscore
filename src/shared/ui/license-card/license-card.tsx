@@ -4,7 +4,7 @@ import { ButtonSecondary } from "../buttons/secondary/button-secondary";
 
 export type LicenseCardProps = {
   price?: string;
-  date?: string;
+  date: string;
   type?: string;
 };
 
@@ -19,6 +19,11 @@ export const LicenseCard: FC<LicenseCardProps> = ({ price, date, type }) => {
     cnStatus,
     cnButton,
   } = useClasses();
+
+  const numberDate = Number(date) * 1000;
+
+  const validUntil = new Intl.DateTimeFormat("ru").format(numberDate);
+
   return (
     <div className={cnRoot}>
       <div className={cnTopInner}>
@@ -28,12 +33,14 @@ export const LicenseCard: FC<LicenseCardProps> = ({ price, date, type }) => {
       <div className={cnBottomInner}>
         <div className={cnInfoWrap}>
           <p className={cnInfoInner}>
-            <span>{type === "One cite" ? "Single site license" : type}</span>
-            <span className={cnLicenseDate}>valid until {date}</span>
+            <span>
+              {type === "One cite" ? "Single site license" : `${type} license`}
+            </span>
+            <span className={cnLicenseDate}>valid until {validUntil}</span>
           </p>
           <span>${price}</span>
         </div>
-        <ButtonSecondary className={cnButton} children={"View"} />
+        <ButtonSecondary className={cnButton}>View</ButtonSecondary>
       </div>
     </div>
   );

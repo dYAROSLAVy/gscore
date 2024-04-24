@@ -57,6 +57,7 @@ export type Code = {
   code: string;
   id: number;
   status: string;
+  origin: string;
 };
 
 export type Subscribe = {

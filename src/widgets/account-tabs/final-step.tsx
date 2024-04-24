@@ -21,8 +21,9 @@ export const FinalStep: FC<CheckoutProps> = ({ price, sites }) => {
       <ButtonPrimary
         onClick={() => router.push("/subscriptions")}
         className={cnButtonPrimary}
-        children="Go to my subscriptions"
-      />
+      >
+        Go to my subscriptions
+      </ButtonPrimary>
     </>
   );
 };

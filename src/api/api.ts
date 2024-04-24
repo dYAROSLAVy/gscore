@@ -74,6 +74,18 @@ export const gscoreApi = createApi({
         },
       }),
     }),
+    postActivateLicense: builder.mutation<{}, { token?: string; code: string }>(
+      {
+        query: ({ token, ...body }) => ({
+          url: "code/activate",
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body,
+        }),
+      }
+    ),
   }),
 });
 
@@ -85,4 +97,5 @@ export const {
   usePatchUpdatePasswordMutation,
   usePatchUpdatePersonalDataMutation,
   useGetSubscribesSelfQuery,
+  usePostActivateLicenseMutation,
 } = gscoreApi;

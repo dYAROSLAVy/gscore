@@ -28,7 +28,7 @@ export const Login = () => {
           {...register("password")}
           type="password"
         />
-        <ButtonPrimary className={cnButton} children="Log in" />
+        <ButtonPrimary className={cnButton}>Log in</ButtonPrimary>
       </form>
     </>
   );

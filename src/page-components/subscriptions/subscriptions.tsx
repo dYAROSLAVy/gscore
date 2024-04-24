@@ -33,7 +33,7 @@ export const Subscriptions = () => {
       <Container>
         <div className={cnMainTitleWrap}>
           <h1 className={cnMainTitle}>My subscriptions</h1>
-          {data && <ButtonPrimary children={"Upgrade"} />}
+          {data && <ButtonPrimary>Upgrade</ButtonPrimary>}
         </div>
         {data && (
           <>
@@ -47,6 +47,8 @@ export const Subscriptions = () => {
                     code={codes[0].code}
                     status={codes[0].status}
                     key={index}
+                    domain={codes[0].origin}
+                    token={token}
                   />
                 );
               })}
@@ -67,8 +69,9 @@ export const Subscriptions = () => {
             <ButtonPrimary
               className={cnButton}
               onClick={() => router.push("/")}
-              children={"Get Gscore"}
-            />
+            >
+              Get Gscore
+            </ButtonPrimary>
           </div>
         )}
       </Container>
