@@ -3,6 +3,7 @@ import { ButtonPrimary } from "@/shared/ui/buttons/primary/button-primary";
 import { useClasses } from "./styles/use-classes";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { usePostSingUpMutation } from "@/api/api";
+import Link from "next/link";
 
 type FormValues = {
   username: string;
@@ -35,11 +36,13 @@ export const CreateAccount = ({ callback }: { callback: () => void }) => {
         <InputPrimary placeholder="UserName" {...register("username")} />
         <InputPrimary placeholder="Email" {...register("email")} />
         <InputPrimary placeholder="Password" {...register("password")} />
-        <ButtonPrimary className={cnButton} children="Send password" />
+        <ButtonPrimary className={cnButton}>Send password</ButtonPrimary>
       </form>
       <p className={cnLinkWrap}>
         <span>Have an account?</span>
-        <a onClick={callback}>Go to the next step</a>
+        <Link onClick={callback} href={""}>
+          Go to the next step
+        </Link>
       </p>
     </>
   );

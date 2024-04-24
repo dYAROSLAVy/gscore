@@ -16,8 +16,13 @@
         justify-content: center;
         width: 44px;
         height: 44px;
-        border: 1px solid var(--dim-gray);
+        border: 1px solid var(--nobel);
         border-radius: 12px;
+    }
+
+    &__button.swiper-button-disabled {
+        border-color: var(--dim-gray);
+        color: var(--dim-gray);
     }
 
     &__pagination {

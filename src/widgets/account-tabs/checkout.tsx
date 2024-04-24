@@ -27,11 +27,9 @@ export const Checkout: FC<CheckoutProps> = ({ price, sites, onClick }) => {
         <span>Total</span>
         <span>${price}</span>
       </div>
-      <ButtonPrimary
-        className={cnButton}
-        children="Purchase"
-        onClick={onClick}
-      />
+      <ButtonPrimary className={cnButton} onClick={onClick}>
+        Purchase
+      </ButtonPrimary>
     </>
   );
 };
