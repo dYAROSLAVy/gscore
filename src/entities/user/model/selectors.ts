@@ -1,5 +1,5 @@
-import { gscoreApi } from "@/api/api";
-import { UserSchema } from "@/api/types";
+import { gscoreApi } from "@/entities/user/api/api";
+import { UserSchema } from "@/entities/types";
 
 export type StateSchema = {
   user: UserSchema;

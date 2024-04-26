@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
-import { gscoreApi } from "@/api/api";
-import { userReducer } from "./reducers";
+import { gscoreApi } from "@/entities/user/api/api";
+import { userReducer } from "../entities/user/model/reducers";
 
 export const store = configureStore({
   reducer: {

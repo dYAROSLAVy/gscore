@@ -6,9 +6,15 @@ export type LicenseCardProps = {
   price?: string;
   date: string;
   type?: string;
+  onClick: () => void;
 };
 
-export const LicenseCard: FC<LicenseCardProps> = ({ price, date, type }) => {
+export const LicenseCard: FC<LicenseCardProps> = ({
+  price,
+  date,
+  type,
+  onClick,
+}) => {
   const {
     cnRoot,
     cnTopInner,
@@ -40,7 +46,9 @@ export const LicenseCard: FC<LicenseCardProps> = ({ price, date, type }) => {
           </p>
           <span>${price}</span>
         </div>
-        <ButtonSecondary className={cnButton}>View</ButtonSecondary>
+        <ButtonSecondary className={cnButton} onClick={onClick}>
+          View
+        </ButtonSecondary>
       </div>
     </div>
   );

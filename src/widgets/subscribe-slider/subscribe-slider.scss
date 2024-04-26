@@ -29,3 +29,8 @@
         width: fit-content;
     }
 }
+
+.swiper-slide:not(.swiper-slide-active) {
+    pointer-events: none;
+    opacity: 0.6;
+}

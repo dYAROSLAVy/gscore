@@ -4,13 +4,8 @@ import { Header } from "@/widgets/header/header";
 import { Main } from "@/widgets/main/main";
 import { Promo } from "@/page-components/promo/promo";
 import Head from "next/head";
-import { useAppSelector } from "@/store/hooks";
-import { getIsUserAuthorized, getUserName } from "@/store/user/selectors";
 
 export default function Home() {
-  const isUserAuthorized = useAppSelector(getIsUserAuthorized);
-  const userName = useAppSelector(getUserName);
-
   return (
     <>
       <Head>
@@ -23,7 +18,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Wrapper>
-        <Header isLogin={isUserAuthorized} userName={userName} />
+        <Header />
         <Main>
           <h1 className={"visually-hidden"}>Main page Gscore</h1>
           <Promo />

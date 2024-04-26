@@ -7,10 +7,8 @@ import {
   NewPasswordSchema,
   UpdateUserSchema,
   Subscribe,
-} from "./types";
-import { GetSignInResponse } from "@/store/user/userSlice";
-
-// временно для удобства пишу в одном файле
+} from "../../types";
+import { GetSignInResponse } from "@/entities/user/model/userSlice";
 
 export const gscoreApi = createApi({
   reducerPath: "gscoreApi",
@@ -99,3 +97,15 @@ export const {
   useGetSubscribesSelfQuery,
   usePostActivateLicenseMutation,
 } = gscoreApi;
+
+// export const userApi = baseApi.injectEndpoints({
+//   endpoints: (builder) => ({
+//     signUp: builder.mutation<NewUser, {}>({
+//       query: (body) => ({
+//         url: "users/sign-up",
+//         method: "POST",
+//         body,
+//       }),
+//     }),
+//   }),
+// });

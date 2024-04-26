@@ -4,21 +4,21 @@ import { Personal } from "@/widgets/settings-tabs/personal";
 import { Password } from "@/widgets/settings-tabs/password";
 import { Tab, Tabs } from "@/shared/ui/tabs/tabs";
 
+const TABS: Tab[] = [
+  {
+    id: "personal",
+    text: "Personal info",
+    content: <Personal />,
+  },
+  {
+    id: "password",
+    text: "Change password",
+    content: <Password />,
+  },
+];
+
 export const Settings = () => {
   const { cnRoot, cnTitle, cnCont, cnTabsWrap } = useClasses();
-
-  const TABS: Tab[] = [
-    {
-      id: "personal",
-      text: "Personal info",
-      content: <Personal />,
-    },
-    {
-      id: "password",
-      text: "Change password",
-      content: <Password />,
-    },
-  ];
 
   return (
     <section className={cnRoot}>

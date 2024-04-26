@@ -2,7 +2,7 @@ import { InputPrimary } from "@/shared/ui/inputs/input-primary/input-primary";
 import { ButtonPrimary } from "@/shared/ui/buttons/primary/button-primary";
 import { useClasses } from "./styles/use-classes";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { usePostSingUpMutation } from "@/api/api";
+import { usePostSingUpMutation } from "@/entities/user/api/api";
 import Link from "next/link";
 
 type FormValues = {

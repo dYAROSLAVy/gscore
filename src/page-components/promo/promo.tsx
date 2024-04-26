@@ -3,7 +3,7 @@ import { useClasses } from "./styles/use-classes";
 import { Container } from "@/shared/ui/container/container";
 import { PromoCardBase } from "@/shared/ui/promo-card/promo-card";
 import { useRouter } from "next/router";
-import { useGetProductsQuery } from "@/api/api";
+import { useGetProductsQuery } from "@/entities/user/api/api";
 import Link from "next/link";
 
 export type PromoProps = {

@@ -4,7 +4,7 @@ import { Checkbox } from "../checkbox/checkbox";
 import { InputCopy } from "../inputs/input-copy/input-copy";
 import { InputSecondary } from "../inputs/input-secondary/input-secondary";
 import { ButtonSecondary } from "../buttons/secondary/button-secondary";
-import { usePostActivateLicenseMutation } from "@/api/api";
+import { usePostActivateLicenseMutation } from "@/entities/user/api/api";
 
 export type CodeCardProps = {
   status?: string;

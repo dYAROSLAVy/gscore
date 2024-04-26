@@ -1,5 +1,5 @@
-import { store } from "@/store/store";
-import { getMeData } from "@/store/user/selectors";
+import { store } from "@/app/store";
+import { getMeData } from "@/entities/user/model/selectors";
 import { AppProps } from "next/app";
 import { useEffect } from "react";
 import { Provider } from "react-redux";

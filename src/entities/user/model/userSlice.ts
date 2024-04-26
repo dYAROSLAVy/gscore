@@ -1,5 +1,5 @@
-import { gscoreApi } from "@/api/api";
-import { MeResponse, UserSchema } from "@/api/types";
+import { gscoreApi } from "@/entities/user/api/api";
+import { MeResponse, UserSchema } from "@/entities/types";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: UserSchema = {
