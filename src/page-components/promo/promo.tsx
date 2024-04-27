@@ -30,7 +30,11 @@ export const Promo: FC<PromoProps> = () => {
                 price={prices[0].price}
                 tomato={id === 2}
                 sitesCount={sitesCount}
-                onClick={() => router.push("/account")}
+                onClick={() =>
+                  router.push(
+                    `account?id=${id}&price=${prices[0].price}&name=${sitesCount}`
+                  )
+                }
               />
             );
           })}

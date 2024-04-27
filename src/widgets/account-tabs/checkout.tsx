@@ -2,15 +2,16 @@ import { ButtonPrimary } from "@/shared/ui/buttons/primary/button-primary";
 import { useClasses } from "./styles/use-classes";
 import { CheckoutCard } from "@/shared/ui/checkout-card/checkout-card";
 import { FC } from "react";
+import { useRouter } from "next/router";
 
 export type CheckoutProps = {
-  price: number;
-  sites: string;
   onClick?: () => void;
 };
 
-export const Checkout: FC<CheckoutProps> = ({ price, sites, onClick }) => {
+export const Checkout: FC<CheckoutProps> = ({ onClick }) => {
   const { cnTitle, cnTextWrap, cnButton, cnTotalWrap, cnCard } = useClasses();
+  const router = useRouter();
+  const { name, price } = router.query;
 
   return (
     <>
@@ -20,7 +21,7 @@ export const Checkout: FC<CheckoutProps> = ({ price, sites, onClick }) => {
       <CheckoutCard
         className={cnCard}
         price={price}
-        sites={sites}
+        sites={name}
         basket={true}
       />
       <div className={cnTotalWrap}>
