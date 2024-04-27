@@ -3,8 +3,8 @@ import { useClasses } from "./styles/use-classes";
 import { BasketIcon } from "@/shared/icons/basket";
 
 export type CheckoutCardProps = {
-  price?: number;
-  sites?: string;
+  price?: string | string[];
+  sites?: string | string[];
   className?: string;
   basket?: true;
 };
@@ -25,7 +25,9 @@ export const CheckoutCard: FC<CheckoutCardProps> = ({
         <span>Price</span>
       </div>
       <div className={cnCardBottomInner}>
-        <span>{sites}</span>
+        <span>
+          {sites === "1" ? "Single site license" : `${sites} Site license`}
+        </span>
         <span className={cnPrice}>
           ${price}
           {basket && <BasketIcon />}

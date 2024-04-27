@@ -1,12 +1,12 @@
 import { ButtonPrimary } from "@/shared/ui/buttons/primary/button-primary";
 import { useClasses } from "./styles/use-classes";
-import router from "next/router";
+import { useRouter } from "next/router";
 import { CheckoutCard } from "@/shared/ui/checkout-card/checkout-card";
-import { FC } from "react";
-import { CheckoutProps } from "./checkout";
 
-export const FinalStep: FC<CheckoutProps> = ({ price, sites }) => {
+export const FinalStep = () => {
   const { cnTitle, cnText, cnTextWrap, cnCard, cnButtonPrimary } = useClasses();
+  const router = useRouter();
+  const { name, price } = router.query;
 
   return (
     <>
@@ -17,7 +17,7 @@ export const FinalStep: FC<CheckoutProps> = ({ price, sites }) => {
           the plugin with a license key.
         </p>
       </div>
-      <CheckoutCard className={cnCard} price={price} sites={sites} />
+      <CheckoutCard className={cnCard} price={price} sites={name} />
       <ButtonPrimary
         onClick={() => router.push("/subscriptions")}
         className={cnButtonPrimary}

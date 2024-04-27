@@ -1,21 +1,29 @@
 import { Container } from "@/shared/ui/container/container";
 import { useClasses } from "./styles/use-classes";
-import { FC, useState } from "react";
+import { useState } from "react";
 import { Login } from "@/widgets/account-tabs/login";
 import { CreateAccount } from "@/widgets/account-tabs/create-account";
 import { Checkout } from "@/widgets/account-tabs/checkout";
-import { getIsUserAuthorized } from "@/entities/user/model/selectors";
+import {
+  getIsUserAuthorized,
+  getUserToken,
+} from "@/entities/user/model/selectors";
 import { useAppSelector } from "@/shared/redux/hooks";
 import { Tab, Tabs } from "@/shared/ui/tabs/tabs";
 import { FinalStep } from "@/widgets/account-tabs/final-step";
+import { useBuySubscribeMutation } from "@/entities/payments/api";
+import { useRouter } from "next/router";
 
-export type AccountProps = {
-  price: number;
-  sites: string;
-};
-
-export const Account: FC<AccountProps> = ({ price, sites }) => {
+export const Account = () => {
   const { cnRoot, cnInner, cnTabsList } = useClasses();
+
+  const [buySubscribe] = useBuySubscribeMutation();
+
+  const router = useRouter();
+
+  const token = useAppSelector(getUserToken);
+
+  const { id } = router.query;
 
   const isUserAuthorized = useAppSelector(getIsUserAuthorized);
 
@@ -37,7 +45,14 @@ export const Account: FC<AccountProps> = ({ price, sites }) => {
     setSelectedTab("checkout");
   };
 
-  const showStartSubs = () => {
+  const buySubs = () => {
+    const priceId = Number(id);
+    console.log(priceId);
+    const data = {
+      token,
+      priceId,
+    };
+    buySubscribe(data);
     setStartSubs(true);
   };
 
@@ -58,7 +73,7 @@ export const Account: FC<AccountProps> = ({ price, sites }) => {
       id: "checkout",
       text: "Checkout",
       disabled: !isUserAuthorized,
-      content: <Checkout price={price} sites={sites} onClick={showStartSubs} />,
+      content: <Checkout onClick={buySubs} />,
     },
   ];
 
@@ -73,7 +88,7 @@ export const Account: FC<AccountProps> = ({ price, sites }) => {
             onTabClick={onTabClick}
           />
         )}
-        {isStartSubs && <FinalStep price={price} sites={sites} />}
+        {isStartSubs && <FinalStep />}
       </Container>
     </section>
   );
