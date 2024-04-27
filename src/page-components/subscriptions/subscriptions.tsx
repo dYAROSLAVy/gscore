@@ -5,9 +5,10 @@ import { CloseIcon } from "@/shared/icons/close";
 import { useRouter } from "next/router";
 import { SubscribeSlider } from "@/widgets/subscribe-slider/subscribe-slider";
 import { CodeCard } from "@/shared/ui/code-card/code-card";
-import { useGetSubscribesSelfQuery } from "@/api/api";
-import { useAppSelector } from "@/store/hooks";
-import { getUserToken } from "@/store/user/selectors";
+import { useAppSelector } from "@/shared/redux/hooks";
+import { getUserToken } from "@/entities/user/model/selectors";
+import { useState } from "react";
+import { useGetSubscribesSelfQuery } from "@/entities/subscribes/api/api";
 
 export const Subscriptions = () => {
   const {
@@ -21,12 +22,19 @@ export const Subscriptions = () => {
     cnMainTitleWrap,
     cnSlider,
     cnCodesList,
+    cnSliderCont,
   } = useClasses();
   const router = useRouter();
 
   const token = useAppSelector(getUserToken);
 
   const { data } = useGetSubscribesSelfQuery(token);
+
+  const [card, setCard] = useState(0);
+
+  const createClickHandler = (index: number) => () => {
+    setCard(index);
+  };
 
   return (
     <section className={cnRoot}>
@@ -35,27 +43,36 @@ export const Subscriptions = () => {
           <h1 className={cnMainTitle}>My subscriptions</h1>
           {data && <ButtonPrimary>Upgrade</ButtonPrimary>}
         </div>
-        {data && (
-          <>
+      </Container>
+      {data && (
+        <>
+          <Container className={cnSliderCont}>
             <div className={cnSlider}>
-              <SubscribeSlider subscribes={data} />
+              <SubscribeSlider
+                subscribes={data}
+                createClickHandler={createClickHandler}
+              />
             </div>
+          </Container>
+          <Container>
             <div className={cnCodesList}>
-              {data.map(({ codes }, index) => {
+              {data[card].codes.map(({ code, status, origin, id }) => {
                 return (
                   <CodeCard
-                    code={codes[0].code}
-                    status={codes[0].status}
-                    key={index}
-                    domain={codes[0].origin}
+                    code={code}
+                    status={status}
+                    key={id}
+                    domain={origin}
                     token={token}
                   />
                 );
               })}
             </div>
-          </>
-        )}
-        {!data && (
+          </Container>
+        </>
+      )}
+      {!data && (
+        <Container>
           <div className={cnError}>
             <span className={cnCloseDecor}>
               <CloseIcon />
@@ -73,8 +90,8 @@ export const Subscriptions = () => {
               Get Gscore
             </ButtonPrimary>
           </div>
-        )}
-      </Container>
+        </Container>
+      )}
     </section>
   );
 };

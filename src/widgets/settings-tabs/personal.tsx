@@ -1,15 +1,15 @@
 import { useClasses } from "./styles/use-classes";
 import { InputPrimary } from "@/shared/ui/inputs/input-primary/input-primary";
 import { ButtonPrimary } from "@/shared/ui/buttons/primary/button-primary";
-import { usePatchUpdatePersonalDataMutation } from "@/api/api";
-import { useAppSelector } from "@/store/hooks";
-import { getUserToken } from "@/store/user/selectors";
-import { UpdateUserSchema } from "@/api/types";
+import { useAppSelector } from "@/shared/redux/hooks";
+import { getUserToken } from "@/entities/user/model/selectors";
+import { UpdateUserSchema } from "@/entities/types";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useUpdatePersonalDataMutation } from "@/entities/user/api/api";
 
 export const Personal = () => {
   const { cnForm, cnTitle, cnButton } = useClasses();
-  const [patchUpdatePersonalData] = usePatchUpdatePersonalDataMutation();
+  const [patchUpdatePersonalData] = useUpdatePersonalDataMutation();
   const token = useAppSelector(getUserToken);
   const { register, handleSubmit, reset } = useForm<UpdateUserSchema>();
 

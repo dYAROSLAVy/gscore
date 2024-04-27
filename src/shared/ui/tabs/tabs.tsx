@@ -15,6 +15,7 @@ export type TabsProps = {
   tabs: Tab[];
   className?: string;
   secondary?: boolean;
+  onTabClick?: (tab: string) => void;
 };
 
 export const Tabs: FC<TabsProps> = ({
@@ -22,13 +23,15 @@ export const Tabs: FC<TabsProps> = ({
   defaultTab,
   className,
   secondary,
+  onTabClick
 }) => {
   const [selectedTab, setSelectedTab] = useState(defaultTab ?? tabs[0].id);
 
   const { cnRoot } = useClasses({ className });
 
-  const onTabClick = (id: string) => (evt: MouseEvent<HTMLButtonElement>) => {
+  const createTabClickHandler = (id: string) => (evt: MouseEvent<HTMLButtonElement>) => {
     setSelectedTab(id);
+    onTabClick?.(id);
   };
 
   useEffect(() => {
@@ -50,7 +53,7 @@ export const Tabs: FC<TabsProps> = ({
               {!secondary && (
                 <ButtonTabPrimary
                   isActive={index <= selectedTabIndex}
-                  onClick={onTabClick(tab.id)}
+                  onClick={createTabClickHandler(tab.id)}
                   disabled={tab?.disabled}
                 >
                   {tab.text}
@@ -59,7 +62,7 @@ export const Tabs: FC<TabsProps> = ({
               {secondary && (
                 <ButtonTabSecondary
                   isActive={index === selectedTabIndex}
-                  onClick={onTabClick(tab.id)}
+                  onClick={createTabClickHandler(tab.id)}
                   disabled={tab?.disabled}
                 >
                   {tab.text}

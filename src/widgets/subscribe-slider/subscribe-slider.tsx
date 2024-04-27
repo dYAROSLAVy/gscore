@@ -7,19 +7,24 @@ import { LicenseCard } from "../../shared/ui/license-card/license-card";
 import { ArrowLeftIcon } from "@/shared/icons/arrow-left";
 import { ArrowRightIcon } from "@/shared/icons/arrow-right";
 import "./subscribe-slider.scss";
-import { Subscribe } from "@/api/types";
+import { Subscribe } from "@/entities/types";
 import { FC } from "react";
 
 export type SubscribeSliderProps = {
   subscribes: Subscribe[];
+  createClickHandler: (index: number) => () => void;
 };
 
-export const SubscribeSlider: FC<SubscribeSliderProps> = ({ subscribes }) => {
+export const SubscribeSlider: FC<SubscribeSliderProps> = ({
+  subscribes,
+  createClickHandler,
+}) => {
   return (
     <Swiper
       modules={[Navigation, Pagination, A11y]}
       spaceBetween={28}
-      slidesPerView={2}
+      slidesPerView={2.15}
+      loop={true}
       navigation={{
         prevEl: ".slider__button--prev",
         nextEl: ".slider__button--next",
@@ -42,6 +47,7 @@ export const SubscribeSlider: FC<SubscribeSliderProps> = ({ subscribes }) => {
               date={currentPeriodEnd}
               price={product.prices[0].price}
               type={product.name}
+              onClick={createClickHandler(index)}
             />
           </SwiperSlide>
         );

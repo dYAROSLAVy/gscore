@@ -1,6 +1,6 @@
-import { gscoreApi } from "@/api/api";
-import { MeResponse, UserSchema } from "@/api/types";
+import { MeResponse, UserSchema } from "@/entities/types";
 import { createSlice } from "@reduxjs/toolkit";
+import { userApi } from "../api/api";
 
 const initialState: UserSchema = {
   user: undefined,
@@ -46,19 +46,16 @@ export const userSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addMatcher(
-        gscoreApi.endpoints.postSingIn.matchFulfilled,
-        (state, action) => {
-          const adaptedUser = adaptUser(action.payload);
+      .addMatcher(userApi.endpoints.singIn.matchFulfilled, (state, action) => {
+        const adaptedUser = adaptUser(action.payload);
 
-          state.user = adaptedUser;
+        state.user = adaptedUser;
 
-          if (typeof window !== "undefined" && adaptedUser) {
-            window.localStorage.setItem("user-token", adaptedUser.token);
-          }
+        if (typeof window !== "undefined" && adaptedUser) {
+          window.localStorage.setItem("user-token", adaptedUser.token);
         }
-      )
-      .addMatcher(gscoreApi.endpoints.me.matchFulfilled, (state, action) => {
+      })
+      .addMatcher(userApi.endpoints.me.matchFulfilled, (state, action) => {
         let token = ``;
 
         if (typeof window !== "undefined") {

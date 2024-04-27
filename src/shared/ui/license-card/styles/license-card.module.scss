@@ -1,7 +1,9 @@
 .license-card {
+    display: flex;
+    flex-direction: column;
     border-radius: 12px;
     padding: 48px 0;
-    width: 620px;
+    max-width: 620px;
     background-color: var(--dim-gray);
 
     &__top-inner {
@@ -62,7 +64,7 @@
         line-height: 112%;
         color: var(--nobel);
     }
-    
+
     &__button {
         font-weight: 700;
         font-size: 16px;

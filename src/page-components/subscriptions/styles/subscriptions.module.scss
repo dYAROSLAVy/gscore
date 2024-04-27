@@ -6,10 +6,8 @@
         flex-wrap: wrap;
         justify-content: space-between;
         align-items: center;
+        margin-bottom: 48px;
 
-        &:not(:last-child) {
-            margin-bottom: 48px;
-        }
     }
 
     &__main-title {
@@ -71,10 +69,12 @@
         line-height: 112%;
     }
 
+    &__slider-container {
+        padding-right: 0;
+    }
+
     &__slider {
-        &:not(:last-child) {
-            margin-bottom: 32px;
-        }
+        margin-bottom: 32px;
     }
 
     &__codes-list {
