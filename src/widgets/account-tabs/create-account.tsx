@@ -2,8 +2,8 @@ import { InputPrimary } from "@/shared/ui/inputs/input-primary/input-primary";
 import { ButtonPrimary } from "@/shared/ui/buttons/primary/button-primary";
 import { useClasses } from "./styles/use-classes";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { usePostSingUpMutation } from "@/entities/user/api/api";
 import Link from "next/link";
+import { useSignUpMutation } from "@/entities/user/api/api";
 
 type FormValues = {
   username: string;
@@ -15,7 +15,7 @@ export const CreateAccount = ({ callback }: { callback: () => void }) => {
   const { cnTitle, cnForm, cnTextWrap, cnButton, cnText, cnLinkWrap } =
     useClasses();
 
-  const [postSingUp] = usePostSingUpMutation();
+  const [postSingUp] = useSignUpMutation();
 
   const { register, handleSubmit } = useForm<FormValues>();
 

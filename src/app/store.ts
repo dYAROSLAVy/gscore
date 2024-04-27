@@ -1,15 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
-import { gscoreApi } from "@/entities/user/api/api";
 import { userReducer } from "../entities/user/model/reducers";
+import { baseApi } from "@/shared/redux/base-api";
 
 export const store = configureStore({
   reducer: {
-    [gscoreApi.reducerPath]: gscoreApi.reducer,
+    [baseApi.reducerPath]: baseApi.reducer,
     user: userReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(gscoreApi.middleware),
+    getDefaultMiddleware().concat(baseApi.middleware),
 });
 
 setupListeners(store.dispatch);

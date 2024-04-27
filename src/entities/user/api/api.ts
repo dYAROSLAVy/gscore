@@ -1,34 +1,25 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import {
-  NewUser,
-  Product,
   FormUser,
   MeResponse,
   NewPasswordSchema,
+  NewUser,
   UpdateUserSchema,
-  Subscribe,
-} from "../../types";
-import { GetSignInResponse } from "@/entities/user/model/userSlice";
+} from "@/entities/types";
+import { baseApi } from "@/shared/redux/base-api";
+import { GetSignInResponse } from "../model/userSlice";
 
-export const gscoreApi = createApi({
-  reducerPath: "gscoreApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: "https://internship.purrweb.site/api/",
-  }),
+export const userApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getProducts: builder.query<Product[], void>({
-      query: () => "products",
-    }),
-    postSingIn: builder.mutation<GetSignInResponse, FormUser>({
-      query: (data) => ({
-        url: "users/sign-in",
+    signUp: builder.mutation<NewUser, {}>({
+      query: (body) => ({
+        url: "users/sign-up",
         method: "POST",
-        body: data,
+        body,
       }),
     }),
-    postSingUp: builder.mutation<NewUser, {}>({
+    singIn: builder.mutation<GetSignInResponse, FormUser>({
       query: (data) => ({
-        url: "users/sign-up",
+        url: "users/sign-in",
         method: "POST",
         body: data,
       }),
@@ -43,7 +34,7 @@ export const gscoreApi = createApi({
         };
       },
     }),
-    patchUpdatePassword: builder.mutation<{}, NewPasswordSchema>({
+    updatePassword: builder.mutation<{}, NewPasswordSchema>({
       query: ({ token, ...body }) => ({
         url: "users/update-password",
         method: "PATCH",
@@ -53,7 +44,7 @@ export const gscoreApi = createApi({
         body,
       }),
     }),
-    patchUpdatePersonalData: builder.mutation<{}, UpdateUserSchema>({
+    updatePersonalData: builder.mutation<{}, UpdateUserSchema>({
       query: ({ token, ...body }) => ({
         url: "users",
         method: "PATCH",
@@ -63,49 +54,7 @@ export const gscoreApi = createApi({
         body,
       }),
     }),
-    getSubscribesSelf: builder.query<Subscribe[], string | undefined>({
-      query: (token) => ({
-        url: "subscribe/self",
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }),
-    }),
-    postActivateLicense: builder.mutation<{}, { token?: string; code: string }>(
-      {
-        query: ({ token, ...body }) => ({
-          url: "code/activate",
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          body,
-        }),
-      }
-    ),
   }),
 });
 
-export const {
-  useGetProductsQuery,
-  usePostSingInMutation,
-  usePostSingUpMutation,
-  useMeQuery,
-  usePatchUpdatePasswordMutation,
-  usePatchUpdatePersonalDataMutation,
-  useGetSubscribesSelfQuery,
-  usePostActivateLicenseMutation,
-} = gscoreApi;
-
-// export const userApi = baseApi.injectEndpoints({
-//   endpoints: (builder) => ({
-//     signUp: builder.mutation<NewUser, {}>({
-//       query: (body) => ({
-//         url: "users/sign-up",
-//         method: "POST",
-//         body,
-//       }),
-//     }),
-//   }),
-// });
+export const { useSignUpMutation, useSingInMutation, useMeQuery, useUpdatePasswordMutation, useUpdatePersonalDataMutation } = userApi;

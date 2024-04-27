@@ -4,7 +4,7 @@ import { Checkbox } from "../checkbox/checkbox";
 import { InputCopy } from "../inputs/input-copy/input-copy";
 import { InputSecondary } from "../inputs/input-secondary/input-secondary";
 import { ButtonSecondary } from "../buttons/secondary/button-secondary";
-import { usePostActivateLicenseMutation } from "@/entities/user/api/api";
+import { useActivateLicenseMutation } from "@/entities/codes/api";
 
 export type CodeCardProps = {
   status?: string;
@@ -32,7 +32,7 @@ export const CodeCard: FC<CodeCardProps> = ({
     cnButton,
   } = useClasses({ status, isHold });
 
-  const [postActivateLicense] = usePostActivateLicenseMutation();
+  const [postActivateLicense] = useActivateLicenseMutation();
 
   const onActivateClick = () => {
     const data = {

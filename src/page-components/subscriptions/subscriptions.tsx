@@ -5,10 +5,10 @@ import { CloseIcon } from "@/shared/icons/close";
 import { useRouter } from "next/router";
 import { SubscribeSlider } from "@/widgets/subscribe-slider/subscribe-slider";
 import { CodeCard } from "@/shared/ui/code-card/code-card";
-import { useGetSubscribesSelfQuery } from "@/entities/user/api/api";
 import { useAppSelector } from "@/shared/redux/hooks";
 import { getUserToken } from "@/entities/user/model/selectors";
 import { useState } from "react";
+import { useGetSubscribesSelfQuery } from "@/entities/subscribes/api/api";
 
 export const Subscriptions = () => {
   const {
