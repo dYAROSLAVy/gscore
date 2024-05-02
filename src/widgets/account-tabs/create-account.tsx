@@ -4,6 +4,9 @@ import { useClasses } from "./styles/use-classes";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Link from "next/link";
 import { useSignUpMutation } from "@/entities/user/api/api";
+import router from "next/router";
+import { useEffect } from "react";
+import { isFetchBaseQueryError } from "@/shared/redux/utils";
 
 type FormValues = {
   username: string;
@@ -15,9 +18,23 @@ export const CreateAccount = ({ callback }: { callback: () => void }) => {
   const { cnTitle, cnForm, cnTextWrap, cnButton, cnText, cnLinkWrap } =
     useClasses();
 
-  const [postSingUp] = useSignUpMutation();
+  const [postSingUp, { isSuccess, error, isLoading }] = useSignUpMutation();
+
+  const { id, name, price } = router.query;
 
   const { register, handleSubmit } = useForm<FormValues>();
+
+  useEffect(() => {
+    if (isSuccess) {
+      callback();
+    }
+  }, [isSuccess]);
+
+  useEffect(() => {
+    if (isFetchBaseQueryError(error)) {
+      alert(error.data.message);
+    }
+  }, [error]);
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     postSingUp(data);
@@ -35,12 +52,21 @@ export const CreateAccount = ({ callback }: { callback: () => void }) => {
       <form className={cnForm} onSubmit={handleSubmit(onSubmit)}>
         <InputPrimary placeholder="UserName" {...register("username")} />
         <InputPrimary placeholder="Email" {...register("email")} />
-        <InputPrimary placeholder="Password" {...register("password")} />
-        <ButtonPrimary className={cnButton}>Send password</ButtonPrimary>
+        <InputPrimary
+          placeholder="Password"
+          {...register("password")}
+          type="password"
+        />
+        <ButtonPrimary className={cnButton} disabled={isLoading}>
+          Send password
+        </ButtonPrimary>
       </form>
       <p className={cnLinkWrap}>
         <span>Have an account?</span>
-        <Link onClick={callback} href={""}>
+        <Link
+          onClick={callback}
+          href={`account?id=${id}&price=${price}&name=${name}`}
+        >
           Go to the next step
         </Link>
       </p>

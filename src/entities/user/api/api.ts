@@ -7,37 +7,40 @@ import {
 } from "@/entities/types";
 import { baseApi } from "@/shared/redux/base-api";
 import { GetSignInResponse } from "../model/userSlice";
+import { API_URL } from "@/shared/constants/api-url";
+import { HTTP_METHODS } from "@/shared/constants/http-methods";
 
 export const userApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     signUp: builder.mutation<NewUser, {}>({
       query: (body) => ({
-        url: "users/sign-up",
-        method: "POST",
+        url: API_URL.signUp,
+        method: HTTP_METHODS.post,
         body,
       }),
     }),
     singIn: builder.mutation<GetSignInResponse, FormUser>({
       query: (data) => ({
-        url: "users/sign-in",
-        method: "POST",
+        url: API_URL.singIn,
+        method: HTTP_METHODS.post,
         body: data,
       }),
     }),
     me: builder.query<MeResponse, string>({
       query: (token) => {
         return {
-          url: `users/me`,
+          url: API_URL.me,
           headers: {
             Authorization: token ? `Bearer ${token}` : ``,
           },
         };
       },
+      providesTags: ['User']
     }),
     updatePassword: builder.mutation<{}, NewPasswordSchema>({
       query: ({ token, ...body }) => ({
-        url: "users/update-password",
-        method: "PATCH",
+        url: API_URL.updatePassword,
+        method: HTTP_METHODS.patch,
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -46,15 +49,22 @@ export const userApi = baseApi.injectEndpoints({
     }),
     updatePersonalData: builder.mutation<{}, UpdateUserSchema>({
       query: ({ token, ...body }) => ({
-        url: "users",
-        method: "PATCH",
+        url: API_URL.updatePersonalData,
+        method: HTTP_METHODS.patch,
         headers: {
           Authorization: `Bearer ${token}`,
         },
         body,
       }),
+      invalidatesTags: ['User'],
     }),
   }),
 });
 
-export const { useSignUpMutation, useSingInMutation, useMeQuery, useUpdatePasswordMutation, useUpdatePersonalDataMutation } = userApi;
+export const {
+  useSignUpMutation,
+  useSingInMutation,
+  useMeQuery,
+  useUpdatePasswordMutation,
+  useUpdatePersonalDataMutation,
+} = userApi;

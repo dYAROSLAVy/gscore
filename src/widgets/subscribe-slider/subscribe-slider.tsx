@@ -8,11 +8,11 @@ import { ArrowLeftIcon } from "@/shared/icons/arrow-left";
 import { ArrowRightIcon } from "@/shared/icons/arrow-right";
 import "./subscribe-slider.scss";
 import { Subscribe } from "@/entities/types";
-import { FC } from "react";
+import { FC, useState } from "react";
 
 export type SubscribeSliderProps = {
   subscribes: Subscribe[];
-  createClickHandler: (index: number) => () => void;
+  createClickHandler: (index: number, id: number) => () => void;
 };
 
 export const SubscribeSlider: FC<SubscribeSliderProps> = ({
@@ -29,6 +29,11 @@ export const SubscribeSlider: FC<SubscribeSliderProps> = ({
         prevEl: ".slider__button--prev",
         nextEl: ".slider__button--next",
       }}
+      onSlideChangeTransitionEnd={(swiper) => {
+        let activeSlideIndex = swiper.activeIndex;
+        const slides = swiper.slides;
+        console.log(slides[activeSlideIndex].id);
+      }}
       pagination={{ type: "fraction", el: ".slider__pagination" }}
     >
       <div className="slider__control">
@@ -40,14 +45,14 @@ export const SubscribeSlider: FC<SubscribeSliderProps> = ({
           <ArrowRightIcon />
         </div>
       </div>
-      {subscribes.map(({ currentPeriodEnd, product }, index) => {
+      {subscribes.map(({ currentPeriodEnd, product, id }, index) => {
         return (
-          <SwiperSlide key={index}>
+          <SwiperSlide key={id} id={`${id}`}>
             <LicenseCard
               date={currentPeriodEnd}
               price={product.prices[0].price}
               type={product.name}
-              onClick={createClickHandler(index)}
+              onClick={createClickHandler(index, id)}
             />
           </SwiperSlide>
         );

@@ -1,10 +1,11 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { useClasses } from "./styles/use-classes";
 import { Checkbox } from "../checkbox/checkbox";
 import { InputCopy } from "../inputs/input-copy/input-copy";
 import { InputSecondary } from "../inputs/input-secondary/input-secondary";
 import { ButtonSecondary } from "../buttons/secondary/button-secondary";
 import { useActivateLicenseMutation } from "@/entities/codes/api";
+import { isFetchBaseQueryError } from "@/shared/redux/utils";
 
 export type CodeCardProps = {
   status?: string;
@@ -12,6 +13,7 @@ export type CodeCardProps = {
   code?: string;
   domain?: string;
   token?: string;
+  onClick?: () => void;
 };
 
 export const CodeCard: FC<CodeCardProps> = ({
@@ -32,7 +34,8 @@ export const CodeCard: FC<CodeCardProps> = ({
     cnButton,
   } = useClasses({ status, isHold });
 
-  const [postActivateLicense] = useActivateLicenseMutation();
+  const [postActivateLicense, { isLoading, error }] =
+    useActivateLicenseMutation();
 
   const onActivateClick = () => {
     const data = {
@@ -42,11 +45,16 @@ export const CodeCard: FC<CodeCardProps> = ({
     postActivateLicense(data);
   };
 
+  useEffect(() => {
+    if (isFetchBaseQueryError(error)) {
+      alert(error.data.message);
+    }
+  }, [error]);
+
   return (
     <>
       <div className={cnRoot}>
-        {!isHold && <Checkbox className={cnCheck} disabled={true} />}
-        {isHold && <Checkbox className={cnCheck} />}
+        <Checkbox className={cnCheck} disabled={!isHold} />
         <div className={cnInputWrap}>
           <span className={cnLabel}>License code</span>
           <InputCopy defaultValue={code} />
@@ -59,7 +67,11 @@ export const CodeCard: FC<CodeCardProps> = ({
           {status === "INACTIVE" && <InputSecondary />}
         </div>
         {status === "INACTIVE" && (
-          <ButtonSecondary className={cnButton} onClick={onActivateClick}>
+          <ButtonSecondary
+            className={cnButton}
+            onClick={onActivateClick}
+            disabled={isLoading}
+          >
             Activate
           </ButtonSecondary>
         )}

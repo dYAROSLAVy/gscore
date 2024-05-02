@@ -1,10 +1,11 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { useClasses } from "./styles/use-classes";
 import { Container } from "@/shared/ui/container/container";
 import { PromoCardBase } from "@/shared/ui/promo-card/promo-card";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useGetProductsQuery } from "@/entities/products/api";
+import { isFetchBaseQueryError } from "@/shared/redux/utils";
 
 export type PromoProps = {
   className?: string;
@@ -15,7 +16,13 @@ export const Promo: FC<PromoProps> = () => {
     useClasses();
   const router = useRouter();
 
-  const { data } = useGetProductsQuery();
+  const { data, error } = useGetProductsQuery();
+
+  useEffect(() => {
+    if (isFetchBaseQueryError(error)) {
+      alert(error.data.message);
+    }
+  }, [error]);
 
   return (
     <section className={cnRoot}>
