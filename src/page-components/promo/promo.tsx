@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect } from "react";
 import { useClasses } from "./styles/use-classes";
 import { Container } from "@/shared/ui/container/container";
 import { PromoCardBase } from "@/shared/ui/promo-card/promo-card";
@@ -16,6 +16,8 @@ export const Promo: FC<PromoProps> = () => {
     useClasses();
   const router = useRouter();
 
+  const { subscribeIndex } = router.query;
+
   const { data, error } = useGetProductsQuery();
 
   useEffect(() => {
@@ -23,6 +25,12 @@ export const Promo: FC<PromoProps> = () => {
       alert(error.data.message);
     }
   }, [error]);
+
+  let isSubscribeIndex: boolean;
+
+  if (subscribeIndex) {
+    isSubscribeIndex = true;
+  }
 
   return (
     <section className={cnRoot}>
@@ -42,6 +50,8 @@ export const Promo: FC<PromoProps> = () => {
                     `account?id=${id}&price=${prices[0].price}&name=${sitesCount}`
                   )
                 }
+                subscribeIndex={subscribeIndex}
+                isSubscribeIndex={isSubscribeIndex}
               />
             );
           })}

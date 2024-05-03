@@ -3,6 +3,7 @@ export const API_URL = {
   buySubscribe: "payments/buy",
   getProducts: "products",
   getSubscribesSelf: "subscribe/self",
+  changeProduct: "subscribe/change-product",
   signUp: "users/sign-up",
   singIn: "users/sign-in",
   me: `users/me`,

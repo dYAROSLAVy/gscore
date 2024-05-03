@@ -10,6 +10,7 @@ import { getUserToken } from "@/entities/user/model/selectors";
 import { useEffect, useState } from "react";
 import { useGetSubscribesSelfQuery } from "@/entities/subscribes/api/api";
 import { isFetchBaseQueryError } from "@/shared/redux/utils";
+import { getSubscribesSlideIndex } from "@/entities/subscribes/model/selectors";
 
 export const Subscriptions = () => {
   const {
@@ -40,6 +41,8 @@ export const Subscriptions = () => {
     setActiveSlide(id);
   };
 
+  const subscribeIndex = useAppSelector(getSubscribesSlideIndex);
+
   useEffect(() => {
     if (isFetchBaseQueryError(error)) {
       alert(error.data.message);
@@ -61,7 +64,9 @@ export const Subscriptions = () => {
         <div className={cnMainTitleWrap}>
           <h1 className={cnMainTitle}>My subscriptions</h1>
           {data && (
-            <ButtonPrimary onClick={() => router.push(`/`)}>
+            <ButtonPrimary
+              onClick={() => router.push(`/?subscribeIndex=${subscribeIndex}`)}
+            >
               Upgrade
             </ButtonPrimary>
           )}

@@ -15,7 +15,18 @@ export const subscribesApi = baseApi.injectEndpoints({
       }),
       providesTags: ["Subscribes"],
     }),
+    changeProduct: builder.mutation<{}, { token?: string; productId?: number, subscribeId?: number }>({
+      query: ({ token, ...body }) => ({
+        url: API_URL.changeProduct,
+        method: HTTP_METHODS.post,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body,
+      }),
+      invalidatesTags: ["Subscribes"],
+    }),
   }),
 });
 
-export const { useGetSubscribesSelfQuery } = subscribesApi;
+export const { useGetSubscribesSelfQuery, useChangeProductMutation } = subscribesApi;
