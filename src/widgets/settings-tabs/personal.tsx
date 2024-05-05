@@ -6,12 +6,29 @@ import { getUserToken } from "@/entities/user/model/selectors";
 import { UpdateUserSchema } from "@/entities/types";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useUpdatePersonalDataMutation } from "@/entities/user/api/api";
+import { useEffect } from "react";
+import { isFetchBaseQueryError } from "@/shared/redux/utils";
 
 export const Personal = () => {
   const { cnForm, cnTitle, cnButton } = useClasses();
-  const [patchUpdatePersonalData] = useUpdatePersonalDataMutation();
+  const [patchUpdatePersonalData, { isLoading, error, isSuccess }] =
+    useUpdatePersonalDataMutation();
   const token = useAppSelector(getUserToken);
+
   const { register, handleSubmit, reset } = useForm<UpdateUserSchema>();
+
+  useEffect(() => {
+    if (isSuccess) {
+      reset();
+      alert("changes saved");
+    }
+  }, [isSuccess]);
+
+  useEffect(() => {
+    if (isFetchBaseQueryError(error)) {
+      alert(error.data.message);
+    }
+  }, [error]);
 
   const onSubmit: SubmitHandler<UpdateUserSchema> = (data) => {
     data.token = token;
@@ -25,8 +42,6 @@ export const Personal = () => {
     }
 
     patchUpdatePersonalData(data);
-
-    reset();
   };
 
   return (
@@ -34,7 +49,9 @@ export const Personal = () => {
       <h3 className={cnTitle}>Personal Info</h3>
       <InputPrimary placeholder="Username" {...register("username")} />
       <InputPrimary placeholder="Email" {...register("email")} />
-      <ButtonPrimary className={cnButton}>Save</ButtonPrimary>
+      <ButtonPrimary className={cnButton} disabled={isLoading}>
+        Save
+      </ButtonPrimary>
     </form>
   );
 };

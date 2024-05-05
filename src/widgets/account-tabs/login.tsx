@@ -4,13 +4,27 @@ import { useClasses } from "./styles/use-classes";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { FormUser } from "@/entities/types";
 import { useSingInMutation } from "@/entities/user/api/api";
+import { useEffect } from "react";
+import { isFetchBaseQueryError } from "@/shared/redux/utils";
 
 export const Login = ({ callback }: { callback: () => void }) => {
   const { cnTitle, cnForm, cnTextWrap, cnButton } = useClasses();
 
-  const [postSingIn] = useSingInMutation();
+  const [postSingIn, { isLoading, isSuccess, error }] = useSingInMutation();
 
   const { register, handleSubmit } = useForm<FormUser>();
+
+  useEffect(() => {
+    if (isSuccess) {
+      callback();
+    }
+  }, [isSuccess]);
+
+  useEffect(() => {
+    if (isFetchBaseQueryError(error)) {
+      alert(error.data.message);
+    }
+  }, [error]);
 
   const onSubmit: SubmitHandler<FormUser> = (data) => {
     postSingIn(data);
@@ -28,7 +42,7 @@ export const Login = ({ callback }: { callback: () => void }) => {
           {...register("password")}
           type="password"
         />
-        <ButtonPrimary className={cnButton} onClick={callback}>
+        <ButtonPrimary className={cnButton} disabled={isLoading}>
           Log in
         </ButtonPrimary>
       </form>

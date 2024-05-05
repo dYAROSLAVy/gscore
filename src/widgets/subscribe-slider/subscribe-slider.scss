@@ -31,6 +31,9 @@
 }
 
 .swiper-slide:not(.swiper-slide-active) {
-    pointer-events: none;
     opacity: 0.6;
+
+    button {
+        pointer-events: none;
+    }
 }

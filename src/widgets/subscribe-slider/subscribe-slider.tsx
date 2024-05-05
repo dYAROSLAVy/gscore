@@ -9,16 +9,22 @@ import { ArrowRightIcon } from "@/shared/icons/arrow-right";
 import "./subscribe-slider.scss";
 import { Subscribe } from "@/entities/types";
 import { FC } from "react";
+import { useAppDispatch } from "@/shared/redux/hooks";
+import { addIndex } from "@/entities/subscribes/model/subscribesSlice";
 
 export type SubscribeSliderProps = {
   subscribes: Subscribe[];
-  createClickHandler: (index: number) => () => void;
+  createClickHandler: (index: number, id: number) => () => void;
 };
 
 export const SubscribeSlider: FC<SubscribeSliderProps> = ({
   subscribes,
   createClickHandler,
 }) => {
+  const dispatch = useAppDispatch();
+
+  let activeSlideIndex;
+
   return (
     <Swiper
       modules={[Navigation, Pagination, A11y]}
@@ -28,6 +34,16 @@ export const SubscribeSlider: FC<SubscribeSliderProps> = ({
       navigation={{
         prevEl: ".slider__button--prev",
         nextEl: ".slider__button--next",
+      }}
+      onInit={(swiper) => {
+        activeSlideIndex = swiper.activeIndex;
+        const slides = swiper.slides;
+        dispatch(addIndex(slides[activeSlideIndex].id));
+      }}
+      onSlideChangeTransitionEnd={(swiper) => {
+        activeSlideIndex = swiper.activeIndex;
+        const slides = swiper.slides;
+        dispatch(addIndex(slides[activeSlideIndex].id));
       }}
       pagination={{ type: "fraction", el: ".slider__pagination" }}
     >
@@ -40,14 +56,14 @@ export const SubscribeSlider: FC<SubscribeSliderProps> = ({
           <ArrowRightIcon />
         </div>
       </div>
-      {subscribes.map(({ currentPeriodEnd, product }, index) => {
+      {subscribes.map(({ currentPeriodEnd, product, id }, index) => {
         return (
-          <SwiperSlide key={index}>
+          <SwiperSlide key={id} id={`${id}`}>
             <LicenseCard
               date={currentPeriodEnd}
               price={product.prices[0].price}
               type={product.name}
-              onClick={createClickHandler(index)}
+              onClick={createClickHandler(index, id)}
             />
           </SwiperSlide>
         );

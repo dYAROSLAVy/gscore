@@ -7,8 +7,10 @@ import { SubscribeSlider } from "@/widgets/subscribe-slider/subscribe-slider";
 import { CodeCard } from "@/shared/ui/code-card/code-card";
 import { useAppSelector } from "@/shared/redux/hooks";
 import { getUserToken } from "@/entities/user/model/selectors";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useGetSubscribesSelfQuery } from "@/entities/subscribes/api/api";
+import { isFetchBaseQueryError } from "@/shared/redux/utils";
+import { getSubscribesSlideIndex } from "@/entities/subscribes/model/selectors";
 
 export const Subscriptions = () => {
   const {
@@ -28,20 +30,46 @@ export const Subscriptions = () => {
 
   const token = useAppSelector(getUserToken);
 
-  const { data } = useGetSubscribesSelfQuery(token);
+  const { data, error } = useGetSubscribesSelfQuery(token);
 
   const [card, setCard] = useState(0);
 
-  const createClickHandler = (index: number) => () => {
+  const [activeSlide, setActiveSlide] = useState(data?.[card].id ?? 0);
+
+  const createClickHandler = (index: number, id: number) => () => {
     setCard(index);
+    setActiveSlide(id);
   };
+
+  const subscribeIndex = useAppSelector(getSubscribesSlideIndex);
+
+  useEffect(() => {
+    if (isFetchBaseQueryError(error)) {
+      alert(error.data.message);
+    }
+  }, [error]);
+
+  // const onActivateClick = () => {
+  //   const slideIndex = data?.findIndex(item => item.id === activeSlide);
+
+  //   console.log({slideIndex})
+  //   if (typeof slideIndex !== 'undefined' && slideIndex >= 0) {
+  //     setCard(slideIndex);
+  //   }
+  // }
 
   return (
     <section className={cnRoot}>
       <Container>
         <div className={cnMainTitleWrap}>
           <h1 className={cnMainTitle}>My subscriptions</h1>
-          {data && <ButtonPrimary>Upgrade</ButtonPrimary>}
+          {data && (
+            <ButtonPrimary
+              onClick={() => router.push(`/?subscribeIndex=${subscribeIndex}`)}
+            >
+              Upgrade
+            </ButtonPrimary>
+          )}
         </div>
       </Container>
       {data && (
@@ -56,17 +84,21 @@ export const Subscriptions = () => {
           </Container>
           <Container>
             <div className={cnCodesList}>
-              {data[card].codes.map(({ code, status, origin, id }) => {
-                return (
-                  <CodeCard
-                    code={code}
-                    status={status}
-                    key={id}
-                    domain={origin}
-                    token={token}
-                  />
-                );
-              })}
+              {data[card].codes
+                .slice(0)
+                .reverse()
+                .map(({ code, status, origin, id }) => {
+                  return (
+                    <CodeCard
+                      code={code}
+                      status={status}
+                      key={id}
+                      domain={origin}
+                      token={token}
+                      // onClick={onActivateClick}
+                    />
+                  );
+                })}
             </div>
           </Container>
         </>

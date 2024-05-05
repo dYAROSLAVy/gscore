@@ -6,21 +6,36 @@ import { NewPassword, NewPasswordSchema } from "@/entities/types";
 import { useAppSelector } from "@/shared/redux/hooks";
 import { getUserToken } from "@/entities/user/model/selectors";
 import { useUpdatePasswordMutation } from "@/entities/user/api/api";
+import { useEffect } from "react";
+import { isFetchBaseQueryError } from "@/shared/redux/utils";
 
 export const Password = () => {
   const { cnForm, cnTitle, cnButton } = useClasses();
 
   const token = useAppSelector(getUserToken);
 
-  const [patchUpdatePassword] = useUpdatePasswordMutation();
+  const [patchUpdatePassword, { isLoading, error, isSuccess }] =
+    useUpdatePasswordMutation();
 
   const { register, handleSubmit, reset } = useForm<NewPassword>();
 
   const onSubmit: SubmitHandler<NewPasswordSchema> = (data) => {
     data.token = token;
     patchUpdatePassword(data);
-    reset();
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      reset();
+      alert("password changed");
+    }
+  }, [isSuccess]);
+
+  useEffect(() => {
+    if (isFetchBaseQueryError(error)) {
+      alert(error.data.message);
+    }
+  }, [error]);
 
   return (
     <form className={cnForm} onSubmit={handleSubmit(onSubmit)}>
@@ -37,7 +52,9 @@ export const Password = () => {
         required
         {...register("newPassword")}
       />
-      <ButtonPrimary className={cnButton}>Save</ButtonPrimary>
+      <ButtonPrimary className={cnButton} disabled={isLoading}>
+        Save
+      </ButtonPrimary>
     </form>
   );
 };
