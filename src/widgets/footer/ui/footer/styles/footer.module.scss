@@ -39,6 +39,7 @@
         max-width: 322px;
         margin: 0;
         line-height: 167%;
+        color: var(--very-light-grey);
     }
 
     &__bottom-inner {
@@ -47,5 +48,16 @@
         justify-content: space-between;
         align-items: flex-end;
         padding-top: 22px;
+
+        @include tablet {
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+    }
+
+    &__logo {
+        width: 130px;
+        height: 32px;
     }
 }

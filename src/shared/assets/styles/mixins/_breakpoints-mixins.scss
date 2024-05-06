@@ -1,12 +1,14 @@
-@mixin vp-1439 {
-    @media (max-width: ($vp-desk - 1px)) {
-      @content;
-    }
+$vp-tab: 768px;
+$vp-desk: 1200px;
+
+@mixin tablet {
+  @media (max-width: ($vp-desk - 1px)) {
+    @content;
   }
-  
-  @mixin vp-767 {
-    @media (max-width: ($vp-tab - 1px)) {
-      @content;
-    }
+}
+
+@mixin mobile {
+  @media (max-width: ($vp-tab - 1px)) {
+    @content;
   }
-  
+}

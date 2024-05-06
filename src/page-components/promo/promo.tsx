@@ -37,7 +37,7 @@ export const Promo: FC<PromoProps> = () => {
       <Container>
         <h2 className={cnTitle}>Get started with Gscore today!</h2>
         <div className={cnList}>
-          {data?.map(({ sitesCount, prices, id }, index) => {
+        {data?.map(({ sitesCount, prices, id }, index) => {
             return (
               <PromoCardBase
                 key={index}

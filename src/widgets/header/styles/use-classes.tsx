@@ -4,12 +4,14 @@ import { HeaderProps } from "../header";
 
 const cn = classNames.bind(classes);
 
-export const useClasses = ({ className }:HeaderProps) => {
+export const useClasses = ({ className }: HeaderProps) => {
   const cnRoot = cn(`header`, className);
   const cnContainer = cn(`header__container`);
+  const cnLogo = cn(`header__logo`);
 
   return {
     cnRoot,
-    cnContainer
+    cnContainer,
+    cnLogo,
   };
 };

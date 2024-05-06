@@ -39,7 +39,7 @@ export const Password = () => {
 
   return (
     <form className={cnForm} onSubmit={handleSubmit(onSubmit)}>
-      <h3 className={cnTitle}>Change password</h3>
+      <h2 className={cnTitle}>Change password</h2>
       <InputPrimary
         placeholder="Current Password"
         type="password"

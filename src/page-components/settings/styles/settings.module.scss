@@ -1,11 +1,16 @@
 .settings {
-    padding-top: 32px;
+    min-height: 900px;
+    padding: 32px 0;
     overflow-x: hidden;
 
     &__container {
         display: flex;
         flex-direction: column;
         gap: 48px;
+
+        @include mobile {
+            gap: 30px;
+        }
     }
 
     &__title {
@@ -13,6 +18,11 @@
         font-family: var(--ff-thic);
         font-size: 54px;
         line-height: 119%;
+
+        @include mobile {
+            font-size: 28px;
+            line-height: 143%;
+        }
     }
 
     &__tabs-wrapper {

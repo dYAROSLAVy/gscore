@@ -46,7 +46,7 @@ export const Personal = () => {
 
   return (
     <form className={cnForm} onSubmit={handleSubmit(onSubmit)}>
-      <h3 className={cnTitle}>Personal Info</h3>
+      <h2 className={cnTitle}>Personal Info</h2>
       <InputPrimary placeholder="Username" {...register("username")} />
       <InputPrimary placeholder="Email" {...register("email")} />
       <ButtonPrimary className={cnButton} disabled={isLoading}>

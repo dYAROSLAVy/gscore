@@ -3,12 +3,14 @@ import { setupListeners } from "@reduxjs/toolkit/query";
 import { userReducer } from "../entities/user/model/reducers";
 import { baseApi } from "@/shared/redux/base-api";
 import { subscribesReducer } from "@/entities/subscribes/model/reducers";
+import { UserSchema } from "@/entities/types";
+import { SubscribesSchema } from "@/entities/subscribes/model/types";
 
 export const store = configureStore({
   reducer: {
     [baseApi.reducerPath]: baseApi.reducer,
     user: userReducer,
-    index: subscribesReducer,
+    subscribes: subscribesReducer,
   },
 
   middleware: (getDefaultMiddleware) =>
@@ -17,5 +19,10 @@ export const store = configureStore({
 
 setupListeners(store.dispatch);
 
-export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+
+export type StateSchema = {
+  [baseApi.reducerPath]: ReturnType<typeof baseApi.reducer>;
+  user: UserSchema;
+  subscribes: SubscribesSchema;
+};

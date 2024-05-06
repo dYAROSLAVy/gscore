@@ -1,10 +1,8 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { SubscribesSchema } from "./types";
 
-type SubscribesSlideIndexState = {
-  index: string | undefined;
-};
 
-const initialState: SubscribesSlideIndexState = {
+const initialState: SubscribesSchema = {
   index: "",
 };
 

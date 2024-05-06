@@ -11,14 +11,15 @@ export type FooterProps = {
 };
 
 export const Footer: FC<FooterProps> = ({ className }) => {
-  const { cnRoot, cnTopInner, cnBottomInner, cnText } = useClasses({
+  const { cnRoot, cnTopInner, cnBottomInner, cnText, cnLogo } = useClasses({
     className,
   });
   return (
     <footer className={cnRoot}>
       <Container>
         <div className={cnTopInner}>
-          <Link href="/">
+          <Link href="/" className={cnLogo}>
+            <span className="visually-hidden">Main</span>
             <LogoMain />
           </Link>
           <p className={cnText}>
