@@ -1,8 +1,4 @@
-export type StateSchema = {
-  index: {
-    index: string;
-  };
-};
+import { StateSchema } from "@/app/store";
 
 export const getSubscribesSlideIndex = (state: StateSchema) =>
-  state.index.index;
+  state.subscribes.index;

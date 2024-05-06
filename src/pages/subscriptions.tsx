@@ -1,5 +1,5 @@
 import { Wrapper } from "@/shared/ui/wrapper/wrapper";
-import { Footer } from "@/widgets/footer/footer";
+import { Footer } from "@/widgets/footer";
 import { Header } from "@/widgets/header/header";
 import { Main } from "@/widgets/main/main";
 import { Subscriptions } from "@/page-components/subscriptions/subscriptions";

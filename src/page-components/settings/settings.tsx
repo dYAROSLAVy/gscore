@@ -1,7 +1,6 @@
 import { Container } from "@/shared/ui/container/container";
 import { useClasses } from "./styles/use-classes";
-import { Personal } from "@/widgets/settings-tabs/personal";
-import { Password } from "@/widgets/settings-tabs/password";
+import { Personal, Password } from "@/widgets/settings-tabs/";
 import { Tab, Tabs } from "@/shared/ui/tabs/tabs";
 
 const TABS: Tab[] = [

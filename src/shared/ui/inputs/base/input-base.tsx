@@ -1,7 +1,9 @@
 import { FC, forwardRef, InputHTMLAttributes } from "react";
 import { useClasses } from "./styles/use-classes";
 
-export type BaseInputProps = {} & InputHTMLAttributes<HTMLInputElement>;
+export type BaseInputProps = {
+  label?: string;
+} & InputHTMLAttributes<HTMLInputElement>;
 
 export const InputBase = forwardRef<HTMLInputElement, BaseInputProps>(
   ({ type, children, className, ...props }, ref) => {

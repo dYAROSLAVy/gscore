@@ -6,6 +6,10 @@
     padding: 48px 0 32px;
     background-color: var(--eclipse);
 
+    @include mobile {
+        padding: 24px 16px;
+    }
+
     &__top-inner,
     &__bottom-inner {
         padding: 0 48px 0 32px;
@@ -13,7 +17,12 @@
         flex-wrap: wrap;
         justify-content: space-between;
         font-family: var(--ff-thic);
+
+        @include mobile {
+            padding: 0 24px 16px 16px;
+        }
     }
+
 
     &__top-inner {
         position: relative;
@@ -31,12 +40,22 @@
             height: 1px;
             background-color: var(--nobel);
         }
+
+        @include mobile {
+            font-size: 18px;
+        }
     }
 
     &__bottom-inner {
         font-weight: 500;
         font-size: 24px;
         line-height: 158%;
+
+
+        @include mobile {
+            padding: 8px;
+            font-size: 18px;
+        }
     }
 
     &__price {

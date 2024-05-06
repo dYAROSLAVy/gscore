@@ -8,6 +8,10 @@
         font-weight: 700;
         font-size: 22px;
         line-height: 127%;
+
+        @include mobile {
+            justify-content: center;
+        }
     }
 
     &__button {
@@ -18,6 +22,10 @@
         height: 44px;
         border: 1px solid var(--nobel);
         border-radius: 12px;
+
+        @include mobile {
+            display: none;
+        }
     }
 
     &__button.swiper-button-disabled {
@@ -36,4 +44,8 @@
     button {
         pointer-events: none;
     }
+}
+
+.swiper-slide {
+    width: auto;
 }

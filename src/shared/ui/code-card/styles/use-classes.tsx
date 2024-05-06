@@ -4,7 +4,7 @@ import { CodeCardProps } from "../code-card";
 
 const cn = classNames.bind(classes);
 
-export const useClasses = ({ status, isHold }: CodeCardProps) => {
+export const useClasses = ({ status }: Pick<CodeCardProps, "status">) => {
   const cnRoot = cn(`code-card`);
   const cnCheck = cn(`code-card__checkbox`);
   const cnLabel = cn(`code-card__label`);
@@ -19,10 +19,13 @@ export const useClasses = ({ status, isHold }: CodeCardProps) => {
       "code-card__status--primary": status === "INACTIVE",
     },
     {
-      "code-card__status--secondary": isHold,
+      "code-card__status--secondary": status === "HOLD",
     }
   );
   const cnButton = cn(`code-card__button`);
+  const cnButtonMobile = cn(`code-card__button-mobile`);
+  const cnCheckboxWrap = cn(`code-card__checkbox-wrapper`);
+  const cnCheckboxInner = cn(`code-card__checkbox-inner`);
 
   return {
     cnRoot,
@@ -33,5 +36,8 @@ export const useClasses = ({ status, isHold }: CodeCardProps) => {
     cnDomainWrap,
     cnStatusWrap,
     cnButton,
+    cnButtonMobile,
+    cnCheckboxWrap,
+    cnCheckboxInner,
   };
 };

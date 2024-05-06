@@ -7,6 +7,10 @@
     list-style: none;
     line-height: 167%;
 
+    @include mobile {
+        justify-content: center;
+    }
+
     li {
         display: flex;
         align-items: flex-end;

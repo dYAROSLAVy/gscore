@@ -16,6 +16,9 @@ export const useClasses = () => {
   const cnSliderCont = cn(`subscriptions__slider-container`);
   const cnSlider = cn(`subscriptions__slider`);
   const cnCodesList = cn(`subscriptions__codes-list`);
+  const cnConfirmWrap = cn(`subscriptions__confirm-wrapper`);
+  const cnConfirmText = cn(`subscriptions__confirm-text`);
+  const cnConfirmTextMob = cn(`subscriptions__confirm-text-mobile`);
 
   return {
     cnRoot,
@@ -29,5 +32,8 @@ export const useClasses = () => {
     cnSlider,
     cnCodesList,
     cnSliderCont,
+    cnConfirmWrap,
+    cnConfirmText,
+    cnConfirmTextMob,
   };
 };

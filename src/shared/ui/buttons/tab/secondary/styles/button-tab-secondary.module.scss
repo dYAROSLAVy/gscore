@@ -22,4 +22,9 @@
             background-color: var(--tomato);
         }
     }
+
+    @include mobile {
+        padding: 0 10px 10px;
+        font-size: 16px;
+    }
 }

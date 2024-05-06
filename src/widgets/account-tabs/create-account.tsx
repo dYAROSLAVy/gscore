@@ -4,7 +4,7 @@ import { useClasses } from "./styles/use-classes";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Link from "next/link";
 import { useSignUpMutation } from "@/entities/user/api/api";
-import router from "next/router";
+import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { isFetchBaseQueryError } from "@/shared/redux/utils";
 
@@ -20,7 +20,7 @@ export const CreateAccount = ({ callback }: { callback: () => void }) => {
 
   const [postSingUp, { isSuccess, error, isLoading }] = useSignUpMutation();
 
-  const { id, name, price } = router.query;
+  const { query: {id, name, price}  } = useRouter();
 
   const { register, handleSubmit } = useForm<FormValues>();
 

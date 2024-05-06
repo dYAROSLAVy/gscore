@@ -6,11 +6,46 @@
     border-radius: 12px;
     background-color: var(--eclipse);
 
+    @include tablet {
+        flex-direction: column;
+        align-items: normal;
+        padding: 20px;
+        gap: 22px;
+        max-width: 728px;
+        width: 100%;
+        min-height: 338px;
+    }
+
+    &__checkbox-wrapper {
+        @include tablet {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
+    &__checkbox-inner {
+        @include tablet {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+    }
+
     &__checkbox {
         margin-top: 28px;
 
         &:not(:last-child) {
             margin-right: 48px;
+        }
+
+        @include tablet {
+            margin-top: 0;
+
+            &:not(:last-child) {
+                margin-right: 0;
+            }
         }
 
     }
@@ -32,19 +67,37 @@
         &:not(:last-child) {
             margin-right: 28px;
         }
+
+        @include tablet {
+            &:not(:last-child) {
+                margin-right: 0;
+            }
+        }
     }
 
     &__domain-wrapper {
-        width: 49%;
+        width: 51.5%;
 
         &--primary {
             width: 37.5%;
+        }
+
+        @include tablet {
+            width: 100%;
+
+            &--primary {
+                width: 100%;
+            }
         }
     }
 
     &__status-wrapper {
         &:not(:only-child) {
             margin-left: 28px;
+        }
+
+        @include tablet {
+            display: none;
         }
     }
 
@@ -65,13 +118,41 @@
         &--secondary {
             color: var(--amour);
         }
+
+        &:first-of-type {
+            display: none;
+        }
+
+        @include tablet {
+            height: auto;
+
+
+            &:first-of-type {
+                display: block;
+            }
+        }
     }
 
-    &__button {
-        margin-top: 28px;
-        margin-left: 28px;
+    &__button,
+    &__button-mobile {
         font-weight: 700;
         font-size: 16px;
         line-height: 112%;
+    }
+
+    &__button {
+        margin: 28px 0 0 28px;
+
+        @include tablet {
+            display: none;
+        }
+    }
+
+    &__button-mobile {
+        display: none;
+
+        @include tablet {
+            display: block;
+        }
     }
 }

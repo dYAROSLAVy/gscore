@@ -1,9 +1,6 @@
 import { UserSchema } from "@/entities/types";
 import { userApi } from "../api/api";
-
-export type StateSchema = {
-  user: UserSchema;
-};
+import { StateSchema } from "@/app/store";
 
 export const getIsUserAuthorized = (state: StateSchema) =>
   Boolean(state.user.user);

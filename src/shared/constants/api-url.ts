@@ -9,4 +9,5 @@ export const API_URL = {
   me: `users/me`,
   updatePassword: "users/update-password",
   updatePersonalData: "users",
+  codeManage: "code/manage",
 };

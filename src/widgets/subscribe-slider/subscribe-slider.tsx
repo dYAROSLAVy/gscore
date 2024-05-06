@@ -28,8 +28,20 @@ export const SubscribeSlider: FC<SubscribeSliderProps> = ({
   return (
     <Swiper
       modules={[Navigation, Pagination, A11y]}
-      spaceBetween={28}
-      slidesPerView={2.15}
+      breakpoints={{
+        320: {
+          slidesPerView: "auto",
+          spaceBetween: 12,
+        },
+        768: {
+          slidesPerView: 2.15,
+          spaceBetween: 28,
+        },
+        1200: {
+          slidesPerView: 2.15,
+          spaceBetween: 28,
+        },
+      }}
       loop={true}
       navigation={{
         prevEl: ".slider__button--prev",
@@ -38,12 +50,12 @@ export const SubscribeSlider: FC<SubscribeSliderProps> = ({
       onInit={(swiper) => {
         activeSlideIndex = swiper.activeIndex;
         const slides = swiper.slides;
-        dispatch(addIndex(slides[activeSlideIndex].id));
+        dispatch(addIndex(slides[activeSlideIndex]?.id));
       }}
       onSlideChangeTransitionEnd={(swiper) => {
         activeSlideIndex = swiper.activeIndex;
         const slides = swiper.slides;
-        dispatch(addIndex(slides[activeSlideIndex].id));
+        dispatch(addIndex(slides[activeSlideIndex]?.id));
       }}
       pagination={{ type: "fraction", el: ".slider__pagination" }}
     >

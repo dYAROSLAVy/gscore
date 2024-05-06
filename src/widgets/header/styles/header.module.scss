@@ -9,4 +9,15 @@
         align-items: center;
         flex-wrap: wrap;
     }
+
+    &__logo {
+        @include mobile {
+            width: 130px;
+            height: 32px;
+        }
+    }
+
+    @include mobile {
+        min-height: 80px;
+    }
 }

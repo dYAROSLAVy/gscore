@@ -4,7 +4,9 @@ const path = require('path')
 const nextConfig = {
   reactStrictMode: true,
   sassOptions: {
-    includePaths: [path.join(__dirname, 'src')]
+    includePaths: [path.join(__dirname, 'src/shared/assets/styles')],
+    prependData: `@import "./mixins/mixins.scss";`,
+
   },
   webpack(config) {
     config.module.rules.push({

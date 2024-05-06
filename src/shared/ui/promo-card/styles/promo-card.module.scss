@@ -2,16 +2,30 @@
     display: flex;
     flex-direction: column;
     gap: 40px;
-    width: 404px;
+    max-width: 404px;
     min-height: 612px;
     padding: 42px 48px;
     background-color: var(--eclipse);
     border-radius: 12px;
 
+    @include tablet {
+        padding: 30px;
+        min-height: 580px;
+    }
+
+    @include mobile {
+        gap: 20px;
+        min-height: 487px;
+    }
+
     &__price {
         font-size: 54px;
         line-height: 122%;
         font-family: var(--ff-dm-sans);
+
+        @include mobile {
+            font-size: 36px;
+        }
     }
 
     &__title {
@@ -27,6 +41,10 @@
         line-height: 167%;
         text-align: center;
         color: var(--very-light-grey);
+
+        @include mobile {
+            font-size: 16px;
+        }
     }
 
     &__top-wrapper {
@@ -45,6 +63,10 @@
             height: 1px;
             background-color: var(--nobel);
         }
+
+        @include mobile {
+            padding-bottom: 15px;
+        }
     }
 
     &__bottom-wrapper {
@@ -57,6 +79,10 @@
             width: 100%;
             font-weight: 700;
             color: var(--black);
+        }
+
+        @include mobile {
+            gap: 16px;
         }
     }
 
@@ -71,7 +97,6 @@
 
         li {
             display: flex;
-            flex-wrap: wrap;
             gap: 14px;
         }
 
@@ -79,6 +104,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
             width: 26px;
             height: 26px;
             background-color: var(--white);
@@ -88,6 +114,10 @@
             svg {
                 z-index: 1;
             }
+        }
+
+        @include mobile {
+            font-size: 16px;
         }
     }
 }

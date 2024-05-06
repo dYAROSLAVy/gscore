@@ -7,6 +7,7 @@ export const ButtonCopy: FC<ButtonBaseProps> = ({ className }) => {
   const { cnRoot } = useClasses({ className });
   return (
     <ButtonBase className={cnRoot}>
+      <span className="visually-hidden">Copy</span>
       <CopyIcon />
     </ButtonBase>
   );
