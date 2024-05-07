@@ -1,8 +1,8 @@
+import { Account } from "@/page-components/account";
 import { Wrapper } from "@/shared/ui/wrapper/wrapper";
-import { Account } from "@/page-components/account/account";
 import { Footer } from "@/widgets/footer";
-import { Header } from "@/widgets/header/header";
-import { Main } from "@/widgets/main/main";
+import { Header } from "@/widgets/header";
+import { Main } from "@/widgets/main";
 import Head from "next/head";
 
 export default function AccountPage() {

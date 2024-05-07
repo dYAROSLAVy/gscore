@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { useClasses } from "./styles/use-classes";
-import { ButtonSecondary } from "../buttons/secondary/button-secondary";
+import { formatDate } from "@/shared/utils/utils";
+import { ButtonSecondary } from "@/shared/ui/buttons/secondary/button-secondary";
 
 export type LicenseCardProps = {
   price?: string;
@@ -28,7 +29,7 @@ export const LicenseCard: FC<LicenseCardProps> = ({
 
   const numberDate = Number(date) * 1000;
 
-  const validUntil = new Intl.DateTimeFormat("ru").format(numberDate);
+  const validUntil = formatDate(numberDate);
 
   return (
     <div className={cnRoot}>

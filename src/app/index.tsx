@@ -1,14 +1,16 @@
-import { store } from "@/app/store";
-import { getMeData } from "@/entities/user/model/selectors";
+import { wrapper } from "@/app/store";
+import { getMeData } from "@/entities/user";
 import { AppProps } from "next/app";
 import { useEffect } from "react";
 import { Provider } from "react-redux";
 
-export function App({ Component, pageProps }: AppProps) {
+export function App({ Component, ...rest }: AppProps) {
   const token =
     typeof window !== "undefined"
       ? window.localStorage.getItem("user-token") ?? ``
       : ``;
+
+  const { store, props } = wrapper.useWrappedStore(rest);
 
   useEffect(() => {
     store.dispatch(getMeData(token));
@@ -16,7 +18,7 @@ export function App({ Component, pageProps }: AppProps) {
 
   return (
     <Provider store={store}>
-      <Component {...pageProps} />
+      <Component {...props.pageProps} />
     </Provider>
   );
 }

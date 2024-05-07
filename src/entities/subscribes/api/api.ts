@@ -1,4 +1,7 @@
-import { Subscribe } from "@/entities/types";
+import {
+  ChangeProductPutParams,
+  Subscribe,
+} from "@/entities/subscribes/model/types";
 import { API_URL } from "@/shared/constants/api-url";
 import { HTTP_METHODS } from "@/shared/constants/http-methods";
 import { baseApi } from "@/shared/redux/base-api";
@@ -15,7 +18,7 @@ export const subscribesApi = baseApi.injectEndpoints({
       }),
       providesTags: ["Subscribes"],
     }),
-    changeProduct: builder.mutation<{}, { token?: string; productId?: number, subscribeId?: number }>({
+    changeProduct: builder.mutation<void, ChangeProductPutParams>({
       query: ({ token, ...body }) => ({
         url: API_URL.changeProduct,
         method: HTTP_METHODS.post,
@@ -29,4 +32,10 @@ export const subscribesApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetSubscribesSelfQuery, useChangeProductMutation } = subscribesApi;
+export const {
+  useGetSubscribesSelfQuery,
+  useChangeProductMutation,
+  util: { getRunningQueriesThunk: subscribesThunk },
+} = subscribesApi;
+
+export const { getSubscribesSelf } = subscribesApi.endpoints;

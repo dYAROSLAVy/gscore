@@ -1,8 +1,8 @@
 import { Wrapper } from "@/shared/ui/wrapper/wrapper";
 import { Footer } from "@/widgets/footer";
-import { Header } from "@/widgets/header/header";
-import { Main } from "@/widgets/main/main";
-import { Settings } from "@/page-components/settings/settings";
+import { Header } from "@/widgets/header";
+import { Main } from "@/widgets/main";
+import { Settings } from "@/widgets/settings";
 import Head from "next/head";
 
 export default function SettingsPage() {
