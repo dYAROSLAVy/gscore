@@ -1,7 +1,8 @@
 import { Container } from "@/shared/ui/container/container";
 import { useClasses } from "@/widgets/settings/ui/settings-tabs/styles/use-classes";
-import { Personal, Password } from "@/widgets/settings";
 import { Tab, Tabs } from "@/shared/ui/tabs/tabs";
+import { Personal } from "../tabs/personal";
+import { Password } from "../tabs/password";
 
 const TABS: Tab[] = [
   {
@@ -16,7 +17,7 @@ const TABS: Tab[] = [
   },
 ];
 
-export const Settings = () => {
+export const SettingsTabs = () => {
   const { cnRoot, cnTitle, cnCont, cnTabsWrap } = useClasses();
 
   return (

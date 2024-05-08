@@ -1,29 +1,10 @@
-import { Wrapper } from "@/shared/ui/wrapper/wrapper";
-import { Footer } from "@/widgets/footer";
-import { Header } from "@/widgets/header";
-import { Main } from "@/widgets/main";
-import { Settings } from "@/widgets/settings";
-import Head from "next/head";
+import { Layout } from "@/widgets/layout";
+import { SettingsTabs } from "@/widgets/settings";
 
 export default function SettingsPage() {
   return (
-    <>
-      <Head>
-        <title>Gscore</title>
-        <meta
-          name="description"
-          content="Project that provides an opportunity to buy a subscription with codes"
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Wrapper>
-        <Header />
-        <Main>
-          <Settings />
-        </Main>
-        <Footer />
-      </Wrapper>
-    </>
+    <Layout headTitle="Settings">
+      <SettingsTabs />
+    </Layout>
   );
 }

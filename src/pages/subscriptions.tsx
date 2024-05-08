@@ -1,9 +1,4 @@
-import { Wrapper } from "@/shared/ui/wrapper/wrapper";
-import { Footer } from "@/widgets/footer";
-import Head from "next/head";
 import { wrapper } from "@/app/store";
-import { Header } from "@/widgets/header";
-import { Main } from "@/widgets/main";
 import { Subscriptions } from "@/page-components/subscriptions";
 import { getSubscribesSelf, subscribesThunk } from "@/entities/subscribes";
 import {
@@ -11,27 +6,13 @@ import {
   getUserRunningQueriesThunk,
   setToken,
 } from "@/entities/user";
+import { Layout } from "@/widgets/layout";
 
 export default function SubscriptionsPage() {
   return (
-    <>
-      <Head>
-        <title>Gscore</title>
-        <meta
-          name="description"
-          content="Project that provides an opportunity to buy a subscription with codes"
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Wrapper>
-        <Header />
-        <Main>
-          <Subscriptions />
-        </Main>
-        <Footer />
-      </Wrapper>
-    </>
+    <Layout headTitle="Subscriptions">
+      <Subscriptions />
+    </Layout>
   );
 }
 

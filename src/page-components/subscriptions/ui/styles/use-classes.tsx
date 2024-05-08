@@ -7,12 +7,6 @@ export const useClasses = () => {
   const cnRoot = cn(`subscriptions`);
   const cnMainTitleWrap = cn(`subscriptions__main-title-wrapper`);
   const cnMainTitle = cn(`subscriptions__main-title`);
-
-  const cnError = cn(`subscriptions__error`);
-  const cnTitle = cn(`subscriptions__title`);
-  const cnText = cn(`subscriptions__text`);
-  const cnCloseDecor = cn(`subscriptions__close-decor`);
-  const cnButton = cn(`subscriptions__button`);
   const cnSliderCont = cn(`subscriptions__slider-container`);
   const cnSlider = cn(`subscriptions__slider`);
   const cnCodesList = cn(`subscriptions__codes-list`);
@@ -24,11 +18,6 @@ export const useClasses = () => {
     cnRoot,
     cnMainTitleWrap,
     cnMainTitle,
-    cnError,
-    cnTitle,
-    cnText,
-    cnCloseDecor,
-    cnButton,
     cnSlider,
     cnCodesList,
     cnSliderCont,

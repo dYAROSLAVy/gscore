@@ -3,10 +3,18 @@
         border: 1px solid var(--light-gray);
         background-color: var(--white);
         color: var(--dim-gray);
-        box-shadow: 0 2px 12px 0 rgba(var(--black-russian), 0.06);
+        box-shadow: 0 2px 12px 0 var(--black-russian-rgba);
 
         &:disabled {
             opacity: 0.6;
+        }
+
+        &:not(:placeholder-shown):focus {
+            border: 1px solid var(--nobel);
+        }
+
+        &:focus {
+            outline-offset: 4px;
         }
     }
 }

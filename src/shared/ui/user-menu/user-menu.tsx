@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, FC, useEffect, useState } from "react";
+import { ButtonHTMLAttributes, FC, useEffect, useRef, useState } from "react";
 import { useClasses } from "./styles/use-classes";
 import { ArrowDownIcon } from "@/shared/icons/arrow-down";
 import { ArrowTopIcon } from "@/shared/icons/arrow-top";
@@ -74,6 +74,7 @@ export const UserMenu: FC<UserMenuProps> = ({
 
   const logOut = () => {
     window.localStorage.removeItem("user-token");
+    document.cookie = "user-token=; Max-Age=-1;";
   };
 
   useEffect(() => {

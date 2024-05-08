@@ -58,6 +58,16 @@
 
     &__logo {
         width: 130px;
-        height: 32px;
+        height: 52px;
+        padding: 10px 0;
+
+        &:hover,
+        &:focus {
+            opacity: 0.8;
+        }
+
+        &:active {
+            opacity: 0.6;
+        }
     }
 }

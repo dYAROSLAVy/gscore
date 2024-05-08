@@ -11,6 +11,18 @@
     }
 
     &__logo {
+        transition: ease 0.3s;
+
+        &:hover,
+        &:focus {
+            opacity: 0.8;
+        }
+
+        &:active {
+            opacity: 0.5;
+        }
+
+
         @include mobile {
             width: 130px;
             height: 32px;

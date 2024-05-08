@@ -54,6 +54,7 @@
     &__link-wrapper {
         display: flex;
         flex-wrap: wrap;
+        align-items: center;
         gap: 8px;
         margin: 0;
         font-family: var(--ff-thic);
@@ -61,7 +62,17 @@
         line-height: 112%;
 
         a {
+            padding: 10px 0;
             color: var(--tomato);
+
+            &:hover,
+            &:focus {
+                opacity: 0.8;
+            }
+
+            &:active {
+                opacity: 0.6;
+            }
         }
     }
 

@@ -46,5 +46,14 @@
             height: 1px;
             background-color: var(--white);
         }
+
+        &:hover,
+        &:focus {
+            opacity: 0.8;
+        }
+
+        &:active {
+            opacity: 0.6;
+        }
     }
 }

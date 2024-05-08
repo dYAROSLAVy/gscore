@@ -26,6 +26,15 @@
         @include mobile {
             display: none;
         }
+
+        &:hover,
+        &:focus {
+            opacity: 0.7;
+        }
+
+        &:active {
+            opacity: 0.5;
+        }
     }
 
     &__button.swiper-button-disabled {

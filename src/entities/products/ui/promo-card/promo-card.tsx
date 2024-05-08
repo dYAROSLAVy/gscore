@@ -3,7 +3,7 @@ import { useClasses } from "./styles/use-classes";
 import { FC, useEffect } from "react";
 import { useAppSelector } from "@/shared/redux/hooks";
 import { isFetchBaseQueryError } from "@/shared/redux/utils";
-import router from "next/router";
+import { useRouter } from "next/router";
 import { ButtonSecondary } from "@/shared/ui/buttons/secondary/button-secondary";
 import { useChangeProductMutation } from "@/entities/subscribes";
 import { getUserToken } from "@/entities/user";
@@ -38,6 +38,8 @@ export const PromoCardBase: FC<PromoCardProps> = ({
     cnList,
     cnListDecor,
   } = useClasses(tomato);
+
+  const router = useRouter();
 
   const [changeProduct, { error, isSuccess }] = useChangeProductMutation();
 
