@@ -11,6 +11,28 @@ import {
   NewPasswordSchema,
   useUpdatePasswordMutation,
 } from "@/entities/user";
+import { ajvResolver } from "@hookform/resolvers/ajv";
+import { JSONSchemaType } from "ajv";
+
+const schema: JSONSchemaType<NewPassword> = {
+  type: "object",
+  properties: {
+    currentPassword: {
+      type: "string",
+      minLength: 6,
+      errorMessage: { minLength: "password field min-length is 6" },
+    },
+    newPassword: {
+      type: "string",
+      minLength: 6,
+      errorMessage: {
+        minLength: "password field min-length is 6",
+      },
+    },
+  },
+  required: ["currentPassword", "newPassword"],
+  additionalProperties: false,
+};
 
 export const Password = () => {
   const { cnForm, cnTitle, cnButton } = useClasses();
@@ -20,7 +42,14 @@ export const Password = () => {
   const [patchUpdatePassword, { isLoading, error, isSuccess }] =
     useUpdatePasswordMutation();
 
-  const { register, handleSubmit, reset } = useForm<NewPassword>();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<NewPassword>({
+    resolver: ajvResolver(schema),
+  });
 
   const onSubmit: SubmitHandler<NewPasswordSchema> = (data) => {
     data.token = token;
@@ -46,14 +75,14 @@ export const Password = () => {
       <InputPrimary
         placeholder="Current Password"
         type="password"
-        required
         {...register("currentPassword")}
+        error={errors.currentPassword?.message}
       />
       <InputPrimary
         placeholder="New Password"
         type="password"
-        required
         {...register("newPassword")}
+        error={errors.newPassword?.message}
       />
       <ButtonPrimary className={cnButton} disabled={isLoading}>
         Save

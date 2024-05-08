@@ -7,11 +7,38 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { isFetchBaseQueryError } from "@/shared/redux/utils";
 import { useSignUpMutation } from "@/entities/user";
+import { ajvResolver } from "@hookform/resolvers/ajv";
+import { JSONSchemaType } from "ajv";
 
 type FormValues = {
   username: string;
   email: string;
   password: string;
+};
+
+const schema: JSONSchemaType<FormValues> = {
+  type: "object",
+  properties: {
+    username: {
+      type: "string",
+      minLength: 1,
+      errorMessage: { minLength: "username field is required" },
+    },
+    email: {
+      type: "string",
+      minLength: 3,
+      errorMessage: {
+        minLength: "email field is required and must be an email type",
+      },
+    },
+    password: {
+      type: "string",
+      minLength: 6,
+      errorMessage: { minLength: "password field min-length is 6" },
+    },
+  },
+  required: ["username", "password", "email"],
+  additionalProperties: false,
 };
 
 export const CreateAccount = ({ callback }: { callback: () => void }) => {
@@ -24,7 +51,13 @@ export const CreateAccount = ({ callback }: { callback: () => void }) => {
     query: { id, name, price },
   } = useRouter();
 
-  const { register, handleSubmit } = useForm<FormValues>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>({
+    resolver: ajvResolver(schema),
+  });
 
   useEffect(() => {
     if (isSuccess) {
@@ -52,12 +85,21 @@ export const CreateAccount = ({ callback }: { callback: () => void }) => {
         </p>
       </div>
       <form className={cnForm} onSubmit={handleSubmit(onSubmit)}>
-        <InputPrimary placeholder="UserName" {...register("username")} />
-        <InputPrimary placeholder="Email" {...register("email")} />
+        <InputPrimary
+          placeholder="UserName"
+          {...register("username")}
+          error={errors.username?.message}
+        />
+        <InputPrimary
+          placeholder="Email"
+          {...register("email")}
+          error={errors.email?.message}
+        />
         <InputPrimary
           placeholder="Password"
           {...register("password")}
           type="password"
+          error={errors.password?.message}
         />
         <ButtonPrimary className={cnButton} disabled={isLoading}>
           Send password

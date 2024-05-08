@@ -12,7 +12,7 @@ import {
 
 export const userApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    signUp: builder.mutation<NewUser, void>({
+    signUp: builder.mutation<void, NewUser>({
       query: (body) => ({
         url: API_URL.signUp,
         method: HTTP_METHODS.post,
@@ -67,9 +67,7 @@ export const {
   useMeQuery,
   useUpdatePasswordMutation,
   useUpdatePersonalDataMutation,
-  util: {
-    getRunningQueriesThunk: getUserRunningQueriesThunk,
-  }
+  util: { getRunningQueriesThunk: getUserRunningQueriesThunk },
 } = userApi;
 
 export const getMeData = userApi.endpoints.me.initiate;
