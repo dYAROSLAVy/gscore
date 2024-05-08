@@ -13,5 +13,15 @@
     a {
         display: inline-flex;
         padding: 16px 8px 0;
+
+
+        &:hover,
+        &:focus {
+            opacity: 0.8;
+        }
+
+        &:active {
+            opacity: 0.6;
+        }
     }
 }

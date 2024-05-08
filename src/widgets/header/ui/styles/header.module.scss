@@ -1,0 +1,35 @@
+.header {
+    display: flex;
+    min-height: 106px;
+    flex-shrink: 0;
+
+    &__container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    &__logo {
+        transition: ease 0.3s;
+
+        &:hover,
+        &:focus {
+            opacity: 0.8;
+        }
+
+        &:active {
+            opacity: 0.5;
+        }
+
+
+        @include mobile {
+            width: 130px;
+            height: 32px;
+        }
+    }
+
+    @include mobile {
+        min-height: 80px;
+    }
+}

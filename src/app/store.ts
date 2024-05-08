@@ -1,28 +1,28 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { setupListeners } from "@reduxjs/toolkit/query";
-import { userReducer } from "../entities/user/model/reducers";
 import { baseApi } from "@/shared/redux/base-api";
-import { subscribesReducer } from "@/entities/subscribes/model/reducers";
-import { UserSchema } from "@/entities/types";
-import { SubscribesSchema } from "@/entities/subscribes/model/types";
+import { createWrapper } from "next-redux-wrapper";
+import { userReducer, UserSchema } from "@/entities/user";
+import { subscribesReducer, SubscribesSchema } from "@/entities/subscribes";
 
-export const store = configureStore({
-  reducer: {
-    [baseApi.reducerPath]: baseApi.reducer,
-    user: userReducer,
-    subscribes: subscribesReducer,
-  },
+export const makeStore = () =>
+  configureStore({
+    reducer: {
+      [baseApi.reducerPath]: baseApi.reducer,
+      user: userReducer,
+      subscribes: subscribesReducer,
+    },
 
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(baseApi.middleware),
-});
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(baseApi.middleware),
+  });
 
-setupListeners(store.dispatch);
-
-export type AppDispatch = typeof store.dispatch;
+export type AppStore = ReturnType<typeof makeStore>;
+export type AppDispatch = AppStore["dispatch"];
 
 export type StateSchema = {
   [baseApi.reducerPath]: ReturnType<typeof baseApi.reducer>;
   user: UserSchema;
   subscribes: SubscribesSchema;
 };
+
+export const wrapper = createWrapper<AppStore>(makeStore);

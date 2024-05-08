@@ -1,30 +1,35 @@
-import { Wrapper } from "@/shared/ui/wrapper/wrapper";
-import { Footer } from "@/widgets/footer";
-import { Header } from "@/widgets/header/header";
-import { Main } from "@/widgets/main/main";
-import { Promo } from "@/page-components/promo/promo";
-import Head from "next/head";
+import { wrapper } from "@/app/store";
+import { Promo } from "@/page-components/promo";
+import { getProducts, productThunk } from "@/entities/products";
+import { Layout } from "@/widgets/layout";
+import {
+  getMeData,
+  getUserRunningQueriesThunk,
+  setToken,
+} from "@/entities/user";
 
 export default function Home() {
   return (
-    <>
-      <Head>
-        <title>Gscore</title>
-        <meta
-          name="description"
-          content="Project that provides an opportunity to buy a subscription with codes"
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Wrapper>
-        <Header />
-        <Main>
-          <h1 className={"visually-hidden"}>Main page Gscore</h1>
-          <Promo />
-        </Main>
-        <Footer />
-      </Wrapper>
-    </>
+    <Layout headTitle="Gscore" title="Main page Gscore">
+      <Promo />
+    </Layout>
   );
 }
+
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) => async (context) => {
+    const token = context.req.cookies["user-token"];
+
+    store.dispatch(getProducts.initiate());
+
+    store.dispatch(setToken(token ?? ``));
+    store.dispatch(getMeData(token ?? ``));
+
+    await Promise.all(store.dispatch(productThunk()));
+    await Promise.all(store.dispatch(getUserRunningQueriesThunk()));
+
+    return {
+      props: {},
+    };
+  }
+);

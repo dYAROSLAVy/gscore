@@ -11,6 +11,7 @@ export const ButtonBase: FC<ButtonBaseProps> = ({
   children,
   isLoading,
   className,
+  type,
   ...props
 }) => {
   const { cnRoot } = useClasses({
@@ -18,7 +19,7 @@ export const ButtonBase: FC<ButtonBaseProps> = ({
   });
 
   return (
-    <button className={cnRoot} {...props}>
+    <button className={cnRoot} {...props} type={type}>
       {!isLoading && <span>{children}</span>}
       {isLoading && <Spinner />}
     </button>

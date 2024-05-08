@@ -1,18 +1,18 @@
+import { baseApi } from "@/shared/redux/base-api";
+import { GetSignInResponse } from "../model/userSlice";
+import { API_URL } from "@/shared/constants/api-url";
+import { HTTP_METHODS } from "@/shared/constants/http-methods";
 import {
   FormUser,
   MeResponse,
   NewPasswordSchema,
   NewUser,
   UpdateUserSchema,
-} from "@/entities/types";
-import { baseApi } from "@/shared/redux/base-api";
-import { GetSignInResponse } from "../model/userSlice";
-import { API_URL } from "@/shared/constants/api-url";
-import { HTTP_METHODS } from "@/shared/constants/http-methods";
+} from "@/entities/user/model/types";
 
 export const userApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    signUp: builder.mutation<NewUser, {}>({
+    signUp: builder.mutation<NewUser, void>({
       query: (body) => ({
         url: API_URL.signUp,
         method: HTTP_METHODS.post,
@@ -35,9 +35,9 @@ export const userApi = baseApi.injectEndpoints({
           },
         };
       },
-      providesTags: ['User']
+      providesTags: ["User"],
     }),
-    updatePassword: builder.mutation<{}, NewPasswordSchema>({
+    updatePassword: builder.mutation<void, NewPasswordSchema>({
       query: ({ token, ...body }) => ({
         url: API_URL.updatePassword,
         method: HTTP_METHODS.patch,
@@ -47,7 +47,7 @@ export const userApi = baseApi.injectEndpoints({
         body,
       }),
     }),
-    updatePersonalData: builder.mutation<{}, UpdateUserSchema>({
+    updatePersonalData: builder.mutation<void, UpdateUserSchema>({
       query: ({ token, ...body }) => ({
         url: API_URL.updatePersonalData,
         method: HTTP_METHODS.patch,
@@ -56,7 +56,7 @@ export const userApi = baseApi.injectEndpoints({
         },
         body,
       }),
-      invalidatesTags: ['User'],
+      invalidatesTags: ["User"],
     }),
   }),
 });
@@ -67,4 +67,9 @@ export const {
   useMeQuery,
   useUpdatePasswordMutation,
   useUpdatePersonalDataMutation,
+  util: {
+    getRunningQueriesThunk: getUserRunningQueriesThunk,
+  }
 } = userApi;
+
+export const getMeData = userApi.endpoints.me.initiate;
