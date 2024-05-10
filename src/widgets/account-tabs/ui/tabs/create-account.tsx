@@ -4,7 +4,6 @@ import { useClasses } from "../styles/use-classes";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 import { isFetchBaseQueryError } from "@/shared/redux/utils";
 import { useSignUpMutation } from "@/entities/user";
 import { ajvResolver } from "@hookform/resolvers/ajv";
@@ -45,7 +44,7 @@ export const CreateAccount = ({ callback }: { callback: () => void }) => {
   const { cnTitle, cnForm, cnTextWrap, cnButton, cnText, cnLinkWrap } =
     useClasses();
 
-  const [postSingUp, { isSuccess, error, isLoading }] = useSignUpMutation();
+  const [postSingUp, { isLoading }] = useSignUpMutation();
 
   const {
     query: { id, name, price },
@@ -59,20 +58,15 @@ export const CreateAccount = ({ callback }: { callback: () => void }) => {
     resolver: ajvResolver(schema),
   });
 
-  useEffect(() => {
-    if (isSuccess) {
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    try {
+      await postSingUp(data).unwrap();
       callback();
+    } catch (error) {
+      if (isFetchBaseQueryError(error)) {
+        alert(error.data.message);
+      }
     }
-  }, [isSuccess]);
-
-  useEffect(() => {
-    if (isFetchBaseQueryError(error)) {
-      alert(error.data.message);
-    }
-  }, [error]);
-
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
-    postSingUp(data);
   };
 
   return (

@@ -3,7 +3,6 @@ import { InputPrimary } from "@/shared/ui/inputs/input-primary/input-primary";
 import { ButtonPrimary } from "@/shared/ui/buttons/primary/button-primary";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useAppSelector } from "@/shared/redux/hooks";
-import { useEffect } from "react";
 import { isFetchBaseQueryError } from "@/shared/redux/utils";
 import {
   getUserToken,
@@ -39,8 +38,7 @@ export const Password = () => {
 
   const token = useAppSelector(getUserToken);
 
-  const [patchUpdatePassword, { isLoading, error, isSuccess }] =
-    useUpdatePasswordMutation();
+  const [patchUpdatePassword, { isLoading }] = useUpdatePasswordMutation();
 
   const {
     register,
@@ -51,23 +49,18 @@ export const Password = () => {
     resolver: ajvResolver(schema),
   });
 
-  const onSubmit: SubmitHandler<NewPasswordSchema> = (data) => {
-    data.token = token;
-    patchUpdatePassword(data);
-  };
-
-  useEffect(() => {
-    if (isSuccess) {
+  const onSubmit: SubmitHandler<NewPasswordSchema> = async (data) => {
+    try {
+      data.token = token;
+      await patchUpdatePassword(data).unwrap();
       reset();
       alert("password changed");
+    } catch (error) {
+      if (isFetchBaseQueryError(error)) {
+        alert(error.data.message);
+      }
     }
-  }, [isSuccess]);
-
-  useEffect(() => {
-    if (isFetchBaseQueryError(error)) {
-      alert(error.data.message);
-    }
-  }, [error]);
+  };
 
   return (
     <form className={cnForm} onSubmit={handleSubmit(onSubmit)}>

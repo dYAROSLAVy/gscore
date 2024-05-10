@@ -1,6 +1,6 @@
 import { CheckIcon } from "@/shared/icons/check";
 import { useClasses } from "./styles/use-classes";
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { useAppSelector } from "@/shared/redux/hooks";
 import { isFetchBaseQueryError } from "@/shared/redux/utils";
 import { useRouter } from "next/router";
@@ -41,31 +41,28 @@ export const PromoCardBase: FC<PromoCardProps> = ({
 
   const router = useRouter();
 
-  const [changeProduct, { error, isSuccess }] = useChangeProductMutation();
-
-  useEffect(() => {
-    if (isFetchBaseQueryError(error)) {
-      alert(error.data.message);
-    }
-  }, [error]);
-
-  useEffect(() => {
-    if (isSuccess) {
-      alert("subscription changed");
-      router.push("/subscriptions");
-    }
-  }, [isSuccess]);
+  const [changeProduct, { isLoading }] = useChangeProductMutation();
 
   const token = useAppSelector(getUserToken);
 
-  const onChangeProductClick = () => {
-    const numberId = Number(subscribeIndex);
-    const data = {
-      token,
-      subscribeId: numberId,
-      productId: id,
-    };
-    changeProduct(data);
+  const onChangeProductClick = async () => {
+    try {
+      const numberId = Number(subscribeIndex);
+      const data = {
+        token,
+        subscribeId: numberId,
+        productId: id,
+      };
+      await changeProduct(data).unwrap();
+
+      alert("subscription changed");
+
+      router.push("/subscriptions");
+    } catch (error) {
+      if (isFetchBaseQueryError(error)) {
+        alert(error.data.message);
+      }
+    }
   };
 
   return (
@@ -118,6 +115,7 @@ export const PromoCardBase: FC<PromoCardProps> = ({
         </ul>
         <ButtonSecondary
           onClick={!isSubscribeIndex ? onClick : onChangeProductClick}
+          disabled={isLoading}
         >
           {!isSubscribeIndex && "Get Gscore"}
           {isSubscribeIndex && "Сhange to this subscription"}
