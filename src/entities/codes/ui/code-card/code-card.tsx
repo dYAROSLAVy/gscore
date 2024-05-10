@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useEffect } from "react";
+import { ChangeEvent, FC } from "react";
 import { useClasses } from "./styles/use-classes";
 import { useActivateLicenseMutation } from "@/entities/codes/api/api";
 import { isFetchBaseQueryError } from "@/shared/redux/utils";
@@ -48,8 +48,7 @@ export const CodeCard: FC<CodeCardProps> = ({
     cnCheckboxInner,
   } = useClasses({ status });
 
-  const [postActivateLicense, { isLoading, error }] =
-    useActivateLicenseMutation();
+  const [postActivateLicense, { isLoading }] = useActivateLicenseMutation();
 
   const registerCodeIds = register("codesIds");
 
@@ -58,19 +57,19 @@ export const CodeCard: FC<CodeCardProps> = ({
     onCheckboxChange?.(evt);
   };
 
-  const onActivateClick = () => {
-    const data = {
-      token,
-      code,
-    };
-    postActivateLicense(data);
-  };
-
-  useEffect(() => {
-    if (isFetchBaseQueryError(error)) {
-      alert(error.data.message);
+  const onActivateClick = async () => {
+    try {
+      const data = {
+        token,
+        code,
+      };
+      await postActivateLicense(data).unwrap();
+    } catch (error) {
+      if (isFetchBaseQueryError(error)) {
+        alert(error.data.message);
+      }
     }
-  }, [error]);
+  };
 
   return (
     <>

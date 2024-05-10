@@ -2,7 +2,6 @@ import { InputPrimary } from "@/shared/ui/inputs/input-primary/input-primary";
 import { ButtonPrimary } from "@/shared/ui/buttons/primary/button-primary";
 import { useClasses } from "../styles/use-classes";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useEffect } from "react";
 import { isFetchBaseQueryError } from "@/shared/redux/utils";
 import { FormUser, useSingInMutation } from "@/entities/user";
 import { ajvResolver } from "@hookform/resolvers/ajv";
@@ -11,7 +10,7 @@ import { JSONSchemaType } from "ajv";
 export const Login = ({ callback }: { callback: () => void }) => {
   const { cnTitle, cnForm, cnTextWrap, cnButton } = useClasses();
 
-  const [postSingIn, { isLoading, isSuccess, error }] = useSingInMutation();
+  const [postSingIn, { isLoading }] = useSingInMutation();
 
   const schema: JSONSchemaType<FormUser> = {
     type: "object",
@@ -41,20 +40,15 @@ export const Login = ({ callback }: { callback: () => void }) => {
     resolver: ajvResolver(schema),
   });
 
-  useEffect(() => {
-    if (isSuccess) {
+  const onSubmit: SubmitHandler<FormUser> = async (data) => {
+    try {
+      await postSingIn(data).unwrap();
       callback();
+    } catch (error) {
+      if (isFetchBaseQueryError(error)) {
+        alert(error.data.message);
+      }
     }
-  }, [isSuccess]);
-
-  useEffect(() => {
-    if (isFetchBaseQueryError(error)) {
-      alert(error.data.message);
-    }
-  }, [error]);
-
-  const onSubmit: SubmitHandler<FormUser> = (data) => {
-    postSingIn(data);
   };
 
   return (

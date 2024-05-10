@@ -1,6 +1,6 @@
 import { Container } from "@/shared/ui/container/container";
 import { useClasses } from "@/page-components/account/ui/styles/use-classes";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useAppSelector } from "@/shared/redux/hooks";
 import { Tab, Tabs } from "@/shared/ui/tabs/tabs";
 import { useRouter } from "next/router";
@@ -17,8 +17,7 @@ import { useBuySubscribeMutation } from "@/entities/payments";
 export const Account = () => {
   const { cnRoot, cnInner, cnTabsList } = useClasses();
 
-  const [buySubscribe, { isSuccess, error, isLoading }] =
-    useBuySubscribeMutation();
+  const [buySubscribe, { isLoading }] = useBuySubscribeMutation();
 
   const router = useRouter();
 
@@ -46,25 +45,20 @@ export const Account = () => {
     setSelectedTab("checkout");
   };
 
-  useEffect(() => {
-    if (isSuccess) {
+  const buySubs = async () => {
+    try {
+      const priceId = Number(id);
+      const data = {
+        token,
+        priceId,
+      };
+      await buySubscribe(data).unwrap();
       setStartSubs(true);
+    } catch (error) {
+      if (isFetchBaseQueryError(error)) {
+        alert(error.data.message);
+      }
     }
-  }, [isSuccess]);
-
-  useEffect(() => {
-    if (isFetchBaseQueryError(error)) {
-      alert(error.data.message);
-    }
-  }, [error]);
-
-  const buySubs = () => {
-    const priceId = Number(id);
-    const data = {
-      token,
-      priceId,
-    };
-    buySubscribe(data);
   };
 
   const TABS: Tab[] = [
