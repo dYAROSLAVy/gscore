@@ -4,9 +4,10 @@ import { useClasses } from "../styles/use-classes";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 import { isFetchBaseQueryError } from "@/shared/redux/utils";
 import { useSignUpMutation } from "@/entities/user";
+import { ajvResolver } from "@hookform/resolvers/ajv";
+import { JSONSchemaType } from "ajv";
 
 type FormValues = {
   username: string;
@@ -14,32 +15,58 @@ type FormValues = {
   password: string;
 };
 
+const schema: JSONSchemaType<FormValues> = {
+  type: "object",
+  properties: {
+    username: {
+      type: "string",
+      minLength: 1,
+      errorMessage: { minLength: "username field is required" },
+    },
+    email: {
+      type: "string",
+      minLength: 3,
+      errorMessage: {
+        minLength: "email field is required and must be an email type",
+      },
+    },
+    password: {
+      type: "string",
+      minLength: 6,
+      errorMessage: { minLength: "password field min-length is 6" },
+    },
+  },
+  required: ["username", "password", "email"],
+  additionalProperties: false,
+};
+
 export const CreateAccount = ({ callback }: { callback: () => void }) => {
   const { cnTitle, cnForm, cnTextWrap, cnButton, cnText, cnLinkWrap } =
     useClasses();
 
-  const [postSingUp, { isSuccess, error, isLoading }] = useSignUpMutation();
+  const [postSingUp, { isLoading }] = useSignUpMutation();
 
   const {
     query: { id, name, price },
   } = useRouter();
 
-  const { register, handleSubmit } = useForm<FormValues>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>({
+    resolver: ajvResolver(schema),
+  });
 
-  useEffect(() => {
-    if (isSuccess) {
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    try {
+      await postSingUp(data).unwrap();
       callback();
+    } catch (error) {
+      if (isFetchBaseQueryError(error)) {
+        alert(error.data.message);
+      }
     }
-  }, [isSuccess]);
-
-  useEffect(() => {
-    if (isFetchBaseQueryError(error)) {
-      alert(error.data.message);
-    }
-  }, [error]);
-
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
-    postSingUp(data);
   };
 
   return (
@@ -52,12 +79,21 @@ export const CreateAccount = ({ callback }: { callback: () => void }) => {
         </p>
       </div>
       <form className={cnForm} onSubmit={handleSubmit(onSubmit)}>
-        <InputPrimary placeholder="UserName" {...register("username")} />
-        <InputPrimary placeholder="Email" {...register("email")} />
+        <InputPrimary
+          placeholder="UserName"
+          {...register("username")}
+          error={errors.username?.message}
+        />
+        <InputPrimary
+          placeholder="Email"
+          {...register("email")}
+          error={errors.email?.message}
+        />
         <InputPrimary
           placeholder="Password"
           {...register("password")}
           type="password"
+          error={errors.password?.message}
         />
         <ButtonPrimary className={cnButton} disabled={isLoading}>
           Send password

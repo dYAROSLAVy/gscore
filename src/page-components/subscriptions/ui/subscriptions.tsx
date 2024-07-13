@@ -46,7 +46,7 @@ export const Subscriptions = () => {
 
   const subscribeIndex = useAppSelector(getSubscribesSlideIndex);
 
-  const [codeManage, { error: codeManageError }] = useCodeManageMutation();
+  const [codeManage, { isLoading }] = useCodeManageMutation();
 
   const { register, handleSubmit, reset, getValues, control } = useForm<{
     codesIds?: string[];
@@ -63,7 +63,7 @@ export const Subscriptions = () => {
 
   const onSubmit: SubmitHandler<{
     codesIds?: string[];
-  }> = (data) => {
+  }> = async (data) => {
     const params: CodeManagePutParams = {
       token: token,
       subscribeId: Number(subscribeIndex),
@@ -71,8 +71,14 @@ export const Subscriptions = () => {
         ? data.codesIds?.map((id: string) => Number(id))
         : undefined,
     };
-    codeManage(params);
-    reset();
+    try {
+      await codeManage(params).unwrap();
+      reset();
+    } catch (error) {
+      if (isFetchBaseQueryError(error)) {
+        alert(error.data.message);
+      }
+    }
   };
 
   useEffect(() => {
@@ -80,12 +86,6 @@ export const Subscriptions = () => {
       alert(getSubscribesSelfError.data.message);
     }
   }, [getSubscribesSelfError]);
-
-  useEffect(() => {
-    if (isFetchBaseQueryError(codeManageError)) {
-      alert(codeManageError.data.message);
-    }
-  }, [codeManageError]);
 
   const onCheckboxChange = (evt: ChangeEvent<HTMLInputElement>) => {
     const licenseCodeLimit = data?.[card].product.sitesCount ?? 0;
@@ -158,7 +158,10 @@ export const Subscriptions = () => {
                   <span className={cnConfirmText}>
                     Select the domains you want to keep
                   </span>
-                  <ButtonPrimary type="submit" disabled={!codesIds?.length}>
+                  <ButtonPrimary
+                    type="submit"
+                    disabled={!codesIds?.length || isLoading}
+                  >
                     Сonfirm
                   </ButtonPrimary>
                 </div>
